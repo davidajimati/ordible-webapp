@@ -57,3 +57,7 @@ Example:
 ![Homepage mockup](<basic-mockups/ordibel homepage.png>)
 #### Search results page Mockup
 ![Search results page mockup](<basic-mockups/ordible player interface.png>)
+
+## AUTHORS
+ - David M. Ajimati
+ - Stanley Paul
