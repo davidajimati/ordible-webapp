@@ -14,6 +14,11 @@ body {
     font-size: medium;
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
 h1,
 h2 {
     font-family: 'Montserrat', sans-serif;
@@ -25,8 +30,9 @@ header,
 footer {
     padding-left: 10px;
     padding-right: 10px;
-    font-size:  medium;
-    background-color: #FFFCF2;
+    font-size: medium;
+    background-color: whitesmoke;
+    color: #00072D;
 }
 
 header {
@@ -36,7 +42,7 @@ header {
     align-items: center;
 }
 
-footer>ul {
+ul {
     grid-area: extras;
     list-style-type: none;
     display: flex;
@@ -59,7 +65,7 @@ footer {
 }
 
 .fa {
-    color: #01017a;
+    color: #00072D;
 }
 
 footer>p {
