@@ -1,0 +1,77 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    display: grid;
+    grid-template: 50px auto 50px / 1fr;
+}
+
+header,
+footer {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+header {
+    border: 1px blue solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer>ul {
+    grid-area: extras;
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    justify-self: end;
+}
+
+footer>p {
+    grid-area: githubStar;
+}
+
+footer {
+    border: 1px blue solid;
+    display: grid;
+    grid-template: 1fr / 1fr 1fr 1fr 1fr;
+    grid-template-areas: ". githubStar githubStar extras";
+    align-items: center;
+    justify-items: center;
+}
+
+.fa {
+    color: #01017a;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+footer>p {
+    display: inline;
+}
