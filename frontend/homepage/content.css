@@ -1,4 +1,4 @@
-* {
+/* {
     padding: 0;
     margin: 0;
 }
@@ -6,7 +6,7 @@
 .container {
     display: grid;
     justify-items: center;
-    /* align-items: center; */
+    align-items: center;
 }
 
 .contents {
@@ -17,7 +17,7 @@
     justify-content: center;
 }
 
-*/ .logo-text {
+ .logo-text {
     font-size: 70px;
     align-self: center;
 }
@@ -33,4 +33,6 @@
 button {
     width: 100px;
     height: 30px;
-}
+} */
+
+
