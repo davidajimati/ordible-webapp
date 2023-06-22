@@ -33,22 +33,23 @@ body {
     width: 600px;
     height: 45px;
     margin: 40px auto 10px auto;
-    border: 1px solid #dfdcdc;
+    border: none;
     border-radius: 30px;
-    background-color: white;
+    background-color: whitesmoke;
     padding-left: 20px;
+    padding-right: 20px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     font-size: medium;
 }
 
 button {
     width: 150px;
-    height: 35px;
+    height: 38px;
     border: none;
     border-radius: 6px;
     font-size: medium;
-    background-color: #00072D;
-    color: white;
+    background-color: #da0707;
+    color: whitesmoke;
 }
 
 
@@ -70,8 +71,8 @@ button {
     }
 
     button {
-        width: 90px;
-        height: 30px;
+        width: 110px;
+        height: 35px;
     }
 }
 
@@ -93,7 +94,7 @@ button {
     }
 
     button {
-        width: 110px;
-        height: 35px;
+        width: 130px;
+        height: 40px;
     }
 }

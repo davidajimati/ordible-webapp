@@ -1,3 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Karla:wght@300;400&family=Montserrat:wght@500&family=Open+Sans:wght@300&display=swap');
+
 .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 6% 1fr;
+    padding: 20px;
+}
+
+#results-heading {
+    text-align: center;
+    margin: 10px auto;
+}
+
+.results-wrapper {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 500px);
+    gap: 10px;
+    justify-content: center;
+    justify-items: center;
+}
+
+.result {
+    width: 480px;
+    height: auto;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.video-details {
+    margin-left: 10px;
+}
+
+.thumbnail>img {
+    width: 200px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.thumbnail {
+    position: relative;
+    display: inline-block;
+}
+
+/* Places the duration text on the bottom left corner of the thumbnail */
+.duration {
+    position: absolute;
+    top: 75%;
+    left: 75%;
+    color: white;
+    padding: 2px;
+    background-color: rgba(0, 0, 0, 0.2);
+    font-size: 12px;
+}
+
+.video-details p,
+.extras p {
+    color: #7e7b7b;
 
 }
