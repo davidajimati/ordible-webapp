@@ -1,5 +1,7 @@
 # ORDIBLE
-Web app that allows users to stream video content from social media platforms in audio format.
+![Ordible Logo](project-images/white-red.png)
+
+Web app that allows users to stream video content from social media platforms in audio format.<br>
 
 visit the github page to have a live view of this project via: https://davidajimati.github.io/ordible-webapp/index.html
 
@@ -62,3 +64,7 @@ Example:
 ## AUTHORS
  - David M. Ajimati
  - Stanley Paul
+
+<img style="height: 50px; width: 50px"  src="project-images/clear-red-favicon.png"><br>
+©ORDIBLE - 2023
+
