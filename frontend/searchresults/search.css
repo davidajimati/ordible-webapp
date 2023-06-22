@@ -1,3 +1,51 @@
-.container {
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Karla:wght@300;400&family=Montserrat:wght@500&family=Open+Sans:wght@300&display=swap');
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#results-heading {
+    align-self: center;
+}
+.results-wrapper {
+    display: grid;
+    margin: 15px auto;
+    width: 500px;
+    height: auto;
+}
+
+.result {
+    margin: 10px auto;
+    display: flex;
+    /* flex-direction: column; */
+}
+
+.video-details {
+    margin-left: 10px;
+}
+
+.thumbnail>img {
+    width: 200px;
+    height: auto;
+    border-radius: 5px;
+    /* position: relative; */
+}
+
+.thumbnail {
+    position: relative;
+    display: inline-block;
+}
+
+.duration {
+    position: absolute;
+    top: 75%;
+    left: 75%;
+    color: white;
+    padding: 2px;
+    background-color: rgba(0, 0, 0, 0.2);
+    font-size: 12px;
 }
