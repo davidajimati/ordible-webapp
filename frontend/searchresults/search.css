@@ -3,7 +3,7 @@
 .container {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 6% 1fr;
+    grid-template-rows: 50px 1fr;
     padding: 20px;
 }
 
@@ -17,7 +17,7 @@
 }
 
 .results-wrapper {
-    margin-top: 5px;
+    margin-top: 10px;
     padding: 10px;
     padding-top: 20px;
 
@@ -31,9 +31,10 @@
 .result {
     width: 480px;
     margin-bottom: 10px;
-    height: auto;
+    height: fit-content;
     display: flex;
     border-radius: 8px;
+    padding: 5px;
 }
 
 .result:hover {
@@ -54,11 +55,11 @@
     display: inline-block;
 }
 
-/* Places the duration text on the bottom left corner of the thumbnail */
+.author {
+    display: inline-block;
+}
+/* Places the duration text in front of the author */
 .duration {
-    position: absolute;
-    top: 75%;
-    left: 75%;
     color: white;
     padding: 2px;
     background-color: rgba(0, 0, 0, 0.2);
