@@ -30,8 +30,8 @@ h2 {
 
 header,
 footer {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
     font-size: medium;
     background-color: whitesmoke;
     color: #00072D;
@@ -53,6 +53,12 @@ ul {
     justify-self: end;
 }
 
+.fa {
+    color: #00072D;
+    transition: font-size ease-in-out 0.2s;
+    transition: color 0.2s ease-in-out;
+}
+
 footer>p {
     grid-area: githubStar;
 }
@@ -66,9 +72,6 @@ footer {
     justify-items: center;
 }
 
-.fa {
-    color: #00072D;
-}
 
 footer>p {
     display: inline;
@@ -91,5 +94,9 @@ footer>p {
         flex: 1;
         max-width: 133px;
         height: 40px;
+    }
+
+    footer {
+        grid-template-areas: "githubStar githubStar . extras";
     }
 }

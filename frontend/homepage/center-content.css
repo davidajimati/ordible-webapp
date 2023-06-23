@@ -38,8 +38,12 @@ body {
     background-color: whitesmoke;
     padding-left: 20px;
     padding-right: 20px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     font-size: medium;
+    transition: box-shadow 0.2s ease;
+}
+
+.search:hover {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 button {
@@ -48,8 +52,13 @@ button {
     border: none;
     border-radius: 6px;
     font-size: medium;
-    background-color: #da0707;
+    background-color: #da0707d7;
     color: whitesmoke;
+    transition: background-color  0.1s ease;
+}
+
+button:hover {
+    background-color: #da0707
 }
 
 
