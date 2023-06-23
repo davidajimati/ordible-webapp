@@ -17,22 +17,28 @@
 }
 
 .results-wrapper {
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    padding: 10px;
+    padding-top: 20px;
+
     display: grid;
     grid-template-columns: repeat(auto-fit, 500px);
-    gap: 10px;
     justify-content: center;
     justify-items: center;
+    background-color: #ececec1e;
 }
 
 .result {
     width: 480px;
-    height: auto;
     margin-bottom: 10px;
+    height: auto;
     display: flex;
+    border-radius: 8px;
 }
 
+.result:hover {
+    background-color: #e7e5e5;
+}
 .video-details {
     margin-left: 10px;
 }
