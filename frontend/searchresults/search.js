@@ -81,14 +81,14 @@ function renderer(array) {
 };
 
 const resource = [
-  // vid1 = {
-  //   "title": "The Lord that healeth thee. ft. David Morrison",
-  //   "author": "Don Meon",
-  //   "image": "../images/yt-placeholder.jpg",
-  //   "duration": "02:43",
-  //   "views": "900K",
-  //   "age": "3 months ago"
-  // },
+  vid1 = {
+    "title": "The Lord that healeth thee. ft. David Morrison",
+    "author": "Don Meon",
+    "image": "../images/yt-placeholder.jpg",
+    "duration": "02:43",
+    "views": "900K",
+    "age": "3 months ago"
+  },
 
   vid2 = {
     "title": "Blessed Be your name oh Lord!",
