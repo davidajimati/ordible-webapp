@@ -39,6 +39,7 @@
 .result:hover {
     background-color: #e7e5e5;
 }
+
 .video-details {
     margin-left: 10px;
 }
@@ -57,11 +58,12 @@
 .author {
     display: inline-block;
 }
+
 /* Places the duration text in front of the author */
 .duration {
     color: white;
     padding: 2px;
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: #da07079c;
     font-size: 12px;
 }
 
@@ -69,4 +71,17 @@
 .extras p {
     color: #7e7b7b;
 
+}
+
+.icons {
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    margin-bottom: 0px;
+    align-items: flex-end;
+}
+
+.icons>i {
+    font-size: 23px;
 }
