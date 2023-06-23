@@ -12,6 +12,10 @@
     margin: 10px auto;
 }
 
+#search-text {
+    color: #da0707;
+}
+
 .results-wrapper {
     margin-top: 20px;
     margin-bottom: 10px;
