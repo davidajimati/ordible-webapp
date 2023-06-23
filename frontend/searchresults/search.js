@@ -1,46 +1,96 @@
-wrapper = document.querySelector('.results-wrapper');
+const resource = {
+  vid1: {
+    "title": "The Lord that healeth thee. ft. David Morrison",
+    "author": "Don Meon",
+    "image": "../images/yt-placeholder.jpg",
+    "duration": "02:43",
+    "views": "900K",
+    "age": "3 months ago"
+  },
+
+  vid2: {
+    "title": "Blessed Be your name oh Lord!",
+    "author": "Pastor Chris Morgan",
+    "image": "../images/yt-placeholder.jpg",
+    "duration": "09:51",
+    "views": "900K",
+    "age": "3 years ago"
+  },
+
+  vid3: {
+    "title": "The sound of extreme heavenly revival by the waterfalls of heaven ft. David Morrison",
+    "author": "Dunsin Oyekan",
+    "image": "../images/yt-placeholder.jpg",
+    "duration": "13:01",
+    "views": "12K",
+    "age": "2 Minutes ago"
+  },
+
+  vid4: {
+    "title": "Living waters ft. William McDowell",
+    "author": "Nathaniel Bassey",
+    "image": "../images/yt-placeholder.jpg",
+    "duration": "05:43",
+    "views": "354K",
+    "age": "5 months ago"
+  }
+}
+
+
+const wrapper = document.querySelector('.results-wrapper');
 
 // ------------results div--------------------------------------
 const result = document.createElement('div');
 result.classList.add('result');
 
 // ---------------thumbnail div-----------------------------
-const  thumbnail = document.createElement('div');
+const thumbnail = document.createElement('div');
 thumbnail.classList.add('thumbnail');
 
 const image = document.createElement('img');
-image.src = "../images/yt-placeholder.jpg"
-image.style.display = inline;
+image.src = "../images/yt-placeholder.jpg";
+image.style.display = "inline";
 
 // -----------------video-details div---------------------------
-const vidDetails = document.createElement('div')
+const symbol = document.createElement('span');
+symbol.innerHTML = " &#x2022; ";
+
+const symbol2 = document.createElement('span');
+symbol2.innerHTML = " &#x2022; ";
+
+const vidDetails = document.createElement('div');
 vidDetails.classList.add('video-details');
 
-const title = document.createElement('h3').textContent = "Lorem Ipsum Heading sample";
+const title = document.createElement('h3');
+title.textContent = "Lorem Ipsum Heading sample";
 title.classList.add('title');
 
-const author = document.createElement('p').textContent = "Morris Morgan ";
+const author = document.createElement('p');
+author.textContent = "Morris Morgan";
 author.classList.add('author');
 
-const duration = document.createElement('span').textContent = "06:24";
+const duration = document.createElement('span');
+duration.textContent = "06:24";
 duration.classList.add('duration');
 
-const extras = document.createElement('div').classList.add('extras');
+const extras = document.createElement('div');
+extras.classList.add('extras');
 
-const views = document.createElement('p').style.display = "inline";
-views.classList.new('views');
+const views = document.createElement('p');
+views.style.display = "inline";
+views.classList.add('views');
 views.textContent = "25.9M";
 
-const symbol = document.createElement('span').innerHTML = "&#x2022;";
-
-const age = document.createElement('p').style.display = "inline";
-age.classList.new('age');
+const age = document.createElement('p');
+age.style.display = "inline";
+age.classList.add('age');
 age.textContent = "5 years ago";
 //-------------------------------------------------------------------
-push
+
 // -------------append children to extras
-extras.appendChild(views)
-extras.appendChild(symbol)
+extras.appendChild(views);
+extras.appendChild(symbol2);
+extras.appendChild(age);
 
 // -------------append children to video-details
 vidDetails.appendChild(title);
@@ -53,9 +103,8 @@ vidDetails.appendChild(extras);
 thumbnail.appendChild(image);
 
 // -------------append children to result
-result.appendChild(thumbnail)
-result.appendChild(vidDetails)
+result.appendChild(thumbnail);
+result.appendChild(vidDetails);
 
 // -------------append result to wrapper
 wrapper.appendChild(result);
-// ---------------------------------------------------
