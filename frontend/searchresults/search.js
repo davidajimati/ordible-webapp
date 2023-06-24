@@ -55,7 +55,24 @@ function renderer(array) {
     age.classList.add('age');
     age.textContent = vidAge;
     //-------------------------------------------------------------------
+    const icons = document.createElement('div');
+    icons.classList.add('icons');
 
+    const playIcon = document.createElement('i');
+    playIcon.classList.add('fa', 'fa-play-circle');
+    playIcon.setAttribute("aria-hidden", "true");
+
+    const heartIcon = document.createElement('i')
+    heartIcon.classList.add('fa', 'fa-heart')
+    heartIcon.setAttribute("aria-hidden", "true");
+
+    const downloadIcon = document.createElement('i');
+    downloadIcon.classList.add('fa', 'fa-download');
+    downloadIcon.setAttribute("aria-hidden", "true");
+
+    icons.appendChild(playIcon)
+    icons.appendChild(heartIcon)
+    icons.appendChild(downloadIcon)
     // -------------append children to extras
     extras.appendChild(views);
     extras.appendChild(symbol2);
@@ -67,6 +84,7 @@ function renderer(array) {
     vidDetails.appendChild(symbol);
     vidDetails.appendChild(duration);
     vidDetails.appendChild(extras);
+    vidDetails.appendChild(icons);
 
     // -------------append children to thumbnail
     thumbnail.appendChild(image);
@@ -118,4 +136,4 @@ const resource = [
   }
 ]
 
-renderer(resource);
+// renderer(resource);
