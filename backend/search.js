@@ -7,7 +7,7 @@ const youtube = google.youtube('v3');
 const filename = "../frontend/response.json"
 
 
-const apiKey = "AIzaSyDTposgVakSuuZgQG_Q0igZECJsNqWQnCY";
+const apiKey = "API_KEY_HERE";
 
 youtube.search.list({
   key: apiKey, // or auth: auth for OAuth 2.0
