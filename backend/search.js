@@ -5,16 +5,16 @@ const fs = require('fs');
 const { google } = require('googleapis');
 const youtube = google.youtube('v3');
 
-const filename = "../frontend/video-search/response.json"
+const filename = "../frontend/video-search/results.json"
 const apiKey = "AIzaSyDTposgVakSuuZgQG_Q0igZECJsNqWQnCY";
-const text = "We love the lord";
+const text = "JOE METTLE-THE KADOSH(LIVE ) feat NATHANIEL BASSEY";
 
 youtube.search.list({
   key: apiKey, // or auth: auth for OAuth 2.0
   "part": [
     "snippet"
   ],
-  "maxResults": 2,
+  "maxResults": 50,
   q: text
 }, (error, Response) => {
   if (error) {
