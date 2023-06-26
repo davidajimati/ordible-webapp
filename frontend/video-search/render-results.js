@@ -1,12 +1,11 @@
 function renderer(array) {
   const wrapper = document.querySelector('.results-wrapper');
   array.forEach((element) => {
-    let vidTitle = element.title;
-    let vidAuthor = element.author;
-    let vidImage = element.image;
-    let vidDuration = element.duration;
-    let vidViews = element.views;
-    let vidAge = element.age;
+    const videoLink = "https://youtube.com/watch?v=" + element.id.videoId;
+    const publishDate = element.snippet.publishedAt;
+    const vidTitle = element.snippet.title;
+    const vidAuthor = element.snippet.channelTitle;
+    const thumbnailLink = element.snippet.thumbnails.medium.url;
 
     // ------------results div--------------------------------------
     const result = document.createElement('div');
@@ -17,7 +16,7 @@ function renderer(array) {
     thumbnail.classList.add('thumbnail');
 
     const image = document.createElement('img');
-    image.src = vidImage;
+    image.src = thumbnailLink;
     image.style.display = "inline";
 
     // -----------------video-details div---------------------------
@@ -33,6 +32,9 @@ function renderer(array) {
     const title = document.createElement('h3');
     title.textContent = vidTitle;
     title.classList.add('title');
+
+    const titleLink = document.querySelector("#titleLink");
+    titleLink.href = videoLink;
 
     const author = document.createElement('p');
     author.textContent = vidAuthor;
@@ -97,43 +99,29 @@ function renderer(array) {
     wrapper.appendChild(result);
   })
 };
-
-const resource = [
-  vid1 = {
-    "title": "The Lord that healeth thee. ft. David Morrison",
-    "author": "Don Meon",
-    "image": "../images/yt-placeholder.jpg",
-    "duration": "02:43",
-    "views": "900K",
-    "age": "3 months ago"
-  },
-
-  vid2 = {
-    "title": "Blessed Be your name oh Lord!",
-    "author": "Pastor Chris Morgan",
-    "image": "../images/yt-placeholder.jpg",
-    "duration": "09:51",
-    "views": "900K",
-    "age": "3 years ago"
-  },
-
-  vid3 = {
-    "title": "The sound of extreme heavenly revival by the waterfalls of heaven ft. David Morrison",
-    "author": "Dunsin Oyekan",
-    "image": "../images/yt-placeholder.jpg",
-    "duration": "13:01",
-    "views": "12K",
-    "age": "2 Minutes ago"
-  },
-
-  vid4 = {
-    "title": "Living waters ft. William McDowell",
-    "author": "Nathaniel Bassey",
-    "image": "../images/yt-placeholder.jpg",
-    "duration": "05:43",
-    "views": "354K",
-    "age": "5 months ago"
+/*
+const fs = require('fs');
+const fileName = './response.json';
+// read response file and store int in a variable
+fs.readFile(fileName, (err, data) => {
+  if (err) {
+    console.log("There's an error", err);
+    return;
   }
-]
+  else {
+    const result = JSON.parse(data);
+    // console.log(result);
+    // renderer(result)
+  }
+}); */
 
-// renderer(resource);
+
+function trial(array) {
+  array.forEach((element) => {
+    const videoLink = "https://youtube.com/watch?v=" + element.id.videoId;
+    const publishDate = element.snippet.publishedAt;
+    const vidTitle = element.snippet.title;
+    const vidAuthor = element.snippet.channelTitle;
+    const thumbnail = element.snippet.thumbnails.medium.url;
+  });
+}

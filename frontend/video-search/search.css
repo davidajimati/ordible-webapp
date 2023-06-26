@@ -42,6 +42,8 @@
 
 .video-details {
     margin-left: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .thumbnail>img {
@@ -78,7 +80,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: auto;
-    margin-bottom: 0px;
+    margin-bottom: 5px;
     align-items: flex-end;
 }
 

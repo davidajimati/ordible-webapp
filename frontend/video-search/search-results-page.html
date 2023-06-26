@@ -8,7 +8,7 @@
     <link rel="icon" href="../images/red-favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../homepage/general.css">
     <link rel="stylesheet" href="search.css">
-    <script src="search-results.js" defer></script>
+    <script src="render-results.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -26,16 +26,23 @@
         <div class="results-wrapper">
             <div class="result">
                 <div class="thumbnail">
-                    <img style="display: inline;" src="../images/thumbnail1.png" alt="thumbnail">
+                    <img style="display: inline;" src="https://i.ytimg.com/vi/qoyPHwJNxXM/mqdefault.jpg"
+                        alt="thumbnail">
                 </div>
                 <div class="video-details">
-                    <h3 class="title">God will make a way - ft. Nathaniel Bassey</h3>
-                    <p class="author">Don Meon</p> <span style="display: inline;"> &#x2022; </span>
-                    <span style="display: inline;" class="duration">14:05</span>
+                    <a id="titleLink" target="_blank" href="#">
+                        <h3 class="title">God will make a way - ft. Nathaniel Bassey</h3>
+                    </a>
+                    <div>
+                        <p class="author">Don Meon</p> <span style="display: inline; color: #da0707; font-size: larger">
+                            &#x2022; </span>
+                        <p style="display: inline;" class="age">2 years ago</p>
+                    </div>
+                    <!-- <span style="display: inline;" class="duration">14:05</span>
                     <div class="extras">
                         <p style="display: inline;" class="views">2.2M</p> &#x2022;
                         <p style="display: inline;" class="age">2 years ago</p>
-                    </div>
+                    </div> -->
                     <div class="icons">
                         <i class="fa fa-play-circle" aria-hidden="true"></i>
                         <i class="fa fa-heart" aria-hidden="true"></i>
@@ -44,7 +51,7 @@
                 </div>
             </div>
 
-            <div class="result">
+            <!-- <div class="result">
                 <div class="thumbnail">
                     <img src="../images/thumbnail2.png" alt="thumbnail">
                 </div>
@@ -296,7 +303,7 @@
                         <i class="fa fa-download" aria-hidden="true"></i>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <footer>

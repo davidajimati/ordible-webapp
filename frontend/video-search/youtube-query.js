@@ -4,6 +4,9 @@
  * the first function loads the client (browser)
  * the second function accepts the query and submits it to YouTube
  * the last part loads the gapi(google api), calling the loadClient function
+ *
+ * THIS IS THE FRONTEND IMPLEMENTATION OF THE YOUTUBE API... not used in this project.
+ * implemented on the backend instead
  */
 
 
