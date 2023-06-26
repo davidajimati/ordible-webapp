@@ -1,11 +1,38 @@
+fetch('./results.json')
+  .then(response => response.text())
+  .then(data => {
+    console.log(typeof(data))
+    // renderer(result);
+
+    for (element of data) {
+      const videoLink = "https://youtube.com/watch?v=" + element['id']['videoId'];
+      const publishDate = element.snippet.publishedAt;
+      const vidTitle = element.snippet.title;
+      const vidAuthor = element.snippet.channelTitle;
+      const thumbnailLink = element.snippet.thumbnails.medium.url;
+      const vidAge = checkISO(publishDate)
+
+      console.log(videoLink)
+      console.log(publishDate)
+      console.log(vidTitle)
+      console.log(vidAuthor)
+      console.log(thumbnailLink)
+      console.log(vidAge)
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
 function renderer(array) {
   const wrapper = document.querySelector('.results-wrapper');
-  array.forEach((element) => {
+  for (element of array) {
     const videoLink = "https://youtube.com/watch?v=" + element.id.videoId;
     const publishDate = element.snippet.publishedAt;
     const vidTitle = element.snippet.title;
     const vidAuthor = element.snippet.channelTitle;
     const thumbnailLink = element.snippet.thumbnails.medium.url;
+    const vidAge = checkISO(publishDate)
 
     // ------------results div--------------------------------------
     const result = document.createElement('div');
@@ -97,31 +124,44 @@ function renderer(array) {
 
     // -------------append result to wrapper
     wrapper.appendChild(result);
-  })
+  }
 };
-/*
-const fs = require('fs');
-const fileName = './response.json';
-// read response file and store int in a variable
-fs.readFile(fileName, (err, data) => {
-  if (err) {
-    console.log("There's an error", err);
-    return;
-  }
-  else {
-    const result = JSON.parse(data);
-    // console.log(result);
-    // renderer(result)
-  }
-}); */
 
+function checkISO(input) {
+  // Test if the string matches the ISO date pattern
+  var isoDatePattern = /^(\d{4})-(\d{2})-(\d{2})(T(\d{2}):(\d{2}):(\d{2})(\.\d{1,3})?(Z|[+-]\d{2}:\d{2}))?$/;
+  if (isoDatePattern.test(input)) return (findAge(input));
+  else return ("");
+}
 
-function trial(array) {
-  array.forEach((element) => {
-    const videoLink = "https://youtube.com/watch?v=" + element.id.videoId;
-    const publishDate = element.snippet.publishedAt;
-    const vidTitle = element.snippet.title;
-    const vidAuthor = element.snippet.channelTitle;
-    const thumbnail = element.snippet.thumbnails.medium.url;
-  });
+const findAge = (ISOdate) => {
+  // check if there is an input
+  if (!ISOdate | ISOdate === "") return "";
+
+  const now = new Date();
+  const then = new Date(ISOdate);
+  const milliSeconds = now - then;
+  const seconds = Math.floor(milliSeconds / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  const weeks = Math.floor(days / 7);
+  const months = Math.floor(days / 30.436875);
+  const years = Math.floor(months / 12);
+
+  if (years != 0) {
+    return (years === 1) ? "1 year ago" : `${years} years ago`;
+  } else if (months != 0) {
+    return (months === 1) ? "1 month ago" : `${months} months ago`;
+  } else if (weeks != 0) {
+    return (weeks === 1) ? "1 week ago" : `${weeks} weeks ago`;
+  } else if (days != 0) {
+    return (days === 1) ? "1 day ago" : `${days} days ago`;
+  } else if (hours != 0) {
+    return (hours === 1) ? "1 hour ago" : `${hours} hours ago`;
+  } else if (minutes != 0) {
+    return (minutes === 1) ? "1 minute ago" : `${minutes} minutes ago`;
+  } else {
+    return (seconds === 1) ? "1 second ago" : `${seconds} seconds ago`;
+  }
 }
