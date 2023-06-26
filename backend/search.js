@@ -14,7 +14,7 @@ youtube.search.list({
   "part": [
     "snippet"
   ],
-  "maxResults": 50,
+  "maxResults": 2,
   q: text
 }, (error, Response) => {
   if (error) {
