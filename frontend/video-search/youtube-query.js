@@ -81,6 +81,7 @@ function loadClient() {
   return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
     .then(function () {
       console.log("GAPI client loaded for API");
+      execute()
     },
       function (err) { console.error("Error loading GAPI client for API", err); });
 }
@@ -88,7 +89,7 @@ function loadClient() {
 function execute() {
   const input = document.querySelector(".search");
   // var searchText = input.value;
-  var searchText = "Nathaniel Bassey";
+  var searchText = "Daddy and Daughter Beautiful videos";
   return gapi.client.youtube.search.list({
     "part": [
       "snippet"
@@ -117,13 +118,6 @@ function renderer(items) {
     const vidTitle = element.snippet.title;
     const vidAuthor = element.snippet.channelTitle;
     const thumbnailLink = element.snippet.thumbnails.medium.url;
-
-    console.log(videoLink)
-    console.log(publishDate)
-    console.log(vidTitle)
-    console.log(vidAuthor)
-    console.log(thumbnailLink)
-    console.log(vidAge)
 
     // ------------results div--------------------------------------
     const result = document.createElement('div');
@@ -158,18 +152,6 @@ function renderer(items) {
     author.textContent = vidAuthor;
     author.classList.add('author');
 
-    // const duration = document.createElement('span');
-    // duration.textContent = vidDuration;
-    // duration.classList.add('duration');
-
-    // const extras = document.createElement('div');
-    // extras.classList.add('extras');
-
-    // const views = document.createElement('p');
-    // views.style.display = "inline";
-    // views.classList.add('views');
-    // views.textContent = vidViews;
-
     const age = document.createElement('p');
     age.style.display = "inline";
     age.classList.add('age');
@@ -193,17 +175,11 @@ function renderer(items) {
     icons.appendChild(playIcon)
     icons.appendChild(heartIcon)
     icons.appendChild(downloadIcon)
-    // -------------append children to extras
-    // extras.appendChild(views);
-    // extras.appendChild(symbol2);
-    // extras.appendChild(age);
 
     // -------------append children to video-details
     vidDetails.appendChild(title);
     vidDetails.appendChild(author);
     vidDetails.appendChild(symbol);
-    // vidDetails.appendChild(duration);
-    // vidDetails.appendChild(extras);
     vidDetails.appendChild(icons);
 
     // -------------append children to thumbnail
@@ -219,4 +195,3 @@ function renderer(items) {
 };
 
 gapi.load("client", loadClient)
-setTimeout(execute, 2000)
