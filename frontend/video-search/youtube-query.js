@@ -43,7 +43,7 @@ function start() {
 }
 
 function loadClient() {
-  gapi.client.setApiKey("AIzaSyDTposgVakSuuZgQG_Q0igZECJsNqWQnCY");
+  gapi.client.setApiKey("AIzaSyC9G4MWeKT2OYeNlaZ6VXG-iHrpt9j_aU8");
   return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
     .then(function () {
       console.log("GAPI client loaded for API");
@@ -63,19 +63,17 @@ function execute() {
     "q": searchText
   })
     .then(function (response) {
-      // console.log("searchText: ", searchText);
       if (response.status === 200) {
-        // const jsonData = JSON.stringify(response.data.items)
-        // console.log(response.result.items)
-        const one = response.result.items;
-        for (const element in one) {
+        const items = response.result.items;
+        let i = 0;
+        for (let element of items) {
           const videoLink = "https://youtube.com/watch?v=" + element.id.videoId;
           const publishDate = element.snippet.publishedAt;
+          const vidAge = checkISO(publishDate)
           const vidTitle = element.snippet.title;
           const vidAuthor = element.snippet.channelTitle;
           const thumbnailLink = element.snippet.thumbnails.medium.url;
-          const vidAge = checkISO(publishDate)
-
+          // ------------------------------------
           console.log(videoLink)
           console.log(publishDate)
           console.log(vidTitle)
