@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordible - Search Results</title>
+    <link rel="icon" href="../images/red-favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../homepage/general.css">
+    <link rel="stylesheet" href="search.css">
+    <script src="render-results.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo"></div>
+        <ul>
+            <!-- <li>Theme Icon</li> -->
+            <li>Sign in</li>
+        </ul>
+    </header>
+
+    <div class="container">
+        <h2 id="results-heading">Search results for "<span id="search-text">lorem ipsum dolor sit amet</span>"</h2>
+        <div class="results-wrapper">
+            <div class="result">
+                <div class="thumbnail">
+                    <img style="display: inline;" src="https://i.ytimg.com/vi/qoyPHwJNxXM/mqdefault.jpg"
+                        alt="thumbnail">
+                </div>
+                <div class="video-details">
+                    <a id="titleLink" target="_blank" href="#">
+                        <h3 class="title">God will make a way - ft. Nathaniel Bassey</h3>
+                    </a>
+                    <div>
+                        <p class="author">Don Meon</p> <span style="display: inline; color: #da0707; font-size: larger">
+                            &#x2022; </span>
+                        <p style="display: inline;" class="age">2 years ago</p>
+                    </div>
+                    <!-- <span style="display: inline;" class="duration">14:05</span>
+                    <div class="extras">
+                        <p style="display: inline;" class="views">2.2M</p> &#x2022;
+                        <p style="display: inline;" class="age">2 years ago</p>
+                    </div> -->
+                    <div class="icons">
+                        <i class="fa fa-play-circle" aria-hidden="true"></i>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="result">
+                <div class="thumbnail">
+                    <img src="../images/thumbnail2.png" alt="thumbnail">
+                </div>
+                <div class="video-details">
+                    <h3 class="title">Image Hover Text Overlay Effect with HTML & CSS - Web Design</h3>
+                    <p class="author">Don Meon </p> &#x2022;
+                    <span class="duration"> 14:05</span>
+                    <div class="extras">
+                        <p style="display: inline;" class="views">2.2M</p>&#x2022;
+                        <p style="display: inline;" class="age">2 years ago</p>
+                    </div>
+                    <div class="icons">
+                        <i class="fa fa-play-circle" aria-hidden="true"></i>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="result">
+                <div class="thumbnail">
+                    <img style="display: inline;" src="../images/thumbnail3.png" alt="thumbnail">
+                </div>
+                <div class="video-details">
+                    <h3 class="title">God will make a way - ft. Nathaniel Bassey</h3>
+                    <p class="author">Don Meon </p> &#x2022;
+                    <span class="duration"> 14:05</span>
+                    <div class="extras">
+                        <p style="display: inline;" class="views">2.2M</p> &#x2022;
+                        <p style="display: inline;" class="age">2 years ago</p>
+                    </div>
+                    <div class="icons">
+                        <i class="fa fa-play-circle" aria-hidden="true"></i>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result">
+                <div class="thumbnail">
+                    <img src="../images/yt-placeholder.jpg" alt="thumbnail">
+                </div>
+                <div class="video-details">
+                    <h3 class="title">Image Hover Text Overlay Effect with HTML & CSS - Web Design</h3>
+                    <p class="author">Don Meon </p> &#x2022;
+                    <span class="duration"> 14:05</span>
+                    <div class="extras">
+                        <p style="display: inline;" class="views">2.2M</p>&#x2022;
+                        <p style="display: inline;" class="age">2 years ago</p>
+                    </div>
+                    <div class="icons">
+                        <i class="fa fa-play-circle" aria-hidden="true"></i>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="result">
+                <div class="thumbnail">
+                    <img style="display: inline;" src="../images/thumbnail4.png" alt="thumbnail">
+                </div>
+                <div class="video-details">
+                    <h3 class="title">God will make a way - ft. Nathaniel Bassey</h3>
+                    <p class="author">Don Meon </p> &#x2022;
+                    <span class="duration"> 14:05</span>
+                    <div class="extras">
+                        <p style="display: inline;" class="views">2.2M</p> &#x2022;
+                        <p style="display: inline;" class="age">2 years ago</p>
+                    </div>
+                    <div class="icons">
+                        <i class="fa fa-play-circle" aria-hidden="true"></i>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result">
+                <div class="thumbnail">
+                    <img src="../images/thumbnail5.png" alt="thumbnail">
+                </div>
+                <div class="video-details">
+                    <h3 class="title">Image Hover Text Overlay Effect with HTML & CSS - Web Design</h3>
+                    <p class="author">Don Meon </p> &#x2022;
+                    <span class="duration"> 14:05</span>
+                    <div class="extras">
+                        <p style="display: inline;" class="views">2.2M</p>&#x2022;
+                        <p style="display: inline;" class="age">2 years ago</p>
+                    </div>
+                    <div class="icons">
+                        <i class="fa fa-play-circle" aria-hidden="true"></i>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="result">
+                <div class="thumbnail">
+                    <img style="display: inline;" src="../images/thumbnail6.png" alt="thumbnail">
+                </div>
+                <div class="video-details">
+                    <h3 class="title">God will make a way - ft. Nathaniel Bassey</h3>
+                    <p class="author">Don Meon </p> &#x2022;
+                    <span class="duration"> 14:05</span>
+                    <div class="extras">
+                        <p style="display: inline;" class="views">2.2M</p> &#x2022;
+                        <p style="display: inline;" class="age">2 years ago</p>
+                    </div>
+                    <div class="icons">
+                        <i class="fa fa-play-circle" aria-hidden="true"></i>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result">
+                <div class="thumbnail">
+                    <img src="../images/thumbnail4.png" alt="thumbnail">
+                </div>
+                <div class="video-details">
+                    <h3 class="title">Image Hover Text Overlay Effect with HTML & CSS - Web Design</h3>
+                    <p class="author">Don Meon </p> &#x2022;
+                    <span class="duration"> 14:05</span>
+                    <div class="extras">
+                        <p style="display: inline;" class="views">2.2M</p>&#x2022;
+                        <p style="display: inline;" class="age">2 years ago</p>
+                    </div>
+                    <div class="icons">
+                        <i class="fa fa-play-circle" aria-hidden="true"></i>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="result">
+                <div class="thumbnail">
+                    <img style="display: inline;" src="../images/thumbnail6.png" alt="thumbnail">
+                </div>
+                <div class="video-details">
+                    <h3 class="title">God will make a way - ft. Nathaniel Bassey</h3>
+                    <p class="author">Don Meon </p> &#x2022;
+                    <span class="duration"> 14:05</span>
+                    <div class="extras">
+                        <p style="display: inline;" class="views">2.2M</p> &#x2022;
+                        <p style="display: inline;" class="age">2 years ago</p>
+                    </div>
+                    <div class="icons">
+                        <i class="fa fa-play-circle" aria-hidden="true"></i>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result">
+                <div class="thumbnail">
+                    <img src="../images/thumbnail1.png" alt="thumbnail">
+                </div>
+                <div class="video-details">
+                    <h3 class="title">Image Hover Text Overlay Effect with HTML & CSS - Web Design</h3>
+                    <p class="author">Don Meon </p> &#x2022;
+                    <span class="duration"> 14:05</span>
+                    <div class="extras">
+                        <p style="display: inline;" class="views">2.2M</p>&#x2022;
+                        <p style="display: inline;" class="age">2 years ago</p>
+                    </div>
+                    <div class="icons">
+                        <i class="fa fa-play-circle" aria-hidden="true"></i>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="result">
+                <div class="thumbnail">
+                    <img style="display: inline;" src="../images/thumbnail4.png" alt="thumbnail">
+                </div>
+                <div class="video-details">
+                    <h3 class="title">God will make a way - ft. Nathaniel Bassey</h3>
+                    <p class="author">Don Meon </p> &#x2022;
+                    <span class="duration"> 14:05</span>
+                    <div class="extras">
+                        <p style="display: inline;" class="views">2.2M</p> &#x2022;
+                        <p style="display: inline;" class="age">2 years ago</p>
+                    </div>
+                    <div class="icons">
+                        <i class="fa fa-play-circle" aria-hidden="true"></i>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result">
+                <div class="thumbnail">
+                    <img src="../images/thumbnail2.png" alt="thumbnail">
+                </div>
+                <div class="video-details">
+                    <h3 class="title">Image Hover Text Overlay Effect with HTML & CSS - Web Design</h3>
+                    <p class="author">Don Meon </p> &#x2022;
+                    <span class="duration"> 14:05</span>
+                    <div class="extras">
+                        <p style="display: inline;" class="views">2.2M</p>&#x2022;
+                        <p style="display: inline;" class="age">2 years ago</p>
+                    </div>
+                    <div class="icons">
+                        <i class="fa fa-play-circle" aria-hidden="true"></i>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="result">
+                <div class="thumbnail">
+                    <img style="display: inline;" src="../images/thumbnail5.png" alt="thumbnail">
+                </div>
+                <div class="video-details">
+                    <h3 class="title">God will make a way - ft. Nathaniel Bassey</h3>
+                    <p class="author">Don Meon </p> &#x2022;
+                    <span class="duration"> 14:05</span>
+                    <div class="extras">
+                        <p style="display: inline;" class="views">2.2M</p> &#x2022;
+                        <p style="display: inline;" class="age">2 years ago</p>
+                    </div>
+                    <div class="icons">
+                        <i class="fa fa-play-circle" aria-hidden="true"></i>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result">
+                <div class="thumbnail">
+                    <img src="../images/thumbnail1.png" alt="thumbnail">
+                </div>
+                <div class="video-details">
+                    <h3 class="title">Image Hover Text Overlay Effect with HTML & CSS - Web Design</h3>
+                    <p class="author">Don Meon </p> &#x2022;
+                    <span class="duration"> 14:05</span>
+                    <div class="extras">
+                        <p style="display: inline;" class="views">2.2M</p>&#x2022;
+                        <p style="display: inline;" class="age">2 years ago</p>
+                    </div>
+                    <div class="icons">
+                        <i class="fa fa-play-circle" aria-hidden="true"></i>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <footer>
+        <p>Star on Github <i style="font-size: 23px;" class="fa">&#xf09b;</i></p>
+        <ul>
+            <li>About</li>
+            <li>Privacy</li>
+        </ul>
+    </footer>
+</body>
+
+</html>
