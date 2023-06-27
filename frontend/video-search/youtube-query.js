@@ -58,17 +58,32 @@ function execute() {
     "part": [
       "snippet"
     ],
-    "maxResults": 50,
+    "maxResults": 5,
     "order": "viewCount",
     "q": searchText
   })
     .then(function (response) {
-      console.log("searchText: ", searchText);
+      // console.log("searchText: ", searchText);
       if (response.status === 200) {
         // const jsonData = JSON.stringify(response.data.items)
         // console.log(response.result.items)
-        const one = response.result.items[1];
-        renderer(one);
+        const one = response.result.items;
+        for (const element in one) {
+          const videoLink = "https://youtube.com/watch?v=" + element.id.videoId;
+          const publishDate = element.snippet.publishedAt;
+          const vidTitle = element.snippet.title;
+          const vidAuthor = element.snippet.channelTitle;
+          const thumbnailLink = element.snippet.thumbnails.medium.url;
+          const vidAge = checkISO(publishDate)
+
+          console.log(videoLink)
+          console.log(publishDate)
+          console.log(vidTitle)
+          console.log(vidAuthor)
+          console.log(thumbnailLink)
+          console.log(vidAge)
+          console.log("----------------------------")
+        }
       } else {
         console.log("Search cannot be fulfilled, please try later.");
       }
