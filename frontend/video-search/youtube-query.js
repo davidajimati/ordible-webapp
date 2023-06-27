@@ -7,7 +7,6 @@
  *
  * THIS IS THE FRONTEND IMPLEMENTATION OF THE YOUTUBE API... not used in this project.
  */
-gapi.load("client", loadClient);
 
 // var tokenForNextPage = String(updateToken()) ---------> ADVANCED FEATURE
 
@@ -37,167 +36,6 @@ function updateToken(queryObject) {
     },
       function (err) { console.error("Execute error", err); });
 } */
-
-function start() {
-  execute();
-}
-
-function loadClient() {
-  gapi.client.setApiKey("AIzaSyC9G4MWeKT2OYeNlaZ6VXG-iHrpt9j_aU8");
-  return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
-    .then(function () {
-      console.log("GAPI client loaded for API");
-    },
-      function (err) { console.error("Error loading GAPI client for API", err); });
-}
-
-function execute() {
-  const input = document.querySelector(".search");
-  var searchText = input.value;
-  return gapi.client.youtube.search.list({
-    "part": [
-      "snippet"
-    ],
-    "maxResults": 5,
-    "order": "viewCount",
-    "q": searchText
-  })
-    .then(function (response) {
-      if (response.status === 200) {
-        const items = response.result.items;
-        let i = 0;
-        for (let element of items) {
-          const videoLink = "https://youtube.com/watch?v=" + element.id.videoId;
-          const publishDate = element.snippet.publishedAt;
-          const vidAge = checkISO(publishDate)
-          const vidTitle = element.snippet.title;
-          const vidAuthor = element.snippet.channelTitle;
-          const thumbnailLink = element.snippet.thumbnails.medium.url;
-          // ------------------------------------
-          console.log(videoLink)
-          console.log(publishDate)
-          console.log(vidTitle)
-          console.log(vidAuthor)
-          console.log(thumbnailLink)
-          console.log(vidAge)
-          console.log("----------------------------")
-        }
-      } else {
-        console.log("Search cannot be fulfilled, please try later.");
-      }
-    },
-      function (err) { console.error("Execute error", err); });
-}
-
-function renderer(object) {
-  const wrapper = document.querySelector('.results-wrapper');
-  for (const element in object) {
-    const videoLink = "https://youtube.com/watch?v=" + element.id.videoId;
-    const publishDate = element.snippet.publishedAt;
-    const vidTitle = element.snippet.title;
-    const vidAuthor = element.snippet.channelTitle;
-    const thumbnailLink = element.snippet.thumbnails.medium.url;
-    const vidAge = checkISO(publishDate)
-
-    console.log(videoLink)
-    console.log(publishDate)
-    console.log(vidTitle)
-    console.log(vidAuthor)
-    console.log(thumbnailLink)
-    console.log(vidAge)
-    /*
-        // ------------results div--------------------------------------
-        const result = document.createElement('div');
-        result.classList.add('result');
-
-        // ---------------thumbnail div-----------------------------
-        const thumbnail = document.createElement('div');
-        thumbnail.classList.add('thumbnail');
-
-        const image = document.createElement('img');
-        image.src = thumbnailLink;
-        image.style.display = "inline";
-
-        // -----------------video-details div---------------------------
-        const symbol = document.createElement('span');
-        symbol.innerHTML = " &#x2022; ";
-
-        const symbol2 = document.createElement('span');
-        symbol2.innerHTML = " &#x2022; ";
-
-        const vidDetails = document.createElement('div');
-        vidDetails.classList.add('video-details');
-
-        const title = document.createElement('h3');
-        title.textContent = vidTitle;
-        title.classList.add('title');
-
-        const titleLink = document.querySelector("#titleLink");
-        titleLink.href = videoLink;
-
-        const author = document.createElement('p');
-        author.textContent = vidAuthor;
-        author.classList.add('author');
-
-        const duration = document.createElement('span');
-        duration.textContent = vidDuration;
-        duration.classList.add('duration');
-
-        const extras = document.createElement('div');
-        extras.classList.add('extras');
-
-        const views = document.createElement('p');
-        views.style.display = "inline";
-        views.classList.add('views');
-        views.textContent = vidViews;
-
-        const age = document.createElement('p');
-        age.style.display = "inline";
-        age.classList.add('age');
-        age.textContent = vidAge;
-        //-------------------------------------------------------------------
-        const icons = document.createElement('div');
-        icons.classList.add('icons');
-
-        const playIcon = document.createElement('i');
-        playIcon.classList.add('fa', 'fa-play-circle');
-        playIcon.setAttribute("aria-hidden", "true");
-
-        const heartIcon = document.createElement('i')
-        heartIcon.classList.add('fa', 'fa-heart')
-        heartIcon.setAttribute("aria-hidden", "true");
-
-        const downloadIcon = document.createElement('i');
-        downloadIcon.classList.add('fa', 'fa-download');
-        downloadIcon.setAttribute("aria-hidden", "true");
-
-        icons.appendChild(playIcon)
-        icons.appendChild(heartIcon)
-        icons.appendChild(downloadIcon)
-        // -------------append children to extras
-        extras.appendChild(views);
-        extras.appendChild(symbol2);
-        extras.appendChild(age);
-
-        // -------------append children to video-details
-        vidDetails.appendChild(title);
-        vidDetails.appendChild(author);
-        vidDetails.appendChild(symbol);
-        vidDetails.appendChild(duration);
-        vidDetails.appendChild(extras);
-        vidDetails.appendChild(icons);
-
-        // -------------append children to thumbnail
-        thumbnail.appendChild(image);
-
-        // -------------append children to result
-        result.appendChild(thumbnail);
-        result.appendChild(vidDetails);
-
-        // -------------append result to wrapper
-        wrapper.appendChild(result); */
-  }
-};
 
 function checkISO(input) {
   // Test if the string matches the ISO date pattern
@@ -237,3 +75,148 @@ const findAge = (ISOdate) => {
     return (seconds === 1) ? "1 second ago" : `${seconds} seconds ago`;
   }
 }
+
+function loadClient() {
+  gapi.client.setApiKey("AIzaSyC9G4MWeKT2OYeNlaZ6VXG-iHrpt9j_aU8");
+  return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
+    .then(function () {
+      console.log("GAPI client loaded for API");
+    },
+      function (err) { console.error("Error loading GAPI client for API", err); });
+}
+
+function execute() {
+  const input = document.querySelector(".search");
+  // var searchText = input.value;
+  var searchText = "Nathaniel Bassey";
+  return gapi.client.youtube.search.list({
+    "part": [
+      "snippet"
+    ],
+    "maxResults": 50,
+    "order": "viewCount",
+    "q": searchText
+  })
+    .then(function (response) {
+      if (response.status === 200) {
+        const items = response.result.items;
+        renderer(items);
+      } else {
+        console.log("Search cannot be fulfilled, please try later.");
+      }
+    },
+      function (err) { console.error("Execute error", err); });
+}
+
+function renderer(items) {
+  const wrapper = document.querySelector('.results-wrapper');
+  for (let element of items) {
+    const videoLink = "https://youtube.com/watch?v=" + element.id.videoId;
+    const publishDate = element.snippet.publishedAt;
+    const vidAge = checkISO(publishDate)
+    const vidTitle = element.snippet.title;
+    const vidAuthor = element.snippet.channelTitle;
+    const thumbnailLink = element.snippet.thumbnails.medium.url;
+
+    console.log(videoLink)
+    console.log(publishDate)
+    console.log(vidTitle)
+    console.log(vidAuthor)
+    console.log(thumbnailLink)
+    console.log(vidAge)
+
+    // ------------results div--------------------------------------
+    const result = document.createElement('div');
+    result.classList.add('result');
+
+    // ---------------thumbnail div-----------------------------
+    const thumbnail = document.createElement('div');
+    thumbnail.classList.add('thumbnail');
+
+    const image = document.createElement('img');
+    image.src = thumbnailLink;
+    image.style.display = "inline";
+
+    // -----------------video-details div---------------------------
+    const symbol = document.createElement('span');
+    symbol.innerHTML = " &#x2022; ";
+
+    const symbol2 = document.createElement('span');
+    symbol2.innerHTML = " &#x2022; ";
+
+    const vidDetails = document.createElement('div');
+    vidDetails.classList.add('video-details');
+
+    const title = document.createElement('h3');
+    title.textContent = vidTitle;
+    title.classList.add('title');
+
+    const titleLink = document.querySelector("#titleLink");
+    titleLink.href = videoLink;
+
+    const author = document.createElement('p');
+    author.textContent = vidAuthor;
+    author.classList.add('author');
+
+    // const duration = document.createElement('span');
+    // duration.textContent = vidDuration;
+    // duration.classList.add('duration');
+
+    // const extras = document.createElement('div');
+    // extras.classList.add('extras');
+
+    // const views = document.createElement('p');
+    // views.style.display = "inline";
+    // views.classList.add('views');
+    // views.textContent = vidViews;
+
+    const age = document.createElement('p');
+    age.style.display = "inline";
+    age.classList.add('age');
+    age.textContent = vidAge;
+    //-------------------------------------------------------------------
+    const icons = document.createElement('div');
+    icons.classList.add('icons');
+
+    const playIcon = document.createElement('i');
+    playIcon.classList.add('fa', 'fa-play-circle');
+    playIcon.setAttribute("aria-hidden", "true");
+
+    const heartIcon = document.createElement('i')
+    heartIcon.classList.add('fa', 'fa-heart')
+    heartIcon.setAttribute("aria-hidden", "true");
+
+    const downloadIcon = document.createElement('i');
+    downloadIcon.classList.add('fa', 'fa-download');
+    downloadIcon.setAttribute("aria-hidden", "true");
+
+    icons.appendChild(playIcon)
+    icons.appendChild(heartIcon)
+    icons.appendChild(downloadIcon)
+    // -------------append children to extras
+    // extras.appendChild(views);
+    // extras.appendChild(symbol2);
+    // extras.appendChild(age);
+
+    // -------------append children to video-details
+    vidDetails.appendChild(title);
+    vidDetails.appendChild(author);
+    vidDetails.appendChild(symbol);
+    // vidDetails.appendChild(duration);
+    // vidDetails.appendChild(extras);
+    vidDetails.appendChild(icons);
+
+    // -------------append children to thumbnail
+    thumbnail.appendChild(image);
+
+    // -------------append children to result
+    result.appendChild(thumbnail);
+    result.appendChild(vidDetails);
+
+    // -------------append result to wrapper
+    wrapper.appendChild(result);
+  }
+};
+
+gapi.load("client", loadClient)
+setTimeout(execute, 2000)
