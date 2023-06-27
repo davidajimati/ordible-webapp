@@ -4,7 +4,7 @@ fetch('./results.json')
     console.log(typeof(data))
     // renderer(result);
 
-    for (element of data) {
+    for (element of data) {    // doesn't work because data is a json string and not array
       const videoLink = "https://youtube.com/watch?v=" + element['id']['videoId'];
       const publishDate = element.snippet.publishedAt;
       const vidTitle = element.snippet.title;
