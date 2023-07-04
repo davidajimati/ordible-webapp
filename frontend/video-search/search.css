@@ -84,6 +84,6 @@
     align-items: flex-end;
 }
 
-.icons>i {
-    font-size: 23px;
+.icons>a>i {
+    font-size: larger;
 }

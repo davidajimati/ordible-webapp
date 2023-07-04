@@ -76,6 +76,13 @@ const findAge = (ISOdate) => {
   }
 }
 
+const calcTitle = (string) => {
+  if (string.length <= 56) {
+    return (string)
+  }
+  return (string.slice(0, 53) + "...")
+}
+
 function loadClient() {
   gapi.client.setApiKey("AIzaSyC9G4MWeKT2OYeNlaZ6VXG-iHrpt9j_aU8");
   return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
@@ -89,7 +96,7 @@ function loadClient() {
 function execute() {
   const input = document.querySelector(".search");
   // var searchText = input.value;
-  var searchText = "Daddy and Daughter Beautiful videos";
+  var searchText = "Lion King Theme song";
   return gapi.client.youtube.search.list({
     "part": [
       "snippet"
@@ -115,7 +122,7 @@ function renderer(items) {
     const videoLink = "https://youtube.com/watch?v=" + element.id.videoId;
     const publishDate = element.snippet.publishedAt;
     const vidAge = checkISO(publishDate)
-    const vidTitle = element.snippet.title;
+    const vidTitle = calcTitle(element.snippet.title);
     const vidAuthor = element.snippet.channelTitle;
     const thumbnailLink = element.snippet.thumbnails.medium.url;
 
@@ -134,9 +141,10 @@ function renderer(items) {
     // -----------------video-details div---------------------------
     const symbol = document.createElement('span');
     symbol.innerHTML = " &#x2022; ";
+    symbol.style.color = "#da0707";
 
-    const symbol2 = document.createElement('span');
-    symbol2.innerHTML = " &#x2022; ";
+    // const symbol2 = document.createElement('span');
+    // symbol2.innerHTML = " &#x2022; ";
 
     const vidDetails = document.createElement('div');
     vidDetails.classList.add('video-details');
@@ -144,9 +152,6 @@ function renderer(items) {
     const title = document.createElement('h3');
     title.textContent = vidTitle;
     title.classList.add('title');
-
-    const titleLink = document.querySelector("#titleLink");
-    titleLink.href = videoLink;
 
     const author = document.createElement('p');
     author.textContent = vidAuthor;
@@ -157,29 +162,62 @@ function renderer(items) {
     age.classList.add('age');
     age.textContent = vidAge;
     //-------------------------------------------------------------------
+    const agenAuthor = document.createElement('div');
+    agenAuthor.classList.add('agenAuthor');
+
+    agenAuthor.appendChild(author);
+    agenAuthor.appendChild(symbol);
+    agenAuthor.appendChild(age);
+
     const icons = document.createElement('div');
     icons.classList.add('icons');
+
+    // --------------------ICONS AND LINKS AREA-------------------
+              /* Play Icon */
+    const playLink = document.createElement('a');
+    playLink.classList.add("playLink");
+    playLink.setAttribute("target", "_blank");
 
     const playIcon = document.createElement('i');
     playIcon.classList.add('fa', 'fa-play-circle');
     playIcon.setAttribute("aria-hidden", "true");
 
-    const heartIcon = document.createElement('i')
-    heartIcon.classList.add('fa', 'fa-heart')
-    heartIcon.setAttribute("aria-hidden", "true");
+    playLink.appendChild(playIcon)
+    // playLink.href = videoLink;
+
+              /* redirect  Icon */
+    const redirectLink = document.createElement('a');
+    redirectLink.classList.add("playLink");
+    redirectLink.setAttribute("target", "_blank");
+
+    const redirectIcon = document.createElement('i');
+    redirectIcon.classList.add('fa', 'fa-external-link');
+    redirectIcon.setAttribute("aria-hidden", "true");
+    redirectIcon.style.color = "#da0707";
+
+    redirectLink.appendChild(redirectIcon)
+    redirectLink.href = videoLink;
+
+              /* download Icon */
+    const downloadLink = document.createElement('a');
+    downloadLink.classList.add("downloadLink");
+    downloadLink.setAttribute("target", "_blank");
 
     const downloadIcon = document.createElement('i');
     downloadIcon.classList.add('fa', 'fa-download');
     downloadIcon.setAttribute("aria-hidden", "true");
 
-    icons.appendChild(playIcon)
-    icons.appendChild(heartIcon)
-    icons.appendChild(downloadIcon)
+    downloadLink.appendChild(downloadIcon)
+    // playLink.href = videoLink;
+
+    // ----------------APPEND CHILDREN TO ICONS div----------------------
+    icons.appendChild(playLink)
+    icons.appendChild(redirectLink)
+    icons.appendChild(downloadLink)
 
     // -------------append children to video-details
     vidDetails.appendChild(title);
-    vidDetails.appendChild(author);
-    vidDetails.appendChild(symbol);
+    vidDetails.appendChild(agenAuthor);
     vidDetails.appendChild(icons);
 
     // -------------append children to thumbnail
