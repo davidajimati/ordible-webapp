@@ -47,7 +47,7 @@ function loadClient() {
   return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
     .then(function () {
       console.log("GAPI client loaded for API");
-      execute()
+      // execute()
     },
       function (err) { console.error("Error loading GAPI client for API", err); });
 }
@@ -175,3 +175,26 @@ function renderer(items) {
 };
 
 gapi.load("client", loadClient)
+
+
+async function handleSearch(event) {
+  event.preventDefault()
+  const text = document.querySelector('#searchBox').value;
+  const url = `http://localhost:3000/search/${text}`;
+
+  await fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        console.log("Network response was not okay")
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.log("there was an error:", error);
+    })
+
+  console.log(`you searched ${text}`);
+}

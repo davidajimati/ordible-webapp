@@ -1,16 +1,18 @@
 const express = require('express');
+const cors = require('cors');
 const app = express()
-app.set('view engine', 'ejs')
+// app.set('view engine', 'ejs')
 const searchYoutube = require('./youtubeQuery');
 
 app.use(express.static('public'));
-app.get('/video2', (req, res) => {
-  res.render('public/search/index2')
-})
+app.use(cors())
 
-app.get('/video', async (req, res) => {
-  let response = await searchYoutube("God will make a way");
-  res.send(`${response}`);
+app.get('/search/:text', async (req, res) => {
+  const text = String(req.params.text);
+  console.log(text);
+  let response = await searchYoutube(text);
+  res.json(`${response}`);
+  console.log(response);
 })
 
 app.listen(3000);

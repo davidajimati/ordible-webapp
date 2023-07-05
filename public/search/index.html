@@ -23,6 +23,10 @@
     </header>
 
     <div class="container">
+        <form class="searchForm" onsubmit="return handleSearch(event)">
+            <input id="searchBox" type="search" name="text" required title="Please enter a video title">
+            <input id="submitButton" type="submit" value="Search">
+          </form>
         <h2 id="results-heading">Search results for "<span id="search-text">lorem ipsum dolor sit amet</span>"</h2>
         <div class="results-wrapper">
             <!-- <div class="result">

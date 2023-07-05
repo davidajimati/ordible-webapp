@@ -14,7 +14,7 @@ const youtubeQuery = (titleString) => {
       "part": [
         "snippet"
       ],
-      "maxResults": 50,
+      "maxResults": 1,
       q: titleString
     }, (error, Response) => {
       if (error) {
