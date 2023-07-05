@@ -7,9 +7,8 @@
   "name": "ordible-webapp",
   "description": "![Ordible Logo](project-images/white-red.png)",
   "version": "1.0.0",
-  "main": "test.js",
   "scripts": {
-    "devStart": "nodemon ./backend/ordible.js"
+    "devStart": "nodemon ./backend/server.js"
   },
   "author": "David Ajimati",
   "license": "ISC",
