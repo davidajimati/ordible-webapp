@@ -81,7 +81,7 @@ footer>p {
     flex: 1;
     max-width: 200px;
     height: 75px;
-    background-image: url("../images/clear-redNblack.png");
+    background-image: url("images/clear-redNblack.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
