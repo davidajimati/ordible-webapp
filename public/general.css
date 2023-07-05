@@ -44,6 +44,15 @@ header {
     align-items: center;
 }
 
+footer {
+    border-top: 1px solid #dbd9d9;
+    display: grid;
+    grid-template: 1fr / 1fr 1fr 1fr 1fr;
+    grid-template-areas: ". githubStar githubStar extras";
+    align-items: center;
+    justify-items: center;
+}
+
 ul {
     grid-area: extras;
     list-style-type: none;
@@ -62,16 +71,6 @@ ul {
 footer>p {
     grid-area: githubStar;
 }
-
-footer {
-    border-top: 1px solid #dbd9d9;
-    display: grid;
-    grid-template: 1fr / 1fr 1fr 1fr 1fr;
-    grid-template-areas: ". githubStar githubStar extras";
-    align-items: center;
-    justify-items: center;
-}
-
 
 footer>p {
     display: inline;

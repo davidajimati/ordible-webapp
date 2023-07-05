@@ -1,51 +1,10 @@
-/**
- * This code searches youtube for videos based on user input
- *
- * the first function loads the client (browser)
- * the second function accepts the query and submits it to YouTube
- * the last part loads the gapi(google api), calling the loadClient function
- *
- * THIS IS THE FRONTEND IMPLEMENTATION OF THE YOUTUBE API... not used in this project.
- */
-
-// var tokenForNextPage = String(updateToken()) ---------> ADVANCED FEATURE
-
-/*    --------------> ADVANCED FEATURE
-var queryObject2 = {
-  "part": [
-    "snippet"
-  ],
-  "maxResults": 50,
-  "order": "viewCount",
-  "pageToken": tokenForNextPage,
-  "q": searchText
-} */
-
-/* --------------> ADVANCED FEATURE
-function NextPage(queryObject2) {
-execute(queryObject2)
-} */
-
-/*  ----------------------> ADVANCED FEATURE
-function updateToken(queryObject) {
-  return gapi.client.youtube.search.list(queryObject)
-    .then(function (response) {
-      if (response.status === 200) {
-        return (response.result.nextPageToken);
-      }
-    },
-      function (err) { console.error("Execute error", err); });
-} */
-
 function checkISO(input) {
-  // Test if the string matches the ISO date pattern
   var isoDatePattern = /^(\d{4})-(\d{2})-(\d{2})(T(\d{2}):(\d{2}):(\d{2})(\.\d{1,3})?(Z|[+-]\d{2}:\d{2}))?$/;
   if (isoDatePattern.test(input)) return (findAge(input));
   else return ("");
 }
 
 const findAge = (ISOdate) => {
-  // check if there is an input
   if (!ISOdate | ISOdate === "") return "";
 
   const now = new Date();
@@ -126,11 +85,9 @@ function renderer(items) {
     const vidAuthor = element.snippet.channelTitle;
     const thumbnailLink = element.snippet.thumbnails.medium.url;
 
-    // ------------results div--------------------------------------
     const result = document.createElement('div');
     result.classList.add('result');
 
-    // ---------------thumbnail div-----------------------------
     const thumbnail = document.createElement('div');
     thumbnail.classList.add('thumbnail');
 
@@ -138,13 +95,9 @@ function renderer(items) {
     image.src = thumbnailLink;
     image.style.display = "inline";
 
-    // -----------------video-details div---------------------------
     const symbol = document.createElement('span');
     symbol.innerHTML = " &#x2022; ";
     symbol.style.color = "#da0707";
-
-    // const symbol2 = document.createElement('span');
-    // symbol2.innerHTML = " &#x2022; ";
 
     const vidDetails = document.createElement('div');
     vidDetails.classList.add('video-details');
@@ -161,7 +114,7 @@ function renderer(items) {
     age.style.display = "inline";
     age.classList.add('age');
     age.textContent = vidAge;
-    //-------------------------------------------------------------------
+
     const agenAuthor = document.createElement('div');
     agenAuthor.classList.add('agenAuthor');
 
@@ -172,8 +125,6 @@ function renderer(items) {
     const icons = document.createElement('div');
     icons.classList.add('icons');
 
-    // --------------------ICONS AND LINKS AREA-------------------
-              /* Play Icon */
     const playLink = document.createElement('a');
     playLink.classList.add("playLink");
     playLink.setAttribute("target", "_blank");
@@ -183,9 +134,7 @@ function renderer(items) {
     playIcon.setAttribute("aria-hidden", "true");
 
     playLink.appendChild(playIcon)
-    // playLink.href = videoLink;
 
-              /* redirect  Icon */
     const redirectLink = document.createElement('a');
     redirectLink.classList.add("playLink");
     redirectLink.setAttribute("target", "_blank");
@@ -198,7 +147,6 @@ function renderer(items) {
     redirectLink.appendChild(redirectIcon)
     redirectLink.href = videoLink;
 
-              /* download Icon */
     const downloadLink = document.createElement('a');
     downloadLink.classList.add("downloadLink");
     downloadLink.setAttribute("target", "_blank");
@@ -208,26 +156,20 @@ function renderer(items) {
     downloadIcon.setAttribute("aria-hidden", "true");
 
     downloadLink.appendChild(downloadIcon)
-    // playLink.href = videoLink;
 
-    // ----------------APPEND CHILDREN TO ICONS div----------------------
     icons.appendChild(playLink)
     icons.appendChild(redirectLink)
     icons.appendChild(downloadLink)
 
-    // -------------append children to video-details
     vidDetails.appendChild(title);
     vidDetails.appendChild(agenAuthor);
     vidDetails.appendChild(icons);
 
-    // -------------append children to thumbnail
     thumbnail.appendChild(image);
 
-    // -------------append children to result
     result.appendChild(thumbnail);
     result.appendChild(vidDetails);
 
-    // -------------append result to wrapper
     wrapper.appendChild(result);
   }
 };

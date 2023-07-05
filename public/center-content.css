@@ -4,7 +4,7 @@
 }
 
 body {
-    background-image: url('/public/images/ordible-background.webp');
+    background-image: url("ordible-background.webp");
     background-position: center;
     background-size: cover;
     position: relative;
