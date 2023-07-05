@@ -1,20 +1,16 @@
 const express = require('express');
-const app = express();
+const app = express()
 app.set('view engine', 'ejs')
-const aboutRouter = require('./about/about')
-const userRouter = require('./about/users')
+const searchYoutube = require('./youtubeQuery');
 
-app.use('/about', aboutRouter);
-app.use('/users', userRouter);
-app.use(logger);
-// app.use(express.render('frontend/video-search'))
-
-app.get('/', (req, res) => {
-  res.render('frontend/homepage')
+app.use(express.static('public'));
+app.get('/video2', (req, res) => {
+  res.render('public/search/index2')
 })
 
-function logger(req, res, next) {
-  console.log(req.originalUrl);
-  next();
-}
-app.listen(3500);
+app.get('/video', async (req, res) => {
+  let response = await searchYoutube("God will make a way");
+  res.send(`${response}`);
+})
+
+app.listen(3000);
