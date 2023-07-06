@@ -52,6 +52,7 @@ function loadClient() {
       function (err) { console.error("Error loading GAPI client for API", err); });
 }
 
+/*
 function execute() {
   const input = document.querySelector(".search");
   // var searchText = input.value;
@@ -73,7 +74,7 @@ function execute() {
       }
     },
       function (err) { console.error("Execute error", err); });
-}
+} */
 
 function renderer(items) {
   const wrapper = document.querySelector('.results-wrapper');
@@ -191,6 +192,7 @@ async function handleSearch(event) {
     })
     .then(data => {
       console.log(data);
+      // renderer(data);
     })
     .catch(error => {
       console.log("there was an error:", error);

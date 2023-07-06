@@ -22,8 +22,10 @@ const youtubeQuery = (titleString) => {
         reject(error);
       } // check if request is successful
       else if (Response.status === 200) {
-        const jsonData = JSON.stringify(Response.data.items)
-        resolve(jsonData);
+        // const jsonData = JSON.stringify(Response.data.items)
+        resolve(Response.data.items);
+        // resolve(Response);
+        console.log("FROM QUERY ENGINE", typeof(Response.data.items))
 
         //write results into a file
         /*fs.writeFile(filename, jsonData, { flag: 'w+' }, err => {
