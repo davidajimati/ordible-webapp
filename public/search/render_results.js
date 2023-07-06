@@ -164,45 +164,13 @@ async function handleSearch(searchText) {
       renderer(response);
     })
     .catch(error => {
+      preloader.style.display = 'flex';
+      preloader.style.display = 'none';
+      const notice = document.querySelector('#notice');
+      notice.textContent = "Your request couldn't be completed... Please try again"
+      notice.style.display = "inline-block"
+      notice.style.color = "red"
+      notice.style.paddingTop = "40px"
       console.log("there was an error:", error);
     })
 }
-
-const textJSON = [
-  {
-      "kind": "youtube#searchResult",
-      "etag": "PloRmuT996utfYNkDwiPzmRVqjI",
-      "id": {
-          "kind": "youtube#video",
-          "videoId": "KUBv7oCL1i8"
-      },
-      "snippet": {
-          "publishedAt": "2021-11-26T18:00:06Z",
-          "channelId": "UC2kM2q7Vk8oEGh0nyE28arQ",
-          "title": "Blero - HEJ AMAN (Prod.Nurteel)",
-          "description": "ONIMA- http://smarturl.it/ONIMA Blero - Hej Aman - prod ( Nurteel ) Muzika: Nurteel & Blero Text: Gulo,Blero,Nurteel Record voice: ...",
-          "thumbnails": {
-              "default": {
-                  "url": "https://i.ytimg.com/vi/KUBv7oCL1i8/default.jpg",
-                  "width": 120,
-                  "height": 90
-              },
-              "medium": {
-                  "url": "https://i.ytimg.com/vi/KUBv7oCL1i8/mqdefault.jpg",
-                  "width": 320,
-                  "height": 180
-              },
-              "high": {
-                  "url": "https://i.ytimg.com/vi/KUBv7oCL1i8/hqdefault.jpg",
-                  "width": 480,
-                  "height": 360
-              }
-          },
-          "channelTitle": "BleroOfficial",
-          "liveBroadcastContent": "none",
-          "publishTime": "2021-11-26T18:00:06Z"
-      }
-  }
-]
-
-// renderer(textJSON);
