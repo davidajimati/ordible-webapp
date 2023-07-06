@@ -43,6 +43,8 @@ const calcTitle = (string) => {
 }
 
 function renderer(items) {
+  const preloader = document.querySelector('.preloader');
+  preloader.style.display = 'none';
   const wrapper = document.querySelector('.results-wrapper');
   wrapper.innerHTML = ""
   for (let element of items) {
@@ -145,6 +147,8 @@ function renderer(items) {
 };
 
 async function handleSearch(searchText) {
+  const preloader = document.querySelector('.preloader');
+  preloader.style.display = 'flex';
   // event.preventDefault()
   // const text = document.querySelector('#searchBox').value;
   const url = `http://localhost:3000/search/${searchText}`;
