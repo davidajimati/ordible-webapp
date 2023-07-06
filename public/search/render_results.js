@@ -42,42 +42,9 @@ const calcTitle = (string) => {
   return (string.slice(0, 53) + "...")
 }
 
-function loadClient() {
-  gapi.client.setApiKey("AIzaSyC9G4MWeKT2OYeNlaZ6VXG-iHrpt9j_aU8");
-  return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
-    .then(function () {
-      console.log("GAPI client loaded for API");
-      // execute()
-    },
-      function (err) { console.error("Error loading GAPI client for API", err); });
-}
-
-/*
-function execute() {
-  const input = document.querySelector(".search");
-  // var searchText = input.value;
-  var searchText = "Lion King Theme song";
-  return gapi.client.youtube.search.list({
-    "part": [
-      "snippet"
-    ],
-    "maxResults": 50,
-    "order": "viewCount",
-    "q": searchText
-  })
-    .then(function (response) {
-      if (response.status === 200) {
-        const items = response.result.items;
-        renderer(items);
-      } else {
-        console.log("Search cannot be fulfilled, please try later.");
-      }
-    },
-      function (err) { console.error("Execute error", err); });
-} */
-
 function renderer(items) {
   const wrapper = document.querySelector('.results-wrapper');
+  wrapper.innerHTML = ""
   for (let element of items) {
     const videoLink = "https://youtube.com/watch?v=" + element.id.videoId;
     const publishDate = element.snippet.publishedAt;
@@ -175,9 +142,6 @@ function renderer(items) {
   }
 };
 
-gapi.load("client", loadClient)
-
-
 async function handleSearch(event) {
   event.preventDefault()
   const text = document.querySelector('#searchBox').value;
@@ -191,13 +155,9 @@ async function handleSearch(event) {
       return response.json();
     })
     .then(response => {
-      console.log(JSON.parse(JSON.stringify(response)));
-      console.log(`Type of data:`, typeof(response));
-      // renderer(response);
+      renderer(response);
     })
     .catch(error => {
       console.log("there was an error:", error);
     })
-
-  // console.log(`you searched ${text}`);
 }
