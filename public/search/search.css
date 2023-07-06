@@ -2,9 +2,10 @@
 
 .container {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 50px 1fr;
+    grid-template: auto 1fr/ 1fr;
     padding: 20px;
+    justify-content: center;
+    /* justify-items: center; */
 }
 
 #results-heading {
@@ -72,7 +73,6 @@
 .video-details p,
 .extras p {
     color: #7e7b7b;
-
 }
 
 .icons {
@@ -85,5 +85,5 @@
 }
 
 .icons>a>i {
-    font-size: larger;
+    font-size: 25px;
 }

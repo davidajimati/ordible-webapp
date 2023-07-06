@@ -8,8 +8,8 @@
     <link rel="icon" href="../images/clear-red-favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../general.css">
     <link rel="stylesheet" href="search.css">
+    <link rel="stylesheet" href="searchBox.css">
     <script src="render_results.js" defer></script>
-    <!-- <script src="https://apis.google.com/js/api.js"></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -23,11 +23,14 @@
     </header>
 
     <div class="container">
-        <form class="searchForm" onsubmit="return handleSearch(event)">
-            <input id="searchBox" type="search" name="text" required title="Please enter a video title">
-            <input id="submitButton" type="submit" value="Search">
-          </form>
-        <h2 id="results-heading">Search results for "<span id="search-text">lorem ipsum dolor sit amet</span>"</h2>
+        <div class="search-area">
+            <form class="searchForm" onsubmit="return display(event)" novalidate>
+                <input id="inputField" type="search" name="text" required placeholder="enter video title...">
+                <button id="submitButton">Search</button>
+            </form>
+            <h3 style="display: none;" id="notice">showing results for "<span id="string"></span>"</h3>
+        </div>
+        <!-- <h2 id="results-heading">Search results for "<span id="search-text">lorem ipsum dolor sit amet</span>"</h2> -->
         <div class="results-wrapper">
             <!-- <div class="result">
                 <div class="thumbnail">
@@ -43,7 +46,7 @@
                     <div class="icons">
                         <a class="playLink" target="_blank" href="#"><i class="fa fa-play-circle"
                                 aria-hidden="true"></i></a>
-                        <a class="redirectLink" target="_blank" href="#"><i class="fa fa-external-link"
+                        <a class="redirectLink" target="_blank" href="#"><i class="fa fa-youtube-play"
                                 aria-hidden="true"></i></a>
                         <a class="downloadLink" target="_blank" href="#"><i class="fa fa-download"
                                 aria-hidden="true"></i></a>
@@ -52,6 +55,23 @@
             </div> -->
         </div>
     </div>
+    <script>
+        function display() {
+            event.preventDefault()
+            const searchText = document.querySelector('#inputField').value;
+            const notice = document.querySelector('#notice');
+            const string = document.querySelector('#string')
+
+            if (searchText != "") {
+                handleSearch(searchText)
+                string.textContent = searchText;
+                string.style.color = "#0f0fc5";
+                notice.style.display = "inline-block"
+            } else {
+                notice.style.display = "none";
+            }
+        }
+    </script>
     <footer>
         <p>Star on Github <i style="font-size: 23px;" class="fa">&#xf09b;</i></p>
         <ul>
