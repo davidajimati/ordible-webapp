@@ -190,13 +190,14 @@ async function handleSearch(event) {
       }
       return response.json();
     })
-    .then(data => {
-      console.log(data);
-      // renderer(data);
+    .then(response => {
+      console.log(JSON.parse(JSON.stringify(response)));
+      console.log(`Type of data:`, typeof(response));
+      // renderer(response);
     })
     .catch(error => {
       console.log("there was an error:", error);
     })
 
-  console.log(`you searched ${text}`);
+  // console.log(`you searched ${text}`);
 }

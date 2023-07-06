@@ -6,7 +6,7 @@ const apiKey = "AIzaSyDTposgVakSuuZgQG_Q0igZECJsNqWQnCY";
 
 const youtubeQuery = (titleString) => {
   const youtube = google.youtube('v3');
-  const filename = "../public/results.json";
+  const filename = "public/search/results.json";
 
   return new Promise((resolve, reject) => {
     youtube.search.list({
@@ -23,21 +23,19 @@ const youtubeQuery = (titleString) => {
       } // check if request is successful
       else if (Response.status === 200) {
         // const jsonData = JSON.stringify(Response.data.items)
-        resolve(Response.data.items);
-        // resolve(Response);
-        console.log("FROM QUERY ENGINE", typeof(Response.data.items))
+        // resolve(Response.data.items);
 
         //write results into a file
-        /*fs.writeFile(filename, jsonData, { flag: 'w+' }, err => {
+        fs.writeFile(filename, Response, { flag: 'w+' }, err => {
           if (err) {
             console.log("There's an error", err);
             reject(err);
           }
           else {
             console.log("file written successfully.")
-            resolve(jsonData);
+            resolve("done");
           }
-        }); */
+        });
       }
     });
   })

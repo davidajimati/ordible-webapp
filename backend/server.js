@@ -10,11 +10,10 @@ app.use(cors())
 app.get('/search/:text', async (req, res) => {
   const text = String(req.params.text);
   let response = await searchYoutube(text);
-  res.set('Content-Type', 'application/json');
-  res.json(`${response}`);
-  // console.log(response)
-  console.log(JSON.stringify(response, null, 2));
-  console.log(typeof(response));
+  // res.set('Content-Type', 'application/json');
+  // res.json(`${response}`);
+  res.json({"name": "david"});
+  // console.log(JSON.stringify(response));
 })
 
 app.listen(3000);
