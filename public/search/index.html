@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordible - Search Results</title>
+    <link rel="icon" href="../images/clear-red-favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../general.css">
+    <link rel="stylesheet" href="search.css">
+    <link rel="stylesheet" href="searchBox.css">
+    <script src="render_results.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="../loader.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo"></div>
+        <ul>
+            <!-- <li>Theme Icon</li> -->
+            <li>Sign in</li>
+        </ul>
+    </header>
+
+    <div class="container">
+        <div class="search-area">
+            <form class="searchForm" onsubmit="return display(event)" novalidate>
+                <input id="inputField" type="search" name="text" required placeholder="enter video title...">
+                <button id="submitButton">Search</button>
+            </form>
+            <h3 style="display: none;" id="notice">showing results for "<span id="string"></span>"</h3>
+        </div>
+        <!-- <h2 id="results-heading">Search results for "<span id="search-text">lorem ipsum dolor sit amet</span>"</h2> -->
+        <div class="results-wrapper">
+            <!-- <div class="result">
+                <div class="thumbnail">
+                    <img style="display: inline;" src="../images/thumbnail3.png" alt="thumbnail">
+                </div>
+                <div class="video-details">
+                    <h3 class="title">God will make a way - ft. Nathaniel Bassey - God is good</h3>
+                    <div class="agenAuthor">
+                        <p class="author">Don Meon</p> <span style="display: inline; color: #da0707; font-size: larger">
+                            &#x2022; </span>
+                        <p style="display: inline;" class="age">2 years ago</p>
+                    </div>
+                    <div class="icons">
+                        <a class="playLink" target="_blank" href="#"><i class="fa fa-play-circle"
+                                aria-hidden="true"></i></a>
+                        <a class="redirectLink" target="_blank" href="#"><i class="fa fa-youtube-play"
+                                aria-hidden="true"></i></a>
+                        <a class="downloadLink" target="_blank" href="#"><i class="fa fa-download"
+                                aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <div class="preloader">
+        <div class="ring"></div>
+        <span id="preloaderText">Loading...</span>
+    </div>
+    <script>
+        function display() {
+            event.preventDefault()
+            const searchText = document.querySelector('#inputField').value;
+            const notice = document.querySelector('#notice');
+            const string = document.querySelector('#string')
+
+            if (searchText != "") {
+                handleSearch(searchText)
+                string.textContent = searchText;
+                string.style.color = "#0f0fc5";
+                notice.style.display = "inline-block"
+            } else {
+                notice.style.display = "none";
+            }
+        }
+    </script>
+    <footer>
+        <p>Star on Github <i style="font-size: 23px;" class="fa">&#xf09b;</i></p>
+        <ul>
+            <li>About</li>
+            <li>Privacy</li>
+        </ul>
+    </footer>
+</body>
+
+</html>

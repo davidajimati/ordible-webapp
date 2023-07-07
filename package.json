@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "axios": "^1.4.0",
+    "cors": "^2.8.5",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "googleapis": "^118.0.0"
@@ -7,13 +9,12 @@
   "name": "ordible-webapp",
   "description": "![Ordible Logo](project-images/white-red.png)",
   "version": "1.0.0",
-  "main": "test.js",
   "scripts": {
-    "devStart": "nodemon ./backend/ordible.js"
+    "devStart": "nodemon ./backend/server.js"
   },
   "author": "David Ajimati",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^1.14.9"
   }
 }
