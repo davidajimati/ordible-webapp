@@ -1,0 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.audioPlayer {
+  height: fit-content;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background-color: #000;
+  color: white;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+}
+
+.top {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.options {
+  display: flex;
+  gap: 20px;
+}
+
+.options>i {
+  cursor: pointer;
+}
+
+.coreArea {
+  display: grid;
+  grid-template: 1fr/ 1fr 2fr 1fr;
+  align-items: center;
+  justify-content: center;
+}
+
+.audio_info {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  gap: 5px;
+  justify-self: flex-start;
+}
+
+.thumbnail {
+  width: 70px;
+  height: 70px;
+  background-image: url('../public/images/thumbnail1.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.audioControls {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.options>i {
+  cursor: pointer;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.sliderArea {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls>i {
+  font-size: 50px;
+  cursor: pointer;
+}
+
+#slider {
+  padding: 0;
+  margin: 0;
+  width: 350px;
+  height: 3px;
+  background: white;
+  outline: none;
+  opacity: 0.8;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+
+
+@media (max-width: 480px) {
+
+  #header,
+  .sliderArea,
+  #expand,
+  #minimize,
+  #prev,
+  #next {
+    display: none;
+  }
+  .audioPlayer {
+    margin: 0;
+    padding: 5px 10px;
+  }
+  .top {
+    display: grid;
+    grid-template: 1fr/ 1fr auto;
+  }
+  .coreArea {
+    display: grid;
+    grid-template: 1fr/ 1fr auto;
+  }
+  .audioPlayer {
+    display: grid;
+    grid-template: 1fr/1fr 7fr;
+    align-items: center;
+    justify-content: center;
+  }
+  .audio_info {
+    justify-content: space-between;
+  }
+
+  .audioControls > i {
+    font-size: 40px;
+  }
+
+  .options > i {
+    font-size: 30px;
+  }
+}

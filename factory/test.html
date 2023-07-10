@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- Created By CodingLab - www.codinglabweb.com -->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Search Box</title>
+    <link rel="stylesheet" href="test.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+</head>
+
+<body>
+    <div class="audioPlayer">
+        <div class="top">
+            <h3 id="header">Now playing</h3>
+            <div class="options">
+                <i id="expand" title="expand" class="material-symbols-rounded">expand_circle_up</i>
+                <i id="minimize" title="minimize" class="material-symbols-outlined">expand_more</i>
+                <i id="close" title="close" class="material-symbols-rounded ">cancel</i>
+            </div>
+        </div>
+        <div class="coreArea">
+            <div class="audio_info">
+                <div class="thumbnail"></div>
+                <div class="artist_info">
+                    <p id="song_title">God will make a way</p>
+                    <p id="artist">Don Meon</p>
+                </div>
+            </div>
+            <div class="audioControls">
+                <div class="controls">
+                    <i id="prev" title="previous" class="material-symbols-outlined">skip_previous</i>
+                    <i id="play" title="play" class="material-symbols-rounded">play_circle</i>
+                    <i id="pause" title="pause" style="display: none;"
+                        class="material-symbols-rounded pause">pause_circle</i>
+                    <i id="next" title="next" class="material-symbols-outlined">skip_next</i>
+                </div>
+                <div class="sliderArea">
+                    <p class="audioTime">0:00</p>
+                    <input type="range" name="slider" id="slider">
+                    <p class="audioTime">3:43</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
