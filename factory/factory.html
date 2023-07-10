@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- Created By CodingLab - www.codinglabweb.com -->
-<html lang="en" dir="ltr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>Search Box</title>
-    <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="factory.css">
+    <script src="factory.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -14,35 +14,36 @@
 </head>
 
 <body>
+    <i id="reopen_player" class="material-symbols-rounded" onclick="reopenPlayer()">expand_circle_up</i>
     <div class="audioPlayer">
         <div class="top">
             <h3 id="header">Now playing</h3>
             <div class="options">
                 <i id="expand" title="expand" class="material-symbols-rounded">expand_circle_up</i>
-                <i id="minimize" title="minimize" class="material-symbols-outlined">expand_more</i>
-                <i id="close" title="close" class="material-symbols-rounded ">cancel</i>
+                <i id="minimize" title="minimize" class="material-symbols-outlined"
+                    onclick="minimizePlayer()">expand_more</i>
+                <i id="close" title="close" class="material-symbols-rounded" onclick="closePlayer()">cancel</i>
             </div>
         </div>
         <div class="coreArea">
             <div class="audio_info">
                 <div class="thumbnail"></div>
                 <div class="artist_info">
-                    <p id="song_title">God will make a way</p>
+                    <h4 id="song_title">God will make a way - He puts a song of praise in my mouth</h4>
                     <p id="artist">Don Meon</p>
                 </div>
             </div>
             <div class="audioControls">
                 <div class="controls">
                     <i id="prev" title="previous" class="material-symbols-outlined">skip_previous</i>
-                    <i id="play" title="play" class="material-symbols-rounded">play_circle</i>
-                    <i id="pause" title="pause" style="display: none;"
-                        class="material-symbols-rounded pause">pause_circle</i>
+                    <i onclick="playTrack()" id="play" title="play" class="material-symbols-rounded">play_circle</i>
+                    <i onclick="pauseTrack()" id="pause" title="pause" style="display: none;" class="material-symbols-rounded">pause_circle</i>
                     <i id="next" title="next" class="material-symbols-outlined">skip_next</i>
                 </div>
                 <div class="sliderArea">
-                    <p class="audioTime">0:00</p>
+                    <p class="trackStart">0:00</p>
                     <input type="range" name="slider" id="slider">
-                    <p class="audioTime">3:43</p>
+                    <p class="trackEnd">3:43</p>
                 </div>
             </div>
         </div>
