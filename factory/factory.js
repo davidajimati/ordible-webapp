@@ -57,9 +57,17 @@ const loadNewTrack = async (track_index) => {
   current_track.src = songList[track_index].path;
   current_track.load();
 
+  let songTT = songList[track_index].track_title;
+
   thumbnail.style.backgroundImage = `url(${songList[track_index].track_image}`;
-  song_title.textContent = songList[track_index].track_title;
+  song_title.textContent = songTT
   artist.textContent = songList[track_index].track_author;
+
+  if (songTT.length > 25) {
+    artist_info.classList.add('scroll_box')
+  } else {
+    artist_info.classList.remove('scroll_box')
+  }
 
   updateTimer = setInterval(seekUpdate, 1000);
   current_track.addEventListener('ended', nextTrack);
@@ -105,9 +113,6 @@ function playTrack() {
   play.innerHTML = 'pause_circle'
   current_track.play();
   isPlaying = true;
-  if (songList[trackIndex].track_title.length > 36) {
-    artist_info.classList.add('scroll_box')
-  }
 }
 
 const nextTrack = async () => {
