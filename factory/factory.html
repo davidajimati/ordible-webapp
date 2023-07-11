@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Search Box</title>
+    <title>Music Player</title>
     <link rel="stylesheet" href="factory.css">
     <script src="factory.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,21 +28,21 @@
         <div class="coreArea">
             <div class="audio_info">
                 <div class="thumbnail"></div>
-                <div class="artist_info">
-                    <h4 id="song_title">God will make a way - He puts a song of praise in my mouth</h4>
+                <div id="artist_info">
+                    <h4 class="scroll_text" id="song_title">God will make a way - He puts a song</h4>
                     <p id="artist">Don Meon</p>
                 </div>
             </div>
             <div class="audioControls">
                 <div class="controls">
-                    <i id="prev" title="previous" class="material-symbols-outlined">skip_previous</i>
-                    <i onclick="playTrack()" id="play" title="play" class="material-symbols-rounded">play_circle</i>
-                    <i onclick="pauseTrack()" id="pause" title="pause" style="display: none;" class="material-symbols-rounded">pause_circle</i>
-                    <i id="next" title="next" class="material-symbols-outlined">skip_next</i>
+                    <i onclick="prevTrack()" id="prev" title="previous" class="material-symbols-outlined">skip_previous</i>
+                    <i onclick="startMusicPlayer()" id="play" title="play" class="material-symbols-rounded">play_circle</i>
+                    <i onclick="playPauseTrack()" id="pause" title="pause" style="display: none;" class="material-symbols-rounded">pause_circle</i>
+                    <i onclick="nextTrack()" id="next" title="next" class="material-symbols-outlined">skip_next</i>
                 </div>
                 <div class="sliderArea">
                     <p class="trackStart">0:00</p>
-                    <input type="range" name="slider" id="slider">
+                    <input min="0" max="100" value="0" onchange="seekTo()" type="range" name="slider" id="slider">
                     <p class="trackEnd">3:43</p>
                 </div>
             </div>

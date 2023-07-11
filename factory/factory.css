@@ -1,11 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
+
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+p {
+  font-size: 13px;
+}
+
+h4 {
+  font-size: 15px;
 }
 
 .audioPlayer {
   height: fit-content;
-  padding: 10px;
+  padding: 10px 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -52,7 +63,7 @@
   display: flex;
   align-items: center;
   justify-items: center;
-  gap: 5px;
+  gap: 10px;
   justify-self: flex-start;
 }
 
@@ -92,7 +103,7 @@
 }
 
 .controls>i {
-  font-size: 50px;
+  font-size: 35px;
   cursor: pointer;
 }
 
@@ -166,7 +177,7 @@
 
 #reopen_player {
   display: none;
-  color: red;
+  color: black;
   font-size: 55px;
   position: fixed;
   right: 15px;
@@ -178,6 +189,25 @@
 }
 
 #reopen_player:hover {
-  color: #8d0606;
+  color: #9e0000;
   font-size: 60px;
+}
+
+.scroll_box {
+  overflow: hidden;
+}
+
+.scroll_box h4 {
+  white-space: nowrap;
+  animation: scrollText 12s linear infinite;
+}
+
+@keyframes scrollText {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
 }
