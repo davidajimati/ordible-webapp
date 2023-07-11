@@ -51,6 +51,7 @@ let trackIndex = 0;
 let isPlaying = false;
 let updateTimer;
 let current_track = new Audio()
+let expanded = false;
 
 const loadNewTrack = async (track_index) => {
   resetValues();
@@ -65,6 +66,11 @@ const loadNewTrack = async (track_index) => {
 
   if (songTT.length > 25) {
     artist_info.classList.add('scroll_box')
+    if (expanded) {
+      const scroll_box = document.querySelector(".scroll_box");
+      scroll_box.style.width = "350px"
+    }
+
   } else {
     artist_info.classList.remove('scroll_box')
   }
@@ -165,4 +171,52 @@ const closePlayer = () => {
   current_track.pause();
   audioPlayer.style.display = 'none';
   reopen_player.style.display = 'none';
+}
+
+function expandView() {
+  // important metrics
+  expanded = true;
+  expand.style.display = 'none';
+  minimize.style.display = 'inline';
+  close.style.display = "inline";
+  sliderArea.style.display = "flex";
+  prev.style.display = 'inline';
+  header.style.display = "inline-block"
+  next.style.display = 'inline';
+
+  // modify audioPlayer
+  audioPlayer.style.height = '80vh';
+  audioPlayer.style.display = "grid";
+  audioPlayer.style.padding = "10px";
+  audioPlayer.style.gridTemplate = 'auto 1fr/ 1fr'
+
+
+  // modify topDiv
+  topDiv.style.alignItems = "flex-start";
+  topDiv.style.height = "fit-content";
+
+
+  // modify coreArea
+  coreArea.style.justifyContents = "center";
+  coreArea.style.display = "flex"
+  coreArea.style.flexDirection = "column";
+  coreArea.style.alignItems = "center";
+  coreArea.style.justifyContent = "space-around";
+  coreArea.style.gap = "50px"
+
+  // modify audio_info
+  audio_info.style.justifySelf = "center";
+  audio_info.style.flexDirection = "column";
+  audio_info.style.gap = "20px"
+  audio_info.style.justifyContent = "space-around";
+  //modify artist_info
+  artist_info.style.textAlign = 'center';
+
+  // /modify thumbnail
+  thumbnail.style.height = "180px";
+  thumbnail.style.width = "320px";
+  thumbnail.style.borderRadius = "10px";
+
+  // modify audioControls
+  audioControls.style.margin = '0';
 }
