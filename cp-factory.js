@@ -34,13 +34,13 @@ let songList = [
     path: "audio.mp3",
     track_title: "Mountain of Fire",
     track_author: "K spirit",
-    track_image: "/public/images/thumbnail1.png"
+    track_image: "thumbnail1.png"
   },
   {
     path: "highpriest.mp3",
     track_title: "God will make a way - He puts a song scroll_box scroll_box scroll_box scroll_box",
     track_author: "Lanre Awosika",
-    track_image: "/public/images/thumbnail3.png"
+    track_image: "thumbnail3.png"
   }
 ]
 
@@ -68,7 +68,7 @@ const loadNewTrack = async (track_index) => {
     artist_info.classList.add('scroll_box')
     if (expanded) {
       const scroll_box = document.querySelector(".scroll_box");
-      scroll_box.style.width = "350px"
+      scroll_box.style.width = "200px"
     }
 
   } else {

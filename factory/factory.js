@@ -68,7 +68,7 @@ const loadNewTrack = async (track_index) => {
     artist_info.classList.add('scroll_box')
     if (expanded) {
       const scroll_box = document.querySelector(".scroll_box");
-      scroll_box.style.width = "350px"
+      scroll_box.style.width = "200px"
     }
 
   } else {
