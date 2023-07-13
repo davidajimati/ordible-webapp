@@ -19,14 +19,14 @@
         <div class="top">
             <h3 id="header">Now playing</h3>
             <div class="options">
-                <i id="expand" title="expand" class="material-symbols-rounded">expand_circle_up</i>
+                <i onclick="expandView()" id="expand" title="expand" class="material-symbols-rounded">expand_circle_up</i>
                 <i id="minimize" title="minimize" class="material-symbols-outlined"
                     onclick="minimizePlayer()">expand_more</i>
                 <i id="close" title="close" class="material-symbols-rounded" onclick="closePlayer()">cancel</i>
             </div>
         </div>
         <div class="coreArea">
-            <div class="audio_info">
+            <div class="audio_info" onclick="expandView()">
                 <div class="thumbnail"></div>
                 <div id="artist_info">
                     <h4 class="scroll_text" id="song_title">God will make a way - He puts a song</h4>
