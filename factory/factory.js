@@ -143,8 +143,9 @@ const prevTrack = async () => {
 }
 
 const seekTo = () => {
-  seek = (slider.value / 100) * current_track.duration;
+  seek = Math.round((slider.value / 100) * current_track.duration);
   current_track.currentTime = seek;
+  console.log(seek);
 }
 
 function seekUpdate() {
@@ -165,6 +166,9 @@ const minimizePlayer = () => {
 
 const reopenPlayer = () => {
   audioPlayer.style.display = 'flex';
+  audioPlayer.style.height = "fit-content";
+  topDiv.style.display = "flex";
+  topDiv.style.justifyContent = "space-between";
 }
 
 const closePlayer = () => {
@@ -214,7 +218,7 @@ function expandView() {
 
   // /modify thumbnail
   thumbnail.style.height = "180px";
-  thumbnail.style.width = "320px";
+  thumbnail.style.width = "300px";
   thumbnail.style.borderRadius = "10px";
 
   // modify audioControls
