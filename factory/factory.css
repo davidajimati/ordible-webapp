@@ -16,7 +16,7 @@ h4 {
 
 .audioPlayer {
   height: fit-content;
-  padding: 10px 15px;
+  padding: 10px 15px 25px 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -123,67 +123,6 @@ h4 {
   cursor: pointer;
 }
 
-
-
-@media (max-width: 768px) {
-
-  #header,
-  .sliderArea,
-  #expand,
-  #minimize,
-  #prev,
-  #next {
-    display: none;
-  }
-
-  .audioPlayer {
-    margin: 0;
-    padding: 5px 10px;
-    border-radius: 6px 6px 0px 0px;
-  }
-
-  .top {
-    /* display: grid;
-    grid-template: 1fr/ 1fr auto; */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .coreArea {
-    display: grid;
-    grid-template: 1fr/ 1fr auto;
-  }
-
-  .audioPlayer {
-    display: grid;
-    grid-template: 1fr/1fr 7fr;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .audio_info {
-    justify-content: space-between;
-  }
-
-  .audioControls>i {
-    font-size: 40px;
-  }
-
-  .options>i {
-    font-size: 30px;
-  }
-
-  .thumbnail {
-    width: 120px;
-    height: 90px;
-  }
-
-  #slider {
-    width: 80%;
-  }
-}
-
 #reopen_player {
   display: none;
   color: black;
@@ -221,5 +160,70 @@ h4 {
 
   100% {
     transform: translateX(-100%);
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  #header,
+  .sliderArea,
+  #expand,
+  #minimize,
+  #prev,
+  #next {
+    display: none;
+  }
+
+  .audioPlayer {
+    margin: 0;
+    padding: 5px 10px;
+    border-radius: 6px 6px 0px 0px;
+  }
+
+  .top {
+    /* display: grid;
+    grid-template: 1fr/ 1fr auto; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .coreArea {
+    display: grid;
+    grid-template: 1fr/ 1fr auto;
+  }
+
+  .audioPlayer {
+    display: grid;
+    grid-template: 1fr/1fr 7fr;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .audio_info {
+    justify-content: space-between;
+  }
+
+  .audioControls>i {
+    font-size: 40px;
+  }
+
+  .options>i {
+    font-size: 30px;
+  }
+
+  .thumbnail {
+    width: 120px;
+    height: 90px;
+  }
+
+  #slider {
+    width: 80%;
+  }
+
+  .scroll_box {
+    width: 140px;
   }
 }
