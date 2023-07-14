@@ -176,8 +176,18 @@ h4 {
   }
 }
 
+#closePlayList {
+  font-size: 20px;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+#closePlayList:hover {
+  color: whitesmoke;
+}
 .songList-box {
-  display: none;
+  display: flex;
+ flex-direction: column;
   align-items: flex-start;
   right: 5%;
   bottom: 28%;

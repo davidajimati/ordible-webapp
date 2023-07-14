@@ -149,6 +149,10 @@ function showPlayList() {
   songListBox.style.display = "flex";
 }
 
+function closePlayList() {
+  songListBox.style.display = "none";
+}
+
 const seekTo = () => {
   seek = Math.round((slider.value / 100) * current_track.duration);
   current_track.currentTime = seek;
