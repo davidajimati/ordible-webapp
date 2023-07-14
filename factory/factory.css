@@ -114,7 +114,7 @@ h4 {
   color: #b6b6b6;
 }
 
-.controls > i:hover {
+.controls>i:hover {
   color: whitesmoke;
 }
 
@@ -185,9 +185,10 @@ h4 {
 #closePlayList:hover {
   color: whitesmoke;
 }
+
 .songList-box {
-  display: flex;
- flex-direction: column;
+  display: none;
+  flex-direction: column;
   align-items: flex-start;
   right: 5%;
   bottom: 28%;
@@ -237,6 +238,7 @@ h4 {
 
 .track:hover {
   background-color: #16161f;
+  color: whitesmoke;
 }
 
 @media (max-width: 768px) {
