@@ -1,4 +1,5 @@
 const audioPlayer = document.querySelector('.audioPlayer');
+const songListBox = document.querySelector('.songList-box');
 
 const topDiv = document.querySelector('.top');
 const header = document.querySelector('#header');
@@ -20,6 +21,7 @@ const prev = document.querySelector('#prev');
 const play = document.querySelector('#play');
 const pause = document.querySelector('#pause');
 const next = document.querySelector('#next');
+const playList_icon = document.querySelector("#playList_icon");
 
 
 const sliderArea = document.querySelector('.sliderArea');
@@ -109,6 +111,7 @@ const playPauseTrack = () => {
 }
 
 function startMusicPlayer() {
+  // checks if music player is active - play/pause or loads new track
   if (!musicPlayerActive)
     nextTrack()
   else playPauseTrack()
@@ -142,6 +145,10 @@ const prevTrack = async () => {
     });
 }
 
+function showPlayList() {
+  songListBox.style.display = "flex";
+}
+
 const seekTo = () => {
   seek = Math.round((slider.value / 100) * current_track.duration);
   current_track.currentTime = seek;
@@ -162,19 +169,23 @@ function seekUpdate() {
 const minimizePlayer = () => {
   audioPlayer.style.display = 'none';
   reopen_player.style.display = 'inline'
+  songListBox.display = "none";
 }
 
 const reopenPlayer = () => {
-  audioPlayer.style.display = 'flex';
+  audioPlayer.style.display = "flex";
   audioPlayer.style.height = "fit-content";
   topDiv.style.display = "flex";
   topDiv.style.justifyContent = "space-between";
+  topDiv.style.alignItems = "center";
+  topDiv.style.width = "100%";
 }
 
 const closePlayer = () => {
   current_track.pause();
   audioPlayer.style.display = 'none';
   reopen_player.style.display = 'none';
+  songListBox.display = "none";
 }
 
 function expandView() {
@@ -187,12 +198,13 @@ function expandView() {
   prev.style.display = 'inline';
   header.style.display = "inline-block"
   next.style.display = 'inline';
+  playList_icon.style.display = 'inline';
 
   // modify audioPlayer
   audioPlayer.style.height = '80vh';
   audioPlayer.style.display = "grid";
   audioPlayer.style.padding = "10px";
-  audioPlayer.style.gridTemplate = 'auto 1fr/ 1fr'
+  audioPlayer.style.gridTemplate = 'auto 1fr/ 1fr';
 
 
   // modify topDiv

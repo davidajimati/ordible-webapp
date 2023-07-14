@@ -19,7 +19,8 @@
         <div class="top">
             <h3 id="header">Now playing</h3>
             <div class="options">
-                <i onclick="expandView()" id="expand" title="expand" class="material-symbols-rounded">expand_circle_up</i>
+                <i onclick="expandView()" id="expand" title="expand"
+                    class="material-symbols-rounded">expand_circle_up</i>
                 <i id="minimize" title="minimize" class="material-symbols-outlined"
                     onclick="minimizePlayer()">expand_more</i>
                 <i id="close" title="close" class="material-symbols-rounded" onclick="closePlayer()">cancel</i>
@@ -29,16 +30,21 @@
             <div class="audio_info" onclick="expandView()">
                 <div class="thumbnail"></div>
                 <div id="artist_info">
-                    <h4 class="scroll_text" id="song_title">God will make a way - He puts a song</h4>
+                    <h4 class="scroll_text" id="song_title">God will make a way</h4>
                     <p id="artist">Don Meon</p>
                 </div>
             </div>
             <div class="audioControls">
                 <div class="controls">
-                    <i onclick="prevTrack()" id="prev" title="previous" class="material-symbols-outlined">skip_previous</i>
-                    <i onclick="startMusicPlayer()" id="play" title="play" class="material-symbols-rounded">play_circle</i>
-                    <i onclick="playPauseTrack()" id="pause" title="pause" style="display: none;" class="material-symbols-rounded">pause_circle</i>
+                    <i onclick="prevTrack()" id="prev" title="previous"
+                        class="material-symbols-outlined">skip_previous</i>
+                    <i onclick="startMusicPlayer()" id="play" title="play"
+                        class="material-symbols-rounded">play_circle</i>
+                    <i onclick="playPauseTrack()" id="pause" title="pause" style="display: none;"
+                        class="material-symbols-rounded">pause_circle</i>
                     <i onclick="nextTrack()" id="next" title="next" class="material-symbols-outlined">skip_next</i>
+                    <i onclick="showPlayList()" id="playList_icon" class="material-symbols-outlined"
+                        style="font-size: 35px;">queue_music</i>
                 </div>
                 <div class="sliderArea">
                     <p class="trackStart">00:00</p>
@@ -46,6 +52,27 @@
                     <p class="trackEnd">03:43</p>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="songList-box">
+        <div class="songs_list">
+            <div class="track">1. God is good all the time</div>
+            <div class="track">2. God is good all the time</div>
+            <div class="track">3. God is good all the time</div>
+            <div class="track">3. God is good all the time</div>
+            <div class="track">3. God is good all the time</div>
+            <div class="track">4. God is good all the time</div>
+            <div class="track">4. God is good all the time</div>
+            <div class="track">4. God is good all the time</div>
+            <div class="track">5. God is good all the time</div>
+            <div class="track">5. God is good all the time</div>
+            <div class="track">5. God is good all the time</div>
+            <div class="track">6. God is good all the time</div>
+            <div class="track">6. God is good all the time</div>
+            <div class="track">6. God is good all the time</div>
+            <div class="track">7. God is good all the time</div>
+            <div class="track">7. God is good all the time</div>
+            <div class="track">7. God is good all the time</div>
         </div>
     </div>
 </body>
