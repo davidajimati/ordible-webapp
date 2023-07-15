@@ -118,8 +118,8 @@ footer>p {
 
 .ring {
     position: absolute;
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     animation: ring 1s infinite;
 }
@@ -153,8 +153,8 @@ footer>p {
 }
 
 #preloaderText {
-    color: #8d0606;
-    font-size: 20px;
+    color: black;
+    font-size: 15px;
     text-transform: uppercase;
     letter-spacing: 1px;
     line-height: 200px;

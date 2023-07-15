@@ -9,15 +9,36 @@
 
 <body>
     <button onclick="downloader()">Download</button>
+    <audio controls id="player" style="display: block;" type="audio/mpeg"></audio>
+
     <script>
         function downloader() {
-            // window.location.href = '/Downloads';
-            const url = "http://127.0.0.1:3000/download"
-            const title = "Your Promise by Cleft music";
             const link = "https://www.youtube.com/watch?v=W79pxftE_G8"
+            const encodedLink = `http://127.0.0.1:3000/audio?link=${encodeURIComponent(link)}`
+            fetch("http://127.0.0.1:3000/audio")
+                .then((response) => {
+                    const blob = new Blob(response, { 'type': 'audio/mpeg' })
+                    const audioURL = URL.createObjectURL(blob)
+                    player = document.querySelector("#player");
+                    player.src = audioURL;
+                    // blobFile = response.blob()
+                    // blobURL = URL.createObjectURL(blobFile)
+                    // const track = new Audio()
+                    // track.src = blobURL
+                    // track.play()
+                })
+                // .then((blob) => {
+                //     const track = new Audio()
+                //     track.src = URL.createObjectURL(response)
+                //     // const blobConvert = response.blob()
+                //     // const objectURL =
 
-            fetch(`${url}?link=${encodeURIComponent(link)}&title=${encodeURIComponent(title)}`)
-            // fetch(`${url}?text=${encodeURIComponent("God is great")}`)
+                //     // track.src = objectURL
+                //     track.play()
+                // })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
         }
     </script>
 </body>

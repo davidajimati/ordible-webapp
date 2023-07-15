@@ -8,17 +8,9 @@
 </head>
 
 <body>
-    <button onclick="downloader()">Download</button>
+    <button onclick="downloader()">Download and Play</button>
     <script>
-        function downloader() {
-            // window.location.href = '/Downloads';
-            const url = "http://127.0.0.1:3000/search";
-            const title = "Your Promise by Cleft music";
-            const link = "https://www.youtube.com/watch?v=W79pxftE_G8"
 
-            fetch(`${url}?link=${encodeURIComponent(link)}&title=${encodeURIComponent(title)}`)
-            // fetch(`${url}?text=${"God is great"}`)
-        }
     </script>
 </body>
 

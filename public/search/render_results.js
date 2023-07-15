@@ -51,6 +51,7 @@ function renderer(items) {
     const videoLink = "https://youtube.com/watch?v=" + element.id.videoId;
     const publishDate = element.snippet.publishedAt;
     const vidAge = checkISO(publishDate)
+    const rawTitle = element.snippet.title;
     const vidTitle = calcTitle(element.snippet.title);
     const vidAuthor = element.snippet.channelTitle;
     const thumbnailLink = element.snippet.thumbnails.medium.url;
@@ -114,6 +115,7 @@ function renderer(items) {
     redirectIcon.classList.add('fa', 'fa-youtube-play');
     redirectIcon.setAttribute("aria-hidden", "true");
     redirectIcon.style.color = "#da0707";
+    redirectIcon.onclick = downloader(videoLink, rawTitle)
 
     redirectLink.appendChild(redirectIcon)
     redirectLink.href = videoLink;
@@ -173,4 +175,16 @@ async function handleSearch(searchText) {
       notice.style.paddingTop = "40px"
       console.log("there was an error:", error);
     })
+}
+
+const downloader = (link, title) => {
+  const url = "http://127.0.0.1:3000/download"
+  // const title = "Your Promise by Cle!@#!@#$@#$***@*@*@**@*!**!*@*@**#**#**#*$**$**#****!**!*@**#**#*ft music";
+  // const link = "https://www.youtube.com/watch?v=W79pxftE_G8"
+  const encodedLink = `${url}?link=${encodeURIComponent(link)}&title=${encodeURIComponent(title)}`
+
+  const downloadButton  = document.createElement("a")
+  downloadButton.href = encodedLink;
+  downloadButton.click()
+  // fetch(`${url}?text=${encodeURIComponent("God is great")}`)
 }

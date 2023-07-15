@@ -1,9 +1,13 @@
 const express = require('express');
 const cors = require('cors');
+const { exec } = require('youtube-dl-exec');
+const { spawn } = require('child_process');
+
 const app = express()
 // app.set('view engine', 'ejs')
 const searchYoutube = require('./youtubeQuery');
 const youtubeDl = require('./youtubedl');
+const { error } = require('console');
 
 app.use(express.static('public'));
 app.use(cors())
@@ -34,9 +38,42 @@ app.get('/download', async (req, res) => {
 
 })
 
-app.get('/hey/', (req, res) => {
-  res.send(`hello ${req.query.yourName}`)
-})
+app.get('/audio', (req, res) => {
+  console.log("Audio route received a request")
+  // const options = {
+  //   extractAudio: true,
+  //   audioFormat: 'mp3',
+  //   output: '-'
+  // };
+  // const fileName = req.query.title;
+  // const vidUrl = req.query.link;
+
+  try {
+    res.setHeader("Content-Disposition", "attachment");
+    res.setHeader('Content-Type', 'audio/mpeg');
+    res.sendFile('/home/david/Desktop/ordible-webapp/convertedAudios/Prinx Emmanuel - Pariwo (Live Performance) Reverb 2.0.mp3')
+
+    // exec(vidUrl, options)
+    //   .then(output => {
+    //     res.setHeader("Content-Disposition", `attachment; filename=${fileName}.mp3`);
+    //     res.setHeader('Content-Type', 'audio/mpeg');
+    //     res.send(output);
+    //   })
+  } catch (error) {
+    console.error("error", error);
+    res.status(500).end("There was an error processing your request")
+  }
+});
+
+// const youtubeDlProcess = spawn(`youtube-dl -x --audio-format mp3 -o - ${vidUrl}`, { stdio: ['ignore', 'pipe', 'ignore'] });
+// youtubeDlProcess.stdout.pipe(res);
+
+// youtubeDlProcess.on('error', error => {
+//   console.error("Error", error)
+//   res.status(500).end("An error Occurred while downloading the audio");
+// });
+
+
 app.listen(3000, () => {
   console.log("Server listening on port 3000");
 });

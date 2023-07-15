@@ -15,7 +15,7 @@ async function masterFunction(url, audioTitle) {
   const options = {
     extractAudio: true,
     audioFormat: 'mp3',
-    output: `audios/${outputTitle}.mp3`
+    output: `convertedAudios/${outputTitle}.mp3`
   };
   const rawOutput = await downloadAudio(url, options)
   const audioPath = await getPath(String(rawOutput.stdout))
