@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <button onclick="downloader()">Download</button>
+    <script>
+        function downloader() {
+            // window.location.href = '/Downloads';
+            const url = "http://127.0.0.1:3000/download"
+            const title = "Your Promise by Cleft music";
+            const link = "https://www.youtube.com/watch?v=W79pxftE_G8"
+
+            fetch(`${url}?link=${encodeURIComponent(link)}&title=${encodeURIComponent(title)}`)
+            // fetch(`${url}?text=${encodeURIComponent("God is great")}`)
+        }
+    </script>
+</body>
+
+</html>

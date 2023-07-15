@@ -84,16 +84,17 @@ const loadNewTrack = async (track_index) => {
   return (true)
 }
 
+/*
 function downloadTrack() {
   current_track.src = songList[trackIndex].path;
   let myAudio = current_track.load();
-  let blobObject = new Blob(myAudio, { type: "media/mpeg" })
+  let blobObject = new Blob(myAudio, { type: "media/mpeg" });
   let downloadLink = document.createElement('a');
   downloadLink.href = URL.createObjectURL(blobObject);
   downloadLink.download = `${songList[currentIndex].track_title}.mp3`;
   console.log(`${songList[currentIndex].track_title}.mp3`)
-  // downloadLink.click()
-}
+  downloadLink.click()
+} */
 
 function resetValues() {
   trackStart.textContent = calcDuration(0);
