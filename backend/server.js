@@ -10,6 +10,7 @@ app.use(cors())
 
 let i = 0;
 app.get('/search/:text', async (req, res) => {
+  console.log("search path received a request")
   i += 1;
   const text = String(req.params.text);
   console.log(`Search ${i}: ${text}`);
@@ -19,12 +20,13 @@ app.get('/search/:text', async (req, res) => {
   console.log(`${response[0].snippet.title}\n-------------------------------`)
 })
 
-app.get('/download/:link/:title', async (req, res) => {
+app.get('/download/:link', async (req, res) => {
+  console.log("download path received a request")
   let link = req.params.link;
-  let title = req.params.title;
-  res.setHeader('Content-Disposition', 'attachment; filename=audio.mp3');
+  // let title = req.params.title;
+  res.setHeader(`Content-Disposition', 'attachment`);
   res.setHeader('Content-Type', 'audio/mpeg');
-  let outputPath = await youtubeDl(link, title);
+  let outputPath = await youtubeDl(link);
   res.download(outputPath);
 
 })
