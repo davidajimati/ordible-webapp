@@ -20,16 +20,25 @@ app.get('/search/:text', async (req, res) => {
   console.log(`${response[0].snippet.title}\n-------------------------------`)
 })
 
-app.get('/download/:link', async (req, res) => {
+app.get('/download', async (req, res) => {
   console.log("download path received a request")
-  let link = req.params.link;
-  // let title = req.params.title;
-  res.setHeader(`Content-Disposition', 'attachment`);
+  let link = req.query.link;
+  let title = req.query.title;
+  console.log(link)
+  console.log(title)
+  res.setHeader("Content-Disposition", "attachment");
+  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500')
   res.setHeader('Content-Type', 'audio/mpeg');
-  let outputPath = await youtubeDl(link);
+  let outputPath = await youtubeDl(link, title);
   res.download(outputPath);
 
 })
-app.listen(3000);
+
+app.get('/hey/', (req, res) => {
+  res.send(`hello ${req.query.yourName}`)
+})
+app.listen(3000, () => {
+  console.log("Server listening on port 3000");
+});
 
 // console.log(youtubeDl('https://www.youtube.com/watch?v=UBhs7CpKPSs', "Ordible test Audio.mp3"));
