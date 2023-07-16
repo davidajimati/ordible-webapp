@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="../general.css">
     <link rel="stylesheet" href="search.css">
     <link rel="stylesheet" href="searchBox.css">
-    <script src="render_results.js" defer></script>
+    <!-- <script src="render_results.js" defer></script> -->
+    <script src="oop_renderer.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../loader.js"></script>
 </head>
@@ -29,7 +30,7 @@
                 <input id="inputField" type="search" name="text" required placeholder="enter video title...">
                 <button id="submitButton">Search</button>
             </form>
-            <h3 style="display: none;" id="notice">showing results for "<span id="string"></span>"</h3>
+            <p style="display: none;" id="notice">showing results for "<span id="string"></span>"</p>
         </div>
         <!-- <h2 id="results-heading">Search results for "<span id="search-text">lorem ipsum dolor sit amet</span>"</h2> -->
         <div class="results-wrapper">

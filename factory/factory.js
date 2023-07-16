@@ -1,4 +1,5 @@
 const audioPlayer = document.querySelector('.audioPlayer');
+const songListBox = document.querySelector('.songList-box');
 
 const topDiv = document.querySelector('.top');
 const header = document.querySelector('#header');
@@ -20,6 +21,8 @@ const prev = document.querySelector('#prev');
 const play = document.querySelector('#play');
 const pause = document.querySelector('#pause');
 const next = document.querySelector('#next');
+const playList_icon = document.querySelector("#playList_icon");
+const downloadIcon = document.querySelector("#downloadIcon");
 
 
 const sliderArea = document.querySelector('.sliderArea');
@@ -38,7 +41,7 @@ let songList = [
   },
   {
     path: "highpriest.mp3",
-    track_title: "God will make a way - He puts a song scroll_box scroll_box scroll_box scroll_box",
+    track_title: "Jesus the High priest",
     track_author: "Lanre Awosika",
     track_image: "../public/images/thumbnail3.png"
   }
@@ -52,6 +55,7 @@ let isPlaying = false;
 let updateTimer;
 let current_track = new Audio()
 let expanded = false;
+let currentIndex;
 
 const loadNewTrack = async (track_index) => {
   resetValues();
@@ -79,6 +83,18 @@ const loadNewTrack = async (track_index) => {
   current_track.addEventListener('ended', nextTrack);
   return (true)
 }
+
+/*
+function downloadTrack() {
+  current_track.src = songList[trackIndex].path;
+  let myAudio = current_track.load();
+  let blobObject = new Blob(myAudio, { type: "media/mpeg" });
+  let downloadLink = document.createElement('a');
+  downloadLink.href = URL.createObjectURL(blobObject);
+  downloadLink.download = `${songList[currentIndex].track_title}.mp3`;
+  console.log(`${songList[currentIndex].track_title}.mp3`)
+  downloadLink.click()
+} */
 
 function resetValues() {
   trackStart.textContent = calcDuration(0);
@@ -109,6 +125,7 @@ const playPauseTrack = () => {
 }
 
 function startMusicPlayer() {
+  // checks if music player is active - play/pause or loads new track
   if (!musicPlayerActive)
     nextTrack()
   else playPauseTrack()
@@ -126,8 +143,13 @@ const nextTrack = async () => {
     trackIndex += 1;
   else trackIndex = 0;
 
-  await loadNewTrack(trackIndex);
-  playTrack();
+  try {
+    await loadNewTrack(trackIndex);
+    playTrack();
+    currentIndex = trackIndex;
+  } catch (error) {
+    console.log("error", error);
+  }
 }
 
 const prevTrack = async () => {
@@ -135,11 +157,22 @@ const prevTrack = async () => {
     trackIndex -= 1;
   else trackIndex = songList.length - 1;
 
-  await loadNewTrack(trackIndex)
-    .then(playTrack())
-    .catch(err => {
-      console.log("Error: ", err);
-    });
+  try {
+    await loadNewTrack(trackIndex)
+    playTrack()
+    currentIndex = trackIndex
+    console.log(currentIndex)
+  } catch (error) {
+    console.log("error", error)
+  }
+}
+
+function showPlayList() {
+  songListBox.style.display = "flex";
+}
+
+function closePlayList() {
+  songListBox.style.display = "none";
 }
 
 const seekTo = () => {
@@ -162,19 +195,23 @@ function seekUpdate() {
 const minimizePlayer = () => {
   audioPlayer.style.display = 'none';
   reopen_player.style.display = 'inline'
+  songListBox.display = "none";
 }
 
 const reopenPlayer = () => {
-  audioPlayer.style.display = 'flex';
+  audioPlayer.style.display = "flex";
   audioPlayer.style.height = "fit-content";
   topDiv.style.display = "flex";
   topDiv.style.justifyContent = "space-between";
+  topDiv.style.alignItems = "center";
+  topDiv.style.width = "100%";
 }
 
 const closePlayer = () => {
   current_track.pause();
   audioPlayer.style.display = 'none';
   reopen_player.style.display = 'none';
+  songListBox.display = "none";
 }
 
 function expandView() {
@@ -187,12 +224,14 @@ function expandView() {
   prev.style.display = 'inline';
   header.style.display = "inline-block"
   next.style.display = 'inline';
+  playList_icon.style.display = 'inline';
+  downloadIcon.style.display = 'inline';
 
   // modify audioPlayer
   audioPlayer.style.height = '80vh';
   audioPlayer.style.display = "grid";
   audioPlayer.style.padding = "10px";
-  audioPlayer.style.gridTemplate = 'auto 1fr/ 1fr'
+  audioPlayer.style.gridTemplate = 'auto 1fr/ 1fr';
 
 
   // modify topDiv
