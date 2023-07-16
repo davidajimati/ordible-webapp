@@ -1,7 +1,9 @@
 const express = require('express');
 const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
 const { exec } = require('youtube-dl-exec');
-const { spawn } = require('child_process');
+// const { spawn } = require('child_process');
 
 const app = express()
 // app.set('view engine', 'ejs')
@@ -39,31 +41,36 @@ app.get('/download', async (req, res) => {
 })
 
 app.get('/audio', (req, res) => {
-  console.log("Audio route received a request")
-  // const options = {
-  //   extractAudio: true,
-  //   audioFormat: 'mp3',
-  //   output: '-'
-  // };
-  // const fileName = req.query.title;
-  // const vidUrl = req.query.link;
+  console.log("Audio route received a request\n")
 
-  try {
-    res.setHeader("Content-Disposition", "attachment");
-    res.setHeader('Content-Type', 'audio/mpeg');
-    res.sendFile('/home/david/Desktop/ordible-webapp/convertedAudios/Prinx Emmanuel - Pariwo (Live Performance) Reverb 2.0.mp3')
-
-    // exec(vidUrl, options)
-    //   .then(output => {
-    //     res.setHeader("Content-Disposition", `attachment; filename=${fileName}.mp3`);
-    //     res.setHeader('Content-Type', 'audio/mpeg');
-    //     res.send(output);
-    //   })
-  } catch (error) {
-    console.error("error", error);
-    res.status(500).end("There was an error processing your request")
-  }
+  fs.readFile('/home/david/Desktop/ordible-webapp/convertedAudios/prinx-emmanuel.mp3', (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error reading audio file');
+    } else {
+      // Convert the audio data to base64
+      const base64Audio = data.toString('base64');
+      res.json({ audio: base64Audio });
+    }
+  });
 });
+
+// const options = {
+//   extractAudio: true,
+//   audioFormat: 'mp3',
+//   output: '-'
+// };
+// const fileName = req.query.title;
+// const vidUrl = req.query.link;
+
+// exec(vidUrl, options)
+//   .then(output => {
+//     res.setHeader("Content-Disposition", `attachment; filename=${fileName}.mp3`);
+//     res.setHeader('Content-Type', 'audio/mpeg');
+//     res.send(output);
+//   })
+
+
 
 // const youtubeDlProcess = spawn(`youtube-dl -x --audio-format mp3 -o - ${vidUrl}`, { stdio: ['ignore', 'pipe', 'ignore'] });
 // youtubeDlProcess.stdout.pipe(res);

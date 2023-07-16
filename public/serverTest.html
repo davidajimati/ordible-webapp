@@ -8,37 +8,45 @@
 </head>
 
 <body>
-    <button onclick="downloader()">Download</button>
-    <audio controls id="player" style="display: block;" type="audio/mpeg"></audio>
+    <button onclick="grandFunction()">load audio file</button><br><br>
+    <audio controls id="player" style="display: block;" type="audio/mpeg"></audio><br><br>
+
+    <button id="downloadButton">Download</button><br>
 
     <script>
-        function downloader() {
-            const link = "https://www.youtube.com/watch?v=W79pxftE_G8"
-            const encodedLink = `http://127.0.0.1:3000/audio?link=${encodeURIComponent(link)}`
-            fetch("http://127.0.0.1:3000/audio")
-                .then((response) => {
-                    const blob = new Blob(response, { 'type': 'audio/mpeg' })
-                    const audioURL = URL.createObjectURL(blob)
-                    player = document.querySelector("#player");
-                    player.src = audioURL;
-                    // blobFile = response.blob()
-                    // blobURL = URL.createObjectURL(blobFile)
-                    // const track = new Audio()
-                    // track.src = blobURL
-                    // track.play()
-                })
-                // .then((blob) => {
-                //     const track = new Audio()
-                //     track.src = URL.createObjectURL(response)
-                //     // const blobConvert = response.blob()
-                //     // const objectURL =
+        const downloadButton = document.querySelector('#downloadButton')
+        audioPlayer = document.querySelector("#player");
 
-                //     // track.src = objectURL
-                //     track.play()
-                // })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
+        function grandFunction(command) {
+            fetch('/audio')
+                .then((response) => response.json())
+                .then((data) => {
+                    const base64Audio = data.audio;
+                    const audioBlob = base64toBlob(base64Audio);
+                    const audioUrl = URL.createObjectURL(audioBlob);
+                    audioPlayer.src = audioUrl;
+
+                    const a = document.createElement('a');
+                    const fileName = 'Prinx emmanuel.mp3';
+
+                    a.href = audioUrl;
+                    a.download = fileName;
+                    downloadButton.addEventListener('click', () => {
+                        a.click();
+                    });
+
+                })
+                .catch((error) => console.error('Error fetching audio:', error));
+
+            function base64toBlob(base64Data) {
+                const byteString = atob(base64Data);
+                const arrayBuffer = new ArrayBuffer(byteString.length);
+                const uint8Array = new Uint8Array(arrayBuffer);
+                for (let i = 0; i < byteString.length; i++) {
+                    uint8Array[i] = byteString.charCodeAt(i);
+                }
+                return new Blob([uint8Array], { type: 'audio/mpeg' });
+            }
         }
     </script>
 </body>
