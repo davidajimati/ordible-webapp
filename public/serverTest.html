@@ -17,8 +17,10 @@
         const downloadButton = document.querySelector('#downloadButton')
         audioPlayer = document.querySelector("#player");
 
+        const link = 'https://www.youtube.com/watch?v=YblII6yXAWA';
+        const title = "test Audio";
         function grandFunction(command) {
-            fetch('/audio')
+            fetch(`/audio?link=${encodeURIComponent(link)}&title=${encodeURIComponent(title)}`)
                 .then((response) => response.json())
                 .then((data) => {
                     const base64Audio = data.audio;
