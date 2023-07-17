@@ -12,7 +12,7 @@ const { error } = require('console');
 const { title } = require('process');
 
 app.use(express.static('public'));
-app.use(cors())
+// app.use(cors())
 
 let i = 0;
 app.get('/search/:text', async (req, res) => {
