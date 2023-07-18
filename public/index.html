@@ -8,6 +8,7 @@
     <link rel="icon" href="images/clear-red-favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="general.css">
     <link rel="stylesheet" href="center-content.css">
+    <script src="home_index.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="loader.js"></script>
 </head>
@@ -26,7 +27,10 @@
             <h1 class="logo-text" style="color:#00072D">Ordible.</h1>
             <p>Stream videos in audio format</p>
             <input label="url" class="search" type="text" placeholder="Paste video url">
-            <button label="url" class="ordiofy">ordiofy</button>
+            <button label="url" onclick="ordiofy()" class="ordiofy">ordiofy</button>
+
+            <button style="background-color: black; display: inline-block;" id="player">Play Audio</button>
+            <button style="background-color: navy; display: inline;" id="downloadButton">Download</button>
         </div>
     </div>
     <div class="preloader">
