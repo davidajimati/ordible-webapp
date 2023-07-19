@@ -59,7 +59,7 @@ let currentIndex;
 
 const loadNewTrack = async (track_index) => {
   resetValues();
-  current_track.src = songList[track_index].path;
+  current_track.src = `/convertedAudios/Diana_Ross-He-lives-in-you.mp3`
   current_track.load();
 
   let songTT = songList[track_index].track_title;
