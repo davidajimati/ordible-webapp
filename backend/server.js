@@ -21,7 +21,7 @@ app.get('/search/:text', async (req, res) => {
     i += 1;
     const text = String(req.params.text);
     let response = await searchYoutube(text);
-    res.set('Content-Type', 'application/json');
+    res.setHeader('Content-Type', 'application/json');
     res.json(response);
     console.log(`${response[0].snippet.title}\n-------------------------------`)
   } catch (err) {
@@ -40,17 +40,22 @@ app.get('/download', async (req, res) => {
     return
   } else {
     try {
-      // cleanup title before sending details to the
-      let link = req.query.link;
-      let title = cleanupTitle(req.query.title);
-
       res.setHeader("Content-Disposition", "attachment");
-      res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500')
       res.setHeader('Content-Type', 'audio/mpeg');
-      let outputPath = await youtubeDl(link, title);
-      res.download(outputPath);
+
+      // youtubeDl(link, title)
+      if (req.query.title) {  // try get resource by title
+        let outputPath = await youtubeDl(null, cleanupTitle(req.query.title));
+        res.download(outputPath);
+      } else if (req.query.link) { // else get it by url
+        let outputPath = await youtubeDl(req.query.link, null);
+        res.download(outputPath.path);
+      } else {
+        throw Error("No link or title specified");
+      }
     }
     catch (err) {
+      console.log("Download route encountered a problem\n")
       res.status(400).end("Something went wrong")
       return
     }
@@ -58,43 +63,30 @@ app.get('/download', async (req, res) => {
 })
 
 app.get('/audio', async (req, res) => {
-  console.log("Audio route received a request\n")
-  const check = await isValidUrl(req.query.link)
-  if (!check) {
-    //check if url is valid
-    res.status(400).end("Invalid URL")
-    return
-  } else {
-    try {
-      // standardize the audio title
-      const url = req.query.link;
-      let extraChars = getRandomChars(12);
-      if (!req.query.title) {
-        inputTitle = `Ordible ${extraChars}`
-      } else {
-        inputTitle = cleanupTitle(req.query.title)
-      }
-      // returned path to the converted audio
-      const newAudioPath = await youtubeDl(url, inputTitle)
-
-      // stream audio to client
-      fs.readFile(newAudioPath, (err, data) => {
-        if (err) {
-          console.error(err);
-          res.status(500).send('Error reading audio file');
-        } else {
-          // Convert the audio data to base64
-          const base64Audio = data.toString('base64');
-          res.json({ audio: base64Audio });
-        }
-      });
-      // handle errors that may arise gracefully
-    } catch (err) {
-      res.status(400).end("Something went wrong")
+  try {
+    console.log("Audio route received a request\n")
+    const check = await isValidUrl(req.query.link)
+    if (!check) {
+      //check if url is valid
+      res.status(400).end("Invalid URL")
       return
+    } else {
+      try {
+        const url = req.query.link;
+        res.setHeader('Content-Type', 'application/json');
+        const output = await youtubeDl(url, null) // returned path to the converted audio
+        res.send(output);
+      } catch (err) { // handle errors that may arise gracefully
+        console.log("audio route encountered a problem----\n")
+        res.status(400).end("Something went wrong")
+        return
+      }
     }
+  } catch (err) {
+    console.log("Audio route encountered an error\n")
+    res.status(400).end("Something went wrong")
+    return
   }
-
 });
 
 // ------------ HELPER FUNCTIONS ------------------

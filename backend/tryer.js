@@ -35,20 +35,20 @@ async function downloadAudio(url) {
 
 
     if (audioPath != false) {
-      var finalPath = audioPath
+      var finalPath = `convertedAudios/${audioPath}`
     } else {
-      var finalPath = `${title} [${url.slice(-11)}].mp3`
+      var finalPath = `convertedAudios/${title} [${url.slice(-11)}].mp3`
     }
 
     console.log("title:", title, '\n', "thumbnail url: ", thumbnail_url, '\n', "file Path:", finalPath)
 
   } catch (err) {
-    console.log("There was an error". err);
+    console.log("There was an error", err);
     return err;
   }
 }
 
-downloadAudio('https://www.youtube.com/watch?v=FNSjgay9GYA')
+// downloadAudio('https://www.youtube.com/watch?v=V3_PPJOWetk')
 // .then(output => {
 //   console.log(output);
 // }).catch(error => {
@@ -74,5 +74,8 @@ async function getPath(rawOutput) {
 }
 
 
-// Lion King - Circle of Life and He Lives In You [FNSjgay9GYA].mp3
-// Lion King - Circle of Life and He Lives In You [FNSjgay9GYA].mp3
+// let a = 'Mordecaii zm - Fire 🔥 [Official Music video] [V3_PPJOWetk].mp3'
+// let b = a.slice(0, -18) + '.mp3';
+// console.log(b);
+
+// const thumbnail_url = `https://i.ytimg.com/vi/${url.slice(-11)}/mqdefault.jpg`
