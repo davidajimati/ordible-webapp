@@ -13,17 +13,23 @@ async function masterFunction(url, audioTitle) {
     console.log('File found:', filePath);
     return filePath;
   } else {
-    const options = {
-      extractAudio: true,
-      audioFormat: 'mp3',
-      output: `backend/convertedAudios/${audioTitle}.mp3`
-    };
+    try {
+      const options = {
+        extractAudio: true,
+        audioFormat: 'mp3',
+        output: `backend/convertedAudios/${audioTitle}.mp3`
+      };
 
-    const rawOutput = await downloadAudio(url, options)
-    if (rawOutput != null) {
-      const audioPath = await getPath(String(rawOutput.stdout))
-      console.log(audioPath);
-      return (audioPath);
+      const rawOutput = await downloadAudio(url, options)
+      if (rawOutput != null & rawOutput != Error) {
+        const audioPath = await getPath(String(rawOutput.stdout))
+        // console.log(audioPath);
+        if (audioPath != Error)
+          return (audioPath);
+        else throw Error
+      } else throw Error
+    } catch (error) {
+      return new Error("An error occurred");
     }
   }
 }
@@ -32,38 +38,45 @@ async function downloadAudio(url, options) {
   try {
     let stdout = await exec(url, options);
     return stdout
-  } catch (error) {
-    console.error('Error downloading audio:', error);
-    return null;
+  } catch (err) {
+    return new Error("An error occurred")
   }
 }
 
 async function getPath(rawOutput) {
-  const regex = /\[ExtractAudio\] Destination: (.+)/;
-  const match = rawOutput.match(regex);
+  try {
+    const regex = /\[ExtractAudio\] Destination: (.+)/;
+    const match = rawOutput.match(regex);
 
-  if (match) {
-    const audioPath = match[1];
-    console.log('Audio Path:', audioPath);
-    return audioPath;
-  } else {
-    console.log('No match found.');
-    return null;
+    if (match) {
+      const audioPath = match[1];
+      console.log('Audio Path:', audioPath);
+      return audioPath;
+    } else {
+      console.log('No match found.');
+      return null;
+    }
+  } catch {
+    return new Error;
   }
 }
 
 function checkAvailability(filePath) {
-  return new Promise((resolve, reject) => {
-    fs.access(filePath, fs.constants.F_OK, (err) => {
-      if (err) {
-        console.error('File does not exist.\n___________________________________');
-        resolve(false);
-      } else {
-        console.log('File exists.\n___________________________________');
-        resolve(true);
-      }
+  try {
+    return new Promise((resolve, reject) => {
+      fs.access(filePath, fs.constants.F_OK, (err) => {
+        if (err) {
+          console.error('File does not exist.\n___________________________________');
+          resolve(false);
+        } else {
+          console.log('File exists.\n___________________________________');
+          resolve(true);
+        }
+      });
     });
-  });
+  } catch (err) {
+    return new Error
+  }
 }
 
 // masterFunction("https://www.example/879", "Ordible i495ZA76gHJf")

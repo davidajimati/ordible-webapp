@@ -1,22 +1,12 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const { exec } = require('youtube-dl-exec');
 
-const options = {
-  extractAudio: true,
-  audioFormat: 'mp3',
-  output: '-'
-};
-
-
-async function downloadAudio(url, options) {
+function isValidUrl(urlString) {
   try {
-    let result = await exec(url, options);
-    return (result.stdout)
-  } catch {
-    console.error('Error downloading audio:', error);
-    // return null;
+    return Boolean(new URL(urlString));
+  }
+  catch (e) {
+    return false;
   }
 }
 
-downloadAudio('https://www.youtube.com/watch?v=UBhs7CpKPSs', options)
+console.log(isValidUrl('https://www.svsd  v'))

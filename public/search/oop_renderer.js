@@ -132,7 +132,7 @@ function renderer(items) {
     redirectIcon.setAttribute("aria-hidden", "true");
     redirectIcon.style.color = "#da0707";
 
-    redirectLink.appendChild(redirectIcon) 
+    redirectLink.appendChild(redirectIcon)
     redirectLink.href = videoLink;
 
     // download Link and download Icon
@@ -167,7 +167,12 @@ function renderer(items) {
 
 /* handles the search query (bridges the backend and frontend) */
 async function handleSearch(searchText) {
+
   preloader.style.display = 'flex';
+  const notice = document.querySelector('#notice');
+  const string = document.querySelector('#string')
+
+  notice.style.display = "none"
   const url = `http://localhost:3000/search/${searchText}`;
 
   await fetch(url)
@@ -179,11 +184,13 @@ async function handleSearch(searchText) {
     })
     .then(response => {
       renderer(response);
+      string.textContent = searchText;
+      notice.style.display = "inline-block"
     })
     .catch(error => {
       preloader.style.display = 'flex';
       preloader.style.display = 'none';
-      const notice = document.querySelector('#notice');
+
       notice.textContent = "Your request couldn't be completed, Please try again..."
       notice.style.display = "inline-block"
       notice.style.color = "black"
@@ -191,7 +198,6 @@ async function handleSearch(searchText) {
       console.log("there was an error:", error);
     })
 }
-
 // const downloader = (link, title) => {
 //   const url = "http://127.0.0.1:3000/download"
 //   const encodedLink = `${url}?link=${encodeURIComponent(link)}&title=${encodeURIComponent(title)}`
