@@ -1,16 +1,20 @@
-
 // This function renames the audio file after it has been converted
 async function renameAudioFile(audioPath) {
-  const fileName = path.basename(audioPath);
-  const validChars = '-_.()[]abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ';
-  const sanitizedFileName = [...fileName]
-    .filter((char) => validChars.includes(char))
-    .join('');
-  const newAudioPath = path.join(path.dirname(audioPath), sanitizedFileName);
-  fs.renameSync(audioPath, newAudioPath);
-  return newAudioPath;
+  console.log("Rename Audio file path function working----\n")
+  try {
+    const fileName = path.basename(audioPath);
+    const validChars = '-_.()[]abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ';
+    const sanitizedFileName = [...fileName]
+      .filter((char) => validChars.includes(char))
+      .join('');
+    const newAudioPath = path.join(path.dirname(audioPath), sanitizedFileName);
+    fs.renameSync(audioPath, newAudioPath);
+    return newAudioPath;
+  } catch (err) {
+    console.log("Rename Audio file path function error-----\n", err)
+    return new Error("an error occurred")
+  }
 }
-
 
 /* THIS ROUTE CONVERTS A video to audio using youtube-dl-exec, then sends the raw file to the client */
 app.get('/sendRaw', async (req, res) => {
@@ -97,37 +101,3 @@ fs.readFile(newAudioPath, (err, data) => {
     res.json({ audio: base64Audio });
   }
 })
-
-
-/*     PART OF GRAND FUNCTION ABOUT O BE EDITED
-
-const rawPath = await getPath(String(rawConverterOutput));
-if (rawPath != false) {
-  console.log("rawPath is not false---------\n")
-  const cleanPath = await renameAudioFile(rawPath);
-  const finalPath = `convertedAudios/${cleanPath}`
-  const title = cleanPath.slice(0, -18)
-
-  const retJson = {
-    'path': finalPath,
-    'title': title
-  }
-  return retJson
-} else if (rawPath == Error) {
-  console.log("rawPath is Error")
-  return new Error
-} else {
-  console.log("Looks like video has already been downloaded... fetching details----\n")
-  const rawDetails = await downloadAudio(url, detailsOptions)
-  const audioDetails = (rawDetails.stdout).split('\n')
-  const rawPath = audioDetails[0].trim()
-  const cleanPath = cleanupTitle(String(rawPath));
-  const finalPath = `convertedAudios/${cleanPath}`
-  const title = cleanPath.slice(0, -18) + '.mp3';
-
-  const retJson = {
-    'path': finalPath,
-    'title': title
-  }
-  return retJson
-  */
