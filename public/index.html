@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="general.css">
     <link rel="stylesheet" href="center-content.css">
     <script src="home_index.js" defer></script>
+    <script src="loader.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <script src="loader.js"></script>
 </head>
 
 <body>
@@ -36,9 +36,19 @@
             <p class="errorNote" style="margin-top: 10px; display: none; max-width: 60%; text-align: center;">oops!
                 ...there was an error fetching audio
                 from <span id="errorSpan" style="text-decoration: underline;"></span></p>
-            <div class="audio_options">
-                <button class="optionsButton" id="player">Play audio</button>
-                <button class="optionsButton" id="downloadButton">Download</button>
+            <!-- ----------RESULTS ------ -->
+            <div class="result">
+                <div class="thumbnail">
+                    <img style="display: inline;" class="resultsThumbnail" src="./images/thumbnail1.png" alt="thumbnail">
+                </div>
+                <div class="video-details">
+                    <h4 class="title">God will make a way - ft. Nathaniel Bassey - God is good</h4>
+                    <p class="author">Don Meon</p>
+                    <div class="optionsButtons">
+                        <button id="player" onclick="playAudioFile()">Play audio</button>
+                        <button id="downloadButton">Download</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

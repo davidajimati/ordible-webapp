@@ -43,7 +43,7 @@ app.get('/download', async (req, res) => {
       res.setHeader('Content-Type', 'audio/mpeg');
 
       // youtubeDl(link, title)
-      const link = req.query.link
+      const link = `public/${req.query.link}`
       let outputPath = await youtubeDl(link);
       res.download(outputPath.path);
     }
@@ -62,15 +62,18 @@ app.get('/audio', async (req, res) => {
     if (!check) {
       //check if url is valid
       res.status(400).end("Invalid URL")
+      console.log("Invalid URL")
       return
     } else {
+      console.log("valid URL")
       const url = req.query.link;
       res.setHeader('Content-Type', 'application/json');
       const output = await youtubeDl(url) // returned path to the converted audio
       res.send(output);
+      console.log("Audio route: audio path sent ")
     }
   } catch (err) {
-    console.log("Audio route encountered an error\n")
+    console.log("Audio route encountered an error\n", err)
     res.status(400).end("Something went wrong")
     return
   }

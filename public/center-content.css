@@ -21,7 +21,7 @@ body {
     height: fit-content;
     justify-content: center;
     align-items: center;
-    margin: 10% auto auto auto;
+    margin: 7% auto auto auto;
 }
 
 .logo-text {
@@ -32,7 +32,7 @@ body {
     outline: none;
     width: 600px;
     height: 45px;
-    margin: 40px auto 10px auto;
+    margin: 20px auto 0px auto;
     border: none;
     border-radius: 30px;
     background-color: whitesmoke;
@@ -54,9 +54,10 @@ body {
     font-size: medium;
     background-color: #da0707;
     color: whitesmoke;
-    transition: background-color  0.1s ease;
-    transition: width  0.1s ease;
+    transition: background-color 0.1s ease;
+    transition: width 0.1s ease;
     cursor: pointer;
+    margin: 10px auto 25px auto;
 }
 
 .ordiofy:hover {
@@ -64,43 +65,88 @@ body {
     width: 185px;
 }
 
-.optionsButton {
-    width: 160px;
-    height: 40px;
-    border-radius: 25px;
-    font-size: medium;
-    margin: 10px;
-    cursor: pointer;
+/* ------RESULTS DIV ----- */
+.result {
+    width: 500px;
+    margin-bottom: 10px;
+    height: fit-content;
+    display: none;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: whitesmoke;
 }
 
-.audio_options {
-    display: none;
+.video-details {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    color: #212121;
+    overflow: hidden;
 }
+
+.thumbnail>img {
+    width: 200px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.thumbnail {
+    position: relative;
+    display: inline-block;
+}
+
+.author {
+    display: inline-block;
+    color: #474747;
+}
+
+
+.optionsButtons>button {
+    width: 120px;
+    height: 35px;
+    border-radius: 16px;
+    font-size: medium;
+    cursor: pointer;
+    transition: width 0.2s ease-in-out;
+}
+
+.optionsButtons>button:hover {
+    width: 130px;
+}
+
+.optionsButtons {
+    justify-content: space-between;
+    margin-top: auto;
+    align-items: flex-end;
+    display: flex;
+}
+
 #player {
     background-color: transparent;
-    border: 1px blue solid;
-    color: black;
+    border: 1px #e60808 solid;
+    color: #212121;
+    margin-right: 5px;
 }
 
 #downloadButton {
-    background-color: blue;
-    border: 1px blue solid;
+    background-color: #e60808;
+    border: 1px #e60808 solid;
     color: white;
+    margin-left: 5px;
 }
 
-#downloadButton:hover,
-#player:hover {
-    width: 170px;
-}
+/* ----------------- */
 @media screen and (max-width: 480px) {
 
     /* Mobile Phones */
     .contents {
         margin: 30% auto auto auto;
     }
+
     .optionsButton {
         margin: 10px 5px;
     }
+
     .logo-text {
         font-size: 50px;
     }

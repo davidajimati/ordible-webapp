@@ -6,7 +6,7 @@ const path = require('path');
 
 const rgx_new = /\[ExtractAudio\] Destination: (.+)/;
 const rgx_existing = /\[download\]\s(.*\.mp3)/;
-const outputFolder = '../public/convertedAudios'
+const outputFolder = './public/convertedAudios'
 
 async function masterFunction(url) {
   // console.log("Master function received a request---------\n")
@@ -23,23 +23,25 @@ async function masterFunction(url) {
 
     if (str_out.search("has already been downloaded") != -1) {
       // console.log("Has already been downloaded")
-      var rawPath = await getPath(str_out, rgx_existing);
-      const rawTitle = rawPath.slice(26, -18) + '.mp3'
+      const rawPath = await getPath(str_out, rgx_existing);
+      var finalPath = rawPath.slice(9)
+      const rawTitle = rawPath.slice(25, -18) + '.mp3'
       var title = cleanupTitle(rawTitle)
 
     } else {
       // console.log("Not downloaded yet")
-      var rawPath = await getPath(str_out, rgx_new);
-      const rawTitle = rawPath.slice(26, -18) + '.mp3'
+      const rawPath = await getPath(str_out, rgx_new);
+      var finalPath = rawPath.slice(9)
+      const rawTitle = rawPath.slice(25, -18) + '.mp3'
       var title = cleanupTitle(rawTitle)
     }
 
     const retJson = {
-      'path': rawPath,
+      'path': finalPath,
       'title': title
     }
+    console.log(retJson)
     return retJson
-
   } catch (err) {
     console.log("Boss, there was an error:", err)
     return new Error("An error occurred: ", err);
@@ -48,12 +50,13 @@ async function masterFunction(url) {
 
 // performs the conversion and details download process
 async function downloadAudio(url, options) {
-  // console.log("Download function received a request, processing ----\n")
+  console.log("Download function received a request, processing ----\n")
   try {
     let stdout = await exec(url, options);
+    // console.log(stdout);
     return stdout
   } catch (err) {
-    // console.log("Error downloading stuff DownloadAudio function ----\n")
+    console.log("Error downloading stuff -> DownloadAudio function ----\n", err)
     return new Error("An error occurred")
   }
 }
@@ -62,7 +65,7 @@ async function downloadAudio(url, options) {
 function cleanupTitle(rawFile_name) {
   // console.log("CleanupTitle working-\n")
   try {
-    const validChars = '-_.()[]abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ';
+    const validChars = "-_.()[]'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ";
     const sanitizedFileName = [...rawFile_name]
       .filter((char) => validChars.includes(char))
       .join('');
@@ -91,6 +94,8 @@ async function getPath(rawOutput, pattern) {
     return new Error("An error occurred:", err);;
   }
 }
+
+module.exports = masterFunction
 
 // const url = 'https://www.youtube.com/watch?v=V3_PPJOWetk'
 // masterFunction(url)
