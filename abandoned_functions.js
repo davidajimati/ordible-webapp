@@ -101,3 +101,24 @@ fs.readFile(newAudioPath, (err, data) => {
     res.json({ audio: base64Audio });
   }
 })
+
+// computes random character to make up an indexing title.
+function getRandomChars(length) {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    result += characters.charAt(randomIndex);
+  }
+  return result;
+}
+
+// This function corrects the title before the conversion begins
+function cleanupTitle(rawFile_name) {
+  const validChars = '-_.()abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ';
+  const sanitizedFileName = [...rawFile_name]
+    .filter((char) => validChars.includes(char))
+    .join('');
+  return sanitizedFileName;
+}

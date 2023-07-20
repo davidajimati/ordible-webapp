@@ -27,17 +27,11 @@ async function masterFunction(url) {
       const rawTitle = rawPath.slice(26, -18) + '.mp3'
       var title = cleanupTitle(rawTitle)
 
-      // console.log("Title:", title)
-      // console.log("File Path:", rawPath)
-
     } else {
       // console.log("Not downloaded yet")
       var rawPath = await getPath(str_out, rgx_new);
       const rawTitle = rawPath.slice(26, -18) + '.mp3'
       var title = cleanupTitle(rawTitle)
-
-      // console.log("Title:", title)
-      // console.log("File Path:", rawPath)
     }
 
     const retJson = {
@@ -98,7 +92,7 @@ async function getPath(rawOutput, pattern) {
   }
 }
 
-// const url = 'https://www.yo?v=V3_PPJOWetk'
+// const url = 'https://www.youtube.com/watch?v=V3_PPJOWetk'
 // masterFunction(url)
 //   .then(output => {
 //     console.log(output.title);
