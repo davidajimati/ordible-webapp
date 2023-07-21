@@ -65,13 +65,20 @@ function ordiofy() {
           loadNewTrack(0);
         }
 
-        const a = document.createElement('a');
-        a.href = fetch(`/download?link=${encodeURIComponent(link)}`)
-        a.download = audioTitle;
+        // downloadButton.addEventListener('click', () => {
+        //   const a = document.createElement('a');
+        //   a.href = fetch(`/download?link=${encodeURIComponent(link)}`)
+        //   a.download = audioTitle;
+        //   a.click();
+        //   a.remove()
+        // });
+        downloadButton.removeEventListener('click');
+        // downloadButton.addEventListener('click', downloadHandler.bind(null, link, audioPath, audioTitle));
         downloadButton.addEventListener('click', () => {
-          a.click();
+          console.log("Download button clicked")
+          console.log("Download button clicked")
+          downloadAudioResource(link, audioPath, audioTitle)
         });
-
       })
       .catch((err) => {
         resultsDiv.style.display = "none"
@@ -88,6 +95,25 @@ function ordiofy() {
     console.error('Ooops! an error occurred... Please try again:', err)
   };
 
+}
+
+function downloadAudioResource(url, path, audioTitle) {
+  console.log("Download function enacted");
+  fetch(`/download?link=${encodeURIComponent(url)}&path=${encodeURIComponent(path)}`)
+    .then(response => response.blob())
+    .then(blob => {
+      const audioUrl = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = audioUrl;
+      a.download = audioTitle;
+      a.click();
+      URL.revokeObjectURL(audioUrl);
+      setTimeout(() => {
+        a.href = ""
+        a.download = ""
+      }, 1000)
+    })
 }
 
 function isYouTubeLink(url) {

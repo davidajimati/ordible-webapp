@@ -40,7 +40,7 @@ async function masterFunction(url) {
       'path': finalPath,
       'title': title
     }
-    console.log(retJson)
+    // console.log(retJson)
     return retJson
   } catch (err) {
     console.log("Boss, there was an error:", err)
