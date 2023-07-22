@@ -65,37 +65,47 @@ function ordiofy() {
           loadNewTrack(0);
         }
 
-        // downloadButton.addEventListener('click', () => {
-        //   const a = document.createElement('a');
-        //   a.href = fetch(`/download?link=${encodeURIComponent(link)}`)
-        //   a.download = audioTitle;
-        //   a.click();
-        //   a.remove()
-        // });
-        downloadButton.removeEventListener('click');
-        // downloadButton.addEventListener('click', downloadHandler.bind(null, link, audioPath, audioTitle));
+        const startDownload = () => {
+          downloadButton.setAttribute("onclick", `${downloadAudioResource(link, audioPath, audioTitle)}`)
+        }
+
+        // downloadButton.removeEventListener('click', startDownload)
+        // downloadButton.addEventListener('click', startDownload)
+
+        // downloadButton.addEventListener('click', startDownload)
+        // downloadButton.removeEventListener('click', downloadAudioResource)
+        // downloadButton.addEventListener('click', downloadAudioResource)
+
         downloadButton.addEventListener('click', () => {
-          console.log("Download button clicked")
-          console.log("Download button clicked")
+          downloadButton.removeEventListener('click', startDownload)
+          downloadButton.addEventListener('click', startDownload)
           downloadAudioResource(link, audioPath, audioTitle)
-        });
+          downloadButton.removeEventListener('click', startDownload)
+        })
+
       })
       .catch((err) => {
         resultsDiv.style.display = "none"
         Small_preloader.style.display = "none"
         errorNote.style.display = "inline-block"
         errorSpan.textContent = link;
-        console.error('Error fetching audio:', err)
+        console.error('Ooops! an error occurred... Please try again:', err)
       });
+
   } catch (err) {
     resultsDiv.style.display = "none"
     Small_preloader.style.display = "none"
     errorNote.style.display = "inline-block"
     errorSpan.textContent = link;
     console.error('Ooops! an error occurred... Please try again:', err)
-  };
-
+  }
 }
+
+
+// function handleDownloadClick(link, audioPath, audioTitle) {
+//   console.log("Download button clicked");
+//   downloadAudioResource(link, audioPath, audioTitle);
+// }
 
 function downloadAudioResource(url, path, audioTitle) {
   console.log("Download function enacted");
