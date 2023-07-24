@@ -1,4 +1,5 @@
 const Small_preloader = document.querySelector('.Small_preloader');
+const Small_preloaderText = document.querySelector("#Small_preloaderText")
 const resultsDiv = document.querySelector('.result')
 const searchBox = document.querySelector(".search");
 
