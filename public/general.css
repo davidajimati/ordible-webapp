@@ -87,6 +87,26 @@ footer>p {
     background-position: center;
 }
 
+#headerButton {
+    width: 160px;
+    height: 40px;
+    border-radius: 25px;
+    font-size: medium;
+    margin: 10px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 1px #e60808 solid;
+    color: #e60808;
+    transition: width ease-in-out 0.1s;
+}
+
+#headerButton:hover {
+    width: 180px;
+}
 @media screen and (max-width: 480px) {
 
     /* Mobile Phones */
@@ -124,6 +144,29 @@ footer>p {
     animation: ring 1s infinite;
 }
 
+/*  ------------------------SMALL LOADER */
+.Small_preloader {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f5f5f548;
+    min-height: 100vh;
+    width: 100%;
+    position: fixed;
+    color: black;
+    display: none;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.Small_ring {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    animation: ringerSmall 1s infinite;
+}
+
 @keyframes ring {
     0% {
         transform: rotate(0deg);
@@ -133,6 +176,33 @@ footer>p {
     50% {
         transform: rotate(180deg);
         box-shadow: 1px 3px 2px #22ff00;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        box-shadow: 1px 3px 2px #006aff;
+    }
+}
+
+@keyframes ringerSmall {
+    0% {
+        transform: rotate(0deg);
+        box-shadow: 1px 3px 2px #ff0000;
+    }
+
+    25% {
+        transform: rotate(90deg);
+        box-shadow: 1px 3px 2px #fffb00;
+    }
+
+    50% {
+        transform: rotate(180deg);
+        box-shadow: 1px 3px 2px #22ff00;
+    }
+
+    75% {
+        transform: rotate(270deg);
+        box-shadow: 1px 3px 2px #00fff2;
     }
 
     100% {
@@ -158,6 +228,15 @@ footer>p {
     text-transform: uppercase;
     letter-spacing: 1px;
     line-height: 200px;
+    animation: text 1.5s ease-in-out infinite;
+}
+
+#Small_preloaderText {
+    color: black;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 100px;
     animation: text 1.5s ease-in-out infinite;
 }
 

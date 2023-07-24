@@ -21,7 +21,7 @@ body {
     height: fit-content;
     justify-content: center;
     align-items: center;
-    margin: 10% auto auto auto;
+    margin: 7% auto auto auto;
 }
 
 .logo-text {
@@ -32,13 +32,13 @@ body {
     outline: none;
     width: 600px;
     height: 45px;
-    margin: 40px auto 10px auto;
+    margin: 20px auto 0px auto;
     border: none;
     border-radius: 30px;
     background-color: whitesmoke;
     padding-left: 20px;
     padding-right: 20px;
-    font-size: medium;
+    font-size: 15px;
     transition: box-shadow 0.2s ease;
 }
 
@@ -46,27 +46,105 @@ body {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
-button {
-    width: 150px;
-    height: 38px;
+.ordiofy {
+    width: 180px;
+    height: 44px;
     border: none;
-    border-radius: 6px;
+    border-radius: 25px;
     font-size: medium;
-    background-color: #da0707d7;
+    background-color: #da0707;
     color: whitesmoke;
-    transition: background-color  0.1s ease;
+    transition: background-color 0.1s ease;
+    transition: width 0.1s ease;
+    cursor: pointer;
+    margin: 10px auto 25px auto;
 }
 
-button:hover {
-    background-color: #da0707
+.ordiofy:hover {
+    background-color: #e60808;
+    width: 185px;
+}
+
+/* ------RESULTS DIV ----- */
+.result {
+    width: 500px;
+    margin-bottom: 10px;
+    height: fit-content;
+    display: none;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: whitesmoke;
+}
+
+.video-details {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    color: #212121;
+    overflow: hidden;
+}
+
+.thumbnail>img {
+    width: 200px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.thumbnail {
+    position: relative;
+    display: inline-block;
+}
+
+.author {
+    display: inline-block;
+    color: #474747;
 }
 
 
+.optionsButtons>button {
+    width: 120px;
+    height: 35px;
+    border-radius: 16px;
+    font-size: medium;
+    cursor: pointer;
+    transition: width 0.2s ease-in-out;
+}
+
+.optionsButtons>button:hover {
+    width: 130px;
+}
+
+.optionsButtons {
+    justify-content: space-between;
+    margin-top: auto;
+    align-items: flex-end;
+    display: flex;
+}
+
+#player {
+    background-color: transparent;
+    border: 1px #e60808 solid;
+    color: #212121;
+    margin-right: 5px;
+}
+
+#downloadButton {
+    background-color: #e60808;
+    border: 1px #e60808 solid;
+    color: white;
+    margin-left: 5px;
+}
+
+/* ----------------- */
 @media screen and (max-width: 480px) {
 
     /* Mobile Phones */
     .contents {
         margin: 30% auto auto auto;
+    }
+
+    .optionsButton {
+        margin: 10px 5px;
     }
 
     .logo-text {

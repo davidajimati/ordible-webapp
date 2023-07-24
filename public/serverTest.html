@@ -17,8 +17,10 @@
         const downloadButton = document.querySelector('#downloadButton')
         audioPlayer = document.querySelector("#player");
 
+        const link = 'https://www.youtube.com/watch?v=UvJsJ7XxjRw';
+        const title = "Diana Ross - He lives in you";
         function grandFunction(command) {
-            fetch('/audio')
+            fetch(`/audio?link=${encodeURIComponent(link)}&title=${encodeURIComponent(title)}`)
                 .then((response) => response.json())
                 .then((data) => {
                     const base64Audio = data.audio;
@@ -27,7 +29,7 @@
                     audioPlayer.src = audioUrl;
 
                     const a = document.createElement('a');
-                    const fileName = 'Prinx emmanuel.mp3';
+                    const fileName = "Diana Ross - He lives in you.mp3";
 
                     a.href = audioUrl;
                     a.download = fileName;
