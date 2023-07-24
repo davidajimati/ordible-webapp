@@ -22,6 +22,7 @@ function ordiofy() {
       return
     }
 
+    downloadButton.removeEventListener('click', downloadAudioResource)
     Small_preloader.style.display = "flex"
 
     fetch(`/audio?link=${encodeURIComponent(link)}`)
@@ -69,19 +70,40 @@ function ordiofy() {
           downloadButton.setAttribute("onclick", `${downloadAudioResource(link, audioPath, audioTitle)}`)
         }
 
-        // downloadButton.removeEventListener('click', startDownload)
-        // downloadButton.addEventListener('click', startDownload)
+        // downloadButton.removeEventListener('click', downloadAudioResource)
+        downloadButton.addEventListener('click', downloadAudioResource)
 
         // downloadButton.addEventListener('click', startDownload)
         // downloadButton.removeEventListener('click', downloadAudioResource)
         // downloadButton.addEventListener('click', downloadAudioResource)
 
-        downloadButton.addEventListener('click', () => {
-          downloadButton.removeEventListener('click', startDownload)
-          downloadButton.addEventListener('click', startDownload)
-          downloadAudioResource(link, audioPath, audioTitle)
-          downloadButton.removeEventListener('click', startDownload)
-        })
+        // downloadButton.addEventListener('click', () => {
+        //   downloadButton.removeEventListener('click', startDownload)
+        //   downloadButton.addEventListener('click', startDownload)
+        //   downloadAudioResource(link, audioPath, audioTitle)
+        //   downloadButton.removeEventListener('click', startDownload)
+        // })
+
+        function downloadAudioResource() {
+          // downloadButton.removeEventListener('click', downloadAudioResource)
+          // downloadButton.addEventListener('click', downloadAudioResource)
+          console.log("Download function enacted");
+          fetch(`/download?link=${encodeURIComponent(link)}&path=${encodeURIComponent(audioPath)}`)
+            .then(response => response.blob())
+            .then(blob => {
+              const audioUrl = URL.createObjectURL(blob);
+
+              const a = document.createElement('a');
+              a.href = audioUrl;
+              a.download = audioTitle;
+              a.click();
+              URL.revokeObjectURL(audioUrl);
+              // setTimeout(() => {
+              //   a.href = ""
+              //   a.download = ""
+              // }, 1000)
+            })
+        }
 
       })
       .catch((err) => {
@@ -89,7 +111,7 @@ function ordiofy() {
         Small_preloader.style.display = "none"
         errorNote.style.display = "inline-block"
         errorSpan.textContent = link;
-        console.error('Ooops! an error occurred... Please try again:', err)
+        console.error('Oops! an error occurred... Please try again:', err)
       });
 
   } catch (err) {
@@ -97,7 +119,7 @@ function ordiofy() {
     Small_preloader.style.display = "none"
     errorNote.style.display = "inline-block"
     errorSpan.textContent = link;
-    console.error('Ooops! an error occurred... Please try again:', err)
+    console.error('Oops! an error occurred... Please try again:', err)
   }
 }
 
@@ -107,24 +129,24 @@ function ordiofy() {
 //   downloadAudioResource(link, audioPath, audioTitle);
 // }
 
-function downloadAudioResource(url, path, audioTitle) {
-  console.log("Download function enacted");
-  fetch(`/download?link=${encodeURIComponent(url)}&path=${encodeURIComponent(path)}`)
-    .then(response => response.blob())
-    .then(blob => {
-      const audioUrl = URL.createObjectURL(blob);
+// function downloadAudioResource(url, path, audioTitle) {
+//   console.log("Download function enacted");
+//   fetch(`/download?link=${encodeURIComponent(url)}&path=${encodeURIComponent(path)}`)
+//     .then(response => response.blob())
+//     .then(blob => {
+//       const audioUrl = URL.createObjectURL(blob);
 
-      const a = document.createElement('a');
-      a.href = audioUrl;
-      a.download = audioTitle;
-      a.click();
-      URL.revokeObjectURL(audioUrl);
-      setTimeout(() => {
-        a.href = ""
-        a.download = ""
-      }, 1000)
-    })
-}
+//       const a = document.createElement('a');
+//       a.href = audioUrl;
+//       a.download = audioTitle;
+//       a.click();
+//       URL.revokeObjectURL(audioUrl);
+//       setTimeout(() => {
+//         a.href = ""
+//         a.download = ""
+//       }, 1000)
+//     })
+// }
 
 function isYouTubeLink(url) {
   // Regular expression to match YouTube video URLs
