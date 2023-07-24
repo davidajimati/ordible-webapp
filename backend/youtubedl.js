@@ -50,7 +50,7 @@ async function masterFunction(url) {
 
 // performs the conversion and details download process
 async function downloadAudio(url, options) {
-  console.log("Download function received a request, processing ----\n")
+  // console.log("Download function received a request, processing ----\n")
   try {
     let stdout = await exec(url, options);
     // console.log(stdout);

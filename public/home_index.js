@@ -34,20 +34,14 @@ const trackEnd = document.querySelector('.trackEnd');
 
 const reopen_player = document.querySelector('#reopen_player');
 
-let songList = [
-  {
-    path: "audio.mp3",
-    track_title: "Mountain of Fire",
-    track_author: "K spirit",
-    track_image: "../public/images/thumbnail1.png"
-  },
-  {
-    path: "highpriest.mp3",
-    track_title: "Jesus the High priest",
-    track_author: "Lanre Awosika",
-    track_image: "../public/images/thumbnail3.png"
-  }
-]
+// {
+//   path: "audio.mp3",
+//   track_title: "Mountain of Fire",
+//   track_author: "K spirit",
+//   track_image: "../public/images/thumbnail1.png"
+// }
+
+let songList = []
 
 // console.log(songList[0].track_author);
 
@@ -61,7 +55,7 @@ let currentIndex;
 
 const loadNewTrack = async (track_index) => {
   resetValues();
-  current_track.src = `/convertedAudios/Diana_Ross-He-lives-in-you.mp3`
+  current_track.src = songList[track_index].path;
   current_track.load();
 
   let songTT = songList[track_index].track_title;
@@ -84,6 +78,20 @@ const loadNewTrack = async (track_index) => {
   updateTimer = setInterval(seekUpdate, 1000);
   current_track.addEventListener('ended', nextTrack);
   return (true)
+}
+
+function pullToLocal() {
+    fetch(`/download?path=${encodeURIComponent(songList[trackIndex].path)}`)
+      .then(response => response.blob())
+      .then(blob => {
+        const audioUrl = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = audioUrl;
+        a.download = songList[trackIndex].track_title;
+        a.click();
+        URL.revokeObjectURL(audioUrl);
+      })
 }
 
 function resetValues() {
@@ -206,7 +214,7 @@ const closePlayer = () => {
 
 function expandView() {
   // important metrics
-  resultsDiv.style.display = "grid";
+  // resultsDiv.style.display = "grid";
   expanded = true;
   expand.style.display = 'none';
   minimize.style.display = 'inline';
@@ -267,6 +275,7 @@ const errorNote = document.querySelector('.errorNote')
 const errorSpan = document.querySelector('#errorSpan')
 
 const resultsThumbnail = document.querySelector('.resultsThumbnail')
+const result_thumbnailIMG = document.querySelector('.result_thumbnailIMG');
 const resultsTitle = document.querySelector('.title')
 const resultsAuthor = document.querySelector('.author')
 
@@ -313,7 +322,7 @@ async function ordiofy(string) {
           var author = 'Ordible'
         }
 
-        resultsThumbnail.src = thumbnail_url;
+        result_thumbnailIMG.src = thumbnail_url;
         resultsTitle.textContent = audioTitle;
         resultsAuthor.textContent = author;
 
@@ -339,13 +348,14 @@ async function ordiofy(string) {
             track_image: thumbnail_url
           }
           songList.unshift(trackInfo);
-          loadNewTrack(0);
+          startMusicPlayer()
         }
 
         if (string == 'download') {
           downloadAudioResource()
         } else if (string == 'play') {
           playAudioFile()
+          audioPlayer.style.display = "flex";
         }
 
       })
