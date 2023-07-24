@@ -3,6 +3,11 @@
     padding: 0;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
 body {
     background-image: url("ordible-background.webp");
     background-position: center;
@@ -13,9 +18,11 @@ body {
 .container {
     display: flex;
     justify-content: center;
+    align-items: center;
+    justify-content: center;
 }
 
-.contents {
+.contents1 {
     display: flex;
     flex-direction: column;
     height: fit-content;
@@ -68,38 +75,42 @@ body {
 /* ------RESULTS DIV ----- */
 .result {
     width: 500px;
-    margin-bottom: 10px;
-    height: fit-content;
-    display: none;
+    margin-bottom: 30px;
+    height: 122px;
+    display: grid;
+    grid-template: 1fr / 3fr 4fr;
     border-radius: 8px;
     padding: 5px;
     background-color: whitesmoke;
 }
 
-.video-details {
-    margin-left: 10px;
-    display: flex;
-    flex-direction: column;
-    color: #212121;
-    overflow: hidden;
+.resultsThumbnail {
+    width: 200px;
+    height: 113px;
+    height: fit-content;
+    display: inline-block;
 }
 
-.thumbnail>img {
+.resultsThumbnail>img {
     width: 200px;
     height: auto;
     border-radius: 5px;
 }
 
-.thumbnail {
-    position: relative;
-    display: inline-block;
+.video-details {
+    margin-left: 10px;
+    display: grid;
+    grid-template: auto auto auto / 1fr;
+    /* flex-direction: column; */
+    color: #212121;
+    overflow: hidden;
+    height: 113px;
 }
 
 .author {
     display: inline-block;
     color: #474747;
 }
-
 
 .optionsButtons>button {
     width: 120px;
