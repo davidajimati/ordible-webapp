@@ -1,19 +1,22 @@
-function ordiofy() {
+const Small_preloader = document.querySelector('.Small_preloader');
+const resultsDiv = document.querySelector('.result')
+const searchBox = document.querySelector(".search");
+
+const errorNote = document.querySelector('.errorNote')
+const errorSpan = document.querySelector('#errorSpan')
+
+const resultsThumbnail = document.querySelector('.resultsThumbnail')
+const resultsTitle = document.querySelector('.title')
+const resultsAuthor = document.querySelector('.author')
+
+const downloadButton = document.querySelector('#downloadButton')
+const playButton = document.querySelector("#player");
+
+async function ordiofy(string) {
   try {
-    const Small_preloader = document.querySelector('.Small_preloader');
-    const resultsDiv = document.querySelector('.result')
-    const searchBox = document.querySelector(".search");
-
-    const errorNote = document.querySelector('.errorNote')
-    const errorSpan = document.querySelector('#errorSpan')
-
-    const resultsThumbnail = document.querySelector('.resultsThumbnail')
-    const resultsTitle = document.querySelector('.title')
-    const resultsAuthor = document.querySelector('.author')
-
-    const downloadButton = document.querySelector('#downloadButton')
-    const playButton = document.querySelector("#player");
-    const link = searchBox.value
+    var link = searchBox.value
+    downloadButton.innerHTML = "";
+    downloadButton.textContent = "Download";
 
     errorNote.style.display = "none";
 
@@ -22,14 +25,13 @@ function ordiofy() {
       return
     }
 
-    downloadButton.removeEventListener('click', downloadAudioResource)
     Small_preloader.style.display = "flex"
 
     fetch(`/audio?link=${encodeURIComponent(link)}`)
       .then((response) => response.json())
       .then((data) => {
-        const audioPath = data.path
-        const audioTitle = data.title
+        var audioPath = data.path
+        var audioTitle = data.title
 
         // make button visible / hide loader
         resultsDiv.style.display = "flex";
@@ -54,40 +56,7 @@ function ordiofy() {
         resultsTitle.textContent = audioTitle;
         resultsAuthor.textContent = author;
 
-        var playAudioFile = () => {
-          const trackInfo = {
-            path: audioPath,
-            track_title: audioTitle,
-            track_author: author,
-            track_image: thumbnail_url
-          }
-
-          songList.unshift(trackInfo);
-          loadNewTrack(0);
-        }
-
-        const startDownload = () => {
-          downloadButton.setAttribute("onclick", `${downloadAudioResource(link, audioPath, audioTitle)}`)
-        }
-
-        // downloadButton.removeEventListener('click', downloadAudioResource)
-        downloadButton.addEventListener('click', downloadAudioResource)
-
-        // downloadButton.addEventListener('click', startDownload)
-        // downloadButton.removeEventListener('click', downloadAudioResource)
-        // downloadButton.addEventListener('click', downloadAudioResource)
-
-        // downloadButton.addEventListener('click', () => {
-        //   downloadButton.removeEventListener('click', startDownload)
-        //   downloadButton.addEventListener('click', startDownload)
-        //   downloadAudioResource(link, audioPath, audioTitle)
-        //   downloadButton.removeEventListener('click', startDownload)
-        // })
-
         function downloadAudioResource() {
-          // downloadButton.removeEventListener('click', downloadAudioResource)
-          // downloadButton.addEventListener('click', downloadAudioResource)
-          console.log("Download function enacted");
           fetch(`/download?link=${encodeURIComponent(link)}&path=${encodeURIComponent(audioPath)}`)
             .then(response => response.blob())
             .then(blob => {
@@ -98,11 +67,24 @@ function ordiofy() {
               a.download = audioTitle;
               a.click();
               URL.revokeObjectURL(audioUrl);
-              // setTimeout(() => {
-              //   a.href = ""
-              //   a.download = ""
-              // }, 1000)
             })
+        }
+
+        function playAudioFile() {
+          const trackInfo = {
+            path: audioPath,
+            track_title: audioTitle,
+            track_author: author,
+            track_image: thumbnail_url
+          }
+          songList.unshift(trackInfo);
+          loadNewTrack(0);
+        }
+
+        if (string == 'download') {
+          downloadAudioResource()
+        } else if (string == 'play') {
+          playAudioFile()
         }
 
       })
@@ -122,31 +104,6 @@ function ordiofy() {
     console.error('Oops! an error occurred... Please try again:', err)
   }
 }
-
-
-// function handleDownloadClick(link, audioPath, audioTitle) {
-//   console.log("Download button clicked");
-//   downloadAudioResource(link, audioPath, audioTitle);
-// }
-
-// function downloadAudioResource(url, path, audioTitle) {
-//   console.log("Download function enacted");
-//   fetch(`/download?link=${encodeURIComponent(url)}&path=${encodeURIComponent(path)}`)
-//     .then(response => response.blob())
-//     .then(blob => {
-//       const audioUrl = URL.createObjectURL(blob);
-
-//       const a = document.createElement('a');
-//       a.href = audioUrl;
-//       a.download = audioTitle;
-//       a.click();
-//       URL.revokeObjectURL(audioUrl);
-//       setTimeout(() => {
-//         a.href = ""
-//         a.download = ""
-//       }, 1000)
-//     })
-// }
 
 function isYouTubeLink(url) {
   // Regular expression to match YouTube video URLs
