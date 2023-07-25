@@ -81,17 +81,17 @@ const loadNewTrack = async (track_index) => {
 }
 
 function pullToLocal() {
-    fetch(`/download?path=${encodeURIComponent(songList[trackIndex].path)}`)
-      .then(response => response.blob())
-      .then(blob => {
-        const audioUrl = URL.createObjectURL(blob);
+  fetch(`/download?path=${encodeURIComponent(songList[trackIndex].path)}`)
+    .then(response => response.blob())
+    .then(blob => {
+      const audioUrl = URL.createObjectURL(blob);
 
-        const a = document.createElement('a');
-        a.href = audioUrl;
-        a.download = songList[trackIndex].track_title;
-        a.click();
-        URL.revokeObjectURL(audioUrl);
-      })
+      const a = document.createElement('a');
+      a.href = audioUrl;
+      a.download = songList[trackIndex].track_title;
+      a.click();
+      URL.revokeObjectURL(audioUrl);
+    })
 }
 
 function resetValues() {
@@ -136,10 +136,14 @@ function playTrack() {
   isPlaying = true;
 }
 
-const nextTrack = async () => {
-  if (trackIndex < songList.length - 1)
-    trackIndex += 1;
-  else trackIndex = 0;
+const nextTrack = async (idx) => {
+  if (idx) {
+    trackIndex = idx;
+  } else {
+    if (trackIndex < songList.length - 1)
+      trackIndex += 1;
+    else trackIndex = 0;
+  }
 
   try {
     await loadNewTrack(trackIndex);
@@ -282,9 +286,13 @@ const resultsAuthor = document.querySelector('.author')
 const downloadButton = document.querySelector('#downloadButton')
 const playButton = document.querySelector("#player");
 
-async function ordiofy(string) {
+async function ordiofy(string, specifiedURL) {
   try {
-    var link = searchBox.value
+    if (specifiedURL) {
+      var link = specifiedURL;
+    } else {
+      var link = searchBox.value
+    }
     downloadButton.innerHTML = "";
     downloadButton.textContent = "Download";
 
@@ -348,7 +356,7 @@ async function ordiofy(string) {
             track_image: thumbnail_url
           }
           songList.unshift(trackInfo);
-          startMusicPlayer()
+          nextTrack(0)
         }
 
         if (string == 'download') {
@@ -401,3 +409,5 @@ function getDomain(link) {
     console.log("error getting domain");
   }
 }
+
+modules.export = ordiofy;

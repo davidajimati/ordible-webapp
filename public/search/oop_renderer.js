@@ -1,3 +1,5 @@
+import ordiofy from '../home_index';
+
 function checkISO(input) {
   var isoDatePattern = /^(\d{4})-(\d{2})-(\d{2})(T(\d{2}):(\d{2}):(\d{2})(\.\d{1,3})?(Z|[+-]\d{2}:\d{2}))?$/;
   if (isoDatePattern.test(input)) return (findAge(input));
@@ -5,7 +7,6 @@ function checkISO(input) {
 }
 
 const preloader = document.querySelector('.preloader');
-const url = "http://127.0.0.1:3000/download"
 
 const findAge = (ISOdate) => {
   if (!ISOdate | ISOdate === "") return "";
@@ -112,15 +113,16 @@ function renderer(items) {
     icons.classList.add('icons');
 
     // play Link and Play Icon
-    const playLink = document.createElement('a');
-    playLink.classList.add("playLink");
+    // const playLink = document.createElement('a');
+    // playLink.classList.add("playLink");
     // playLink.setAttribute("target", "_blank");
 
     const playIcon = document.createElement('i');
     playIcon.classList.add('fa', 'fa-play-circle');
     playIcon.setAttribute("aria-hidden", "true");
+    playIcon.onclick = ordiofy('play', videoLink)
 
-    playLink.appendChild(playIcon)
+    // playLink.appendChild(playIcon)
 
     // redirect Link and redirect Icon
     const redirectLink = document.createElement('a');
@@ -139,7 +141,7 @@ function renderer(items) {
     const downloadLink = document.createElement('a');
     downloadLink.classList.add("downloadLink");
     // downloadLink.setAttribute("target", "_blank");
-    downloadLink.href = `${url}?link=${encodeURIComponent(videoLink)}&title=${encodeURIComponent(rawTitle)}`;
+    downloadLink.href = `/download?link=${encodeURIComponent(videoLink)}`;
 
     const downloadIcon = document.createElement('i');
     downloadIcon.classList.add('fa', 'fa-download');
