@@ -492,16 +492,20 @@ async function ordiofy(specifiedURL, thumbnailLink, channelName) {
         var audioTitle = data.title
 
         Small_preloader.style.display = "none";
+        audioPlayer.style.display = "flex";
 
         const trackInfo = {
-          path: audioPath,
+          path: `../${audioPath}`,
           track_title: audioTitle,
           track_author: channelName,
           track_image: thumbnailLink
         }
+        console.log(trackInfo)
+        return (trackInfo)
+      })
+      .then(trackInfo => {
         songList.unshift(trackInfo);
         nextTrack(0)
-
       })
   } catch (err) {
     Small_preloader.style.display = "none"
