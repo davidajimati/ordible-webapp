@@ -175,9 +175,8 @@
   display: none;
   flex-direction: column;
   align-items: flex-start;
-  right: 5%;
-  bottom: 28%;
-  position: absolute;
+  right: 10px;
+  bottom: 250px;
   padding: 10px;
   flex-direction: column;
   overflow: scroll;
@@ -189,6 +188,7 @@
   background-color: #0a0a0e;
   border-radius: 6px;
   color: #b6b6b6;
+  position: fixed;
 }
 
 .songList-box::-webkit-scrollbar {
