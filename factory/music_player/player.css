@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+p {
+  font-size: 13px;
+}
+
+h4 {
+  font-size: 15px;
+}
+
+.audioPlayer {
+  height: fit-content;
+  padding: 10px 15px 15px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background-color: #000;
+  color: white;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  border-radius: 6px 6px 0 0;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.options {
+  display: flex;
+  gap: 20px;
+}
+
+.options>i {
+  cursor: pointer;
+}
+
+.coreArea {
+  display: grid;
+  grid-template: 1fr/ 2fr 4fr 2fr;
+  align-items: center;
+  justify-content: center;
+}
+
+.audio_info {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  gap: 10px;
+  justify-self: flex-start;
+}
+
+.thumbnail {
+  width: 120px;
+  height: 90px;
+  background-image: url('../public/images/thumbnail1.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 5px;
+}
+
+.audioControls {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 90%;
+}
+
+.options>i {
+  cursor: pointer;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+#playList_icon,
+#downloadIcon {
+  display: none;
+  font-size: 35px;
+}
+
+.sliderArea {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls>i {
+  font-size: 45px;
+  cursor: pointer;
+  color: #b6b6b6;
+}
+
+.controls>i:hover {
+  color: whitesmoke;
+}
+
+#play {
+  color: white;
+}
+
+#slider {
+  padding: 0;
+  margin: 0;
+  width: 350px;
+  height: 3px;
+  background: red;
+  outline: none;
+  opacity: 0.8;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+#reopen_player {
+  display: none;
+  color: black;
+  font-size: 55px;
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  z-index: 100;
+  cursor: pointer;
+  transition: color 0.3s;
+  transition: font-size 0.2s;
+}
+
+#reopen_player:hover {
+  color: #9e0000;
+  font-size: 60px;
+}
+
+.scroll_box {
+  overflow: hidden;
+  position: relative;
+  width: 200px;
+}
+
+.scroll_box h4 {
+  white-space: nowrap;
+  position: relative;
+  animation: scrollText 12s linear infinite;
+}
+
+@keyframes scrollText {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+#closePlayList {
+  font-size: 20px;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+#closePlayList:hover {
+  color: whitesmoke;
+}
+
+.songList-box {
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  right: 5%;
+  bottom: 28%;
+  position: absolute;
+  padding: 10px;
+  flex-direction: column;
+  overflow: scroll;
+  float: right;
+  z-index: 1000;
+  height: fit-content;
+  max-height: 300px;
+  width: 250px;
+  background-color: #0a0a0e;
+  border-radius: 6px;
+  color: #b6b6b6;
+}
+
+.songList-box::-webkit-scrollbar {
+  width: 0.3em;
+  height: 0.3em;
+}
+
+.songList-box::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.songList-box::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 3px;
+}
+
+.songList-box:focus {
+  outline: none;
+}
+
+
+.songs_list {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.track {
+  white-space: nowrap;
+  padding: 3px;
+}
+
+.track:hover {
+  background-color: #16161f;
+  color: whitesmoke;
+}
+
+@media (max-width: 768px) {
+
+  #header,
+  .sliderArea,
+  #expand,
+  #minimize,
+  #prev,
+  #next,
+  #playList,
+  #downloadIcon {
+    display: none;
+  }
+
+  .audioPlayer {
+    margin: 0;
+    padding: 5px 10px;
+    border-radius: 6px 6px 0px 0px;
+  }
+
+  .top {
+    /* display: grid;
+    grid-template: 1fr/ 1fr auto; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .coreArea {
+    display: grid;
+    grid-template: 1fr/ 1fr auto;
+  }
+
+  .audioPlayer {
+    display: grid;
+    grid-template: 1fr/1fr 7fr;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .audio_info {
+    justify-content: space-between;
+  }
+
+  .audioControls>i {
+    font-size: 40px;
+  }
+
+  .options>i {
+    font-size: 30px;
+  }
+
+  .thumbnail {
+    width: 120px;
+    height: 90px;
+  }
+
+  #slider {
+    width: 80%;
+  }
+
+  .scroll_box {
+    width: 120px;
+  }
+}

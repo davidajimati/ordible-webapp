@@ -34,27 +34,36 @@ app.get('/download', async (req, res) => {
   res.setHeader("Content-Disposition", "attachment");
   res.setHeader('Content-Type', 'audio/mpeg');
   try {
+    // console.log("download route got a request")
     const link = req.query.link;
-    const path = req.query.path;
 
-    if (path) {
-      // console.log(path);
+    if (req.query.path) {
+      // console.log("path present")
+      if (req.query.client == "home") {
+        var path = req.query.path
+      } else {
+        var path = (req.query.path).slice(3);
+      }
+
+      // console.log("sliced path", path);
       const available = await checkAvailability(`public/${path}`)
       if (available) {
+        // console.log("path checked and available")
         res.setHeader("Content-Disposition", "attachment");
         res.setHeader('Content-Type', 'audio/mpeg');
         // console.log("File Present");
+        // console.log(__dirname, `../public/${path}`);
         res.download(pathJS.join(__dirname, `../public/${path}`), (err) => {
           if (err) {
             console.log("Error", err);
           }
         });
         // console.log("file has been downloaded");
-        // console.log(pathJS.join(__dirname, `../public/${path}`))
         return
       }
     }
     else {
+      // console.log("download route: no path link only")
       const check = await isValidUrl(link)
       if (!check) {
         // check if url is valid
@@ -65,12 +74,18 @@ app.get('/download', async (req, res) => {
         res.setHeader('Content-Type', 'audio/mpeg');
         // const link = req.query.link
         let outputPath = await youtubeDl(link);
-        res.download(`public/${outputPath.path}`);
+        // res.download(`public/${outputPath.path}`);
+        // console.log(`public/${outputPath.path}`)
+        res.download(pathJS.join(__dirname, `../public/${outputPath.path}`), (err) => {
+          if (err) {
+            console.log("Error", err);
+          }
+        });
       }
     }
   } catch (err) {
-    console.log("Download route encountered a problem\n")
-    res.status(400).end("Something went wrong")
+    console.log("Download route encountered a problem\n", err)
+    res.status(500).end("Something went wrong")
     return
   }
 });
@@ -99,17 +114,6 @@ app.get('/audio', async (req, res) => {
   }
 });
 
-app.get('/pullToLocal', async (req, res) => {
-  try {
-    const location = req.query.path;
-    console.log(location);
-
-  } catch (err) {
-    console.log("pullToLocal route encountered an error\n", err)
-    res.status(400).end("Something went wrong")
-    return
-  }
-})
 // ------------ HELPER FUNCTIONS ------------------
 async function isValidUrl(urlString) {
   try {
@@ -121,6 +125,7 @@ async function isValidUrl(urlString) {
 }
 
 function checkAvailability(filePath) {
+  // console.log(filePath);
   try {
     return new Promise((resolve, reject) => {
       fs.access(filePath, fs.constants.F_OK, (err) => {
@@ -141,5 +146,3 @@ function checkAvailability(filePath) {
 app.listen(3000, () => {
   console.log("Server listening on port 3000");
 });
-
-// console.log(youtubeDl('https://www.youtube.com/watch?v=UBhs7CpKPSs', "Ordible test Audio.mp3"));

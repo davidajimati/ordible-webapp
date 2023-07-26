@@ -1,70 +1,62 @@
 # ORDIBLE
-![Ordible Logo](project-images/white-red.png)
+![Ordible Logo](public/images/clear-redNblack.png)
 
-Web app that allows users to stream video content from social media platforms in audio format.<br>
+Ordible helps users to stream video contents in audio format from over 700 social media domains<br>
 
-visit the github page to have a live view of this project via: https://davidajimati.github.io/ordible-webapp/index.html
+for a live view, visit: https://ordible.matis.tech
+for a static view of the project, visit the github page via: https://davidajimati.github.io/ordible-webapp/index.html
+## LIVE PROJECT IMAGES:
+- <p>Home Page</p> <img style="height: auto; width: 500px"  src="public/images/live-images/home-page.png"><br><br>
+- <p>Search Page</p> <img style="height: auto; width: 500px"  src="public/images/live-images/search-page.png"><br><br>
+- <p>Home page results</p> <img style="height: auto; width: 500px"  src="public/images/live-images/home_page-results.png"><br><br>
+- <p>Mini Music player Interface</p> <img style="height: auto; width: 500px"  src="public/images/live-images/mini-music_player.png"><br><br>
+- <p>Search-page full screen music player</p> <img style="height: auto; width: 500px"  src="public/images/live-images/searchPage_music player.png"><br><br>
 
 ## TECHNOLOGIES
-- Bootstrap
-- Flask
-- Jquery
 - Javascript
-- HTML & CSS
-- Jinja
+- node.js
+- express.js
+- Vanilla HTML & CSS
 - Github
-- Facebook API
-- Youtube API, etc.
-
-### 2 alternate technology choices
-- PHP
-- Tailwind CSS
+- Youtube API
+- youtube-dl-exec
+- googleapis
+- cors
+- ffmpeg ( but reserved for later releases)
 
 ## CHALLENGE
+Ordible will help users:
+- listen to video content in audio format across social networks with less data.
+- convert video and provide download options
+- play the audio files without saving it locally
+- search for video contents from YouTube
 
-- It will help users listen to video content across social networks with less data.
-- The app will not give access to copyrighted videos.
-- The app can be used by anyone, especially those who listen to some of the audiobooks on youtube and play music videos.
-- The app will be available for everyone across the globe since it is web-based.
-
+## ATTRIBUTES
+- consumes API effectively to give users a seamless experience.
+- fully mobile responsive
+- web music player streams directly from the server
+- the server converts the videos only once, then serves it multiple time to the clients
+- the server clears the downloaded audios after 60 minutes to maximize memory.
+- conversion time may vary, depending on the
 ## ARCHITECTURE
-![Web Architecture Diagram](web-architecture/web-architecture.png)
+![Web Architecture Diagram](architecture/web-architecture.png)
 
 ## DATA MODEL
-![Data Model Diagram](<web-architecture/data model.png>)
+![Data Model Diagram](<architecture/data model.png>)
 
 ## APIS
-### YOUTUBE
-`https://www.googleapis.com/youtube/v3`
- - `GET` /videos - Returns a list of videos that match the API request parameters.
- - `GET` /playlists	 - Returns a collection of playlists that match the API request parameters.
- - `GET` /playlistItems	- Returns a collection of playlist items that match the API request parameters.
+#### YOUTUBE
+- youtube Data API -> `https://www.googleapis.com/youtube/v3`
 
-### FACEBOOK API
-**Example**: `https://graph.facebook.com/v12.0/search?q={search-query}&type=video&ccess_token={your-access-token}`
 
-`GET` /v17.0/{video-id} HTTP/1.1
-`Host`: graph.facebook.com
-`Title` - The video title or caption.
-`Source` - A URL to the raw, playable video file.
-`Length` - Duration of this video in seconds.
-`Is_reference_only` - Whether the video is exclusively used for copyright monitoring
+## WIREFRAMES
+#### Homepage wireframe
+![Homepage mockup](<architecture/basic-mockups/ordibel homepage.png>)
+#### Search results page wireframe
+![Search results page mockup](<architecture/basic-mockups/ordible player interface.png>)
 
-### INSTAGRAM API
-Uses the Facebook Graph API
-Example:
-`GET /me/media?fields=id,caption,media_type,media_url,thumbnail_url&acces_token={ your-access-token}`
-
-## MOCKUPS
-#### Homepage Mockup
-![Homepage mockup](<basic-mockups/ordibel homepage.png>)
-#### Search results page Mockup
-![Search results page mockup](<basic-mockups/ordible player interface.png>)
-
-## AUTHORS
+## AUTHOR:
  - David M. Ajimati
- - Stanley Paul
 
-<img style="height: 50px; width: 50px"  src="project-images/clear-red-favicon.png"><br>
+<img style="height: 50px; width: 50px"  src="public/images/clear-red-favicon.png"><br>
 ©ORDIBLE - 2023
-

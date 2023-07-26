@@ -3,6 +3,10 @@
 const audioPlayer = document.querySelector('.audioPlayer');
 const songListBox = document.querySelector('.songList-box');
 
+const songs_list_div = document.querySelector('.songs_list');
+const sg_index = document.querySelector('#sg_index')
+const sg_title = document.querySelector('#sg_title')
+
 const topDiv = document.querySelector('.top');
 const header = document.querySelector('#header');
 const options = document.querySelector('.options');
@@ -43,8 +47,6 @@ const reopen_player = document.querySelector('#reopen_player');
 
 let songList = []
 
-// console.log(songList[0].track_author);
-
 let musicPlayerActive = false;
 let trackIndex = 0;
 let isPlaying = false;
@@ -81,7 +83,7 @@ const loadNewTrack = async (track_index) => {
 }
 
 function pullToLocal() {
-  fetch(`/download?path=${encodeURIComponent(songList[trackIndex].path)}`)
+  fetch(`/download?path=${encodeURIComponent(songList[trackIndex].path)}&client=home`)
     .then(response => response.blob())
     .then(blob => {
       const audioUrl = URL.createObjectURL(blob);
@@ -137,7 +139,7 @@ function playTrack() {
 }
 
 const nextTrack = async (idx) => {
-  if (idx) {
+  if (idx > -1) {
     trackIndex = idx;
   } else {
     if (trackIndex < songList.length - 1)
@@ -170,7 +172,32 @@ const prevTrack = async () => {
 }
 
 function showPlayList() {
+  // console.log(songList);
+  songs_list_div.innerHTML = ""
+  let i = 1
   songListBox.style.display = "flex";
+  for (let item of songList) {
+    const track = document.createElement('div');
+    track.classList.add('track')
+
+    const sg_index = document.createElement('span');
+    sg_index.textContent = i;
+
+
+    const sg_title = document.createElement('span');
+    sg_title.textContent = item.track_title;
+
+    track.appendChild(sg_index)
+    track.append(".\t")
+    track.appendChild(sg_title);
+
+    track.addEventListener('click', () => {
+      nextTrack(sg_index - 1)
+    })
+
+    songs_list_div.appendChild(track);
+    i += 1;
+  }
 }
 
 function closePlayList() {
@@ -180,7 +207,7 @@ function closePlayList() {
 const seekTo = () => {
   seek = Math.round((slider.value / 100) * current_track.duration);
   current_track.currentTime = seek;
-  console.log(seek);
+  // console.log(seek);
 }
 
 function seekUpdate() {
@@ -197,7 +224,7 @@ function seekUpdate() {
 const minimizePlayer = () => {
   audioPlayer.style.display = 'none';
   reopen_player.style.display = 'inline'
-  songListBox.display = "none";
+  songListBox.style.display = "none";
 }
 
 const reopenPlayer = () => {
@@ -207,13 +234,14 @@ const reopenPlayer = () => {
   topDiv.style.justifyContent = "space-between";
   topDiv.style.alignItems = "center";
   topDiv.style.width = "100%";
+  reopen_player.style.display = 'none'
 }
 
 const closePlayer = () => {
   current_track.pause();
   audioPlayer.style.display = 'none';
   reopen_player.style.display = 'none';
-  songListBox.display = "none";
+  songListBox.style.display = "none";
 }
 
 function expandView() {
@@ -335,7 +363,7 @@ async function ordiofy(string, specifiedURL) {
         resultsAuthor.textContent = author;
 
         function downloadAudioResource() {
-          fetch(`/download?link=${encodeURIComponent(link)}&path=${encodeURIComponent(audioPath)}`)
+          fetch(`/download?link=${encodeURIComponent(link)}`)
             .then(response => response.blob())
             .then(blob => {
               const audioUrl = URL.createObjectURL(blob);
