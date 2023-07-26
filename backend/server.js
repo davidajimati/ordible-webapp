@@ -38,9 +38,9 @@ app.get('/download', async (req, res) => {
     const path = req.query.path;
 
     if (path) {
+      // console.log(path);
       const available = await checkAvailability(`public/${path}`)
       if (available) {
-        const pathExtension = "/home/david/Desktop/ordible-webapp/public/"
         res.setHeader("Content-Disposition", "attachment");
         res.setHeader('Content-Type', 'audio/mpeg');
         // console.log("File Present");
@@ -49,14 +49,8 @@ app.get('/download', async (req, res) => {
             console.log("Error", err);
           }
         });
-        console.log("file has been downloaded");
-        console.log(pathJS.join(__dirname, `../public/${path}`))
-        // res.download(pathJS.resolve('public', path), (err) => {
-        //   if (err) {
-        //     console.log("An error from res.download ", err);
-        //     throw error
-        //   }
-        // });
+        // console.log("file has been downloaded");
+        // console.log(pathJS.join(__dirname, `../public/${path}`))
         return
       }
     }
@@ -80,32 +74,6 @@ app.get('/download', async (req, res) => {
     return
   }
 });
-
-
-// app.get('/download', async (req, res) => {
-//           // console.log("download path received a request")
-//   const check = await isValidUrl(req.query.link)
-//   if (!check) {
-//           // check if url is valid
-//     res.status(400).end("Invalid URL")
-//     return
-//   } else {
-//     try {
-//       res.setHeader("Content-Disposition", "attachment");
-//       res.setHeader('Content-Type', 'audio/mpeg');
-
-//         // youtubeDl(link, title)
-//       const link = req.query.link
-//       let outputPath = await youtubeDl(link);
-//       res.download(`public/${outputPath.path}`);
-//     }
-//     catch (err) {
-//       console.log("Download route encountered a problem\n")
-//       res.status(400).end("Something went wrong")
-//       return
-//     }
-//   }
-// })
 
 app.get('/audio', async (req, res) => {
   try {
@@ -131,6 +99,17 @@ app.get('/audio', async (req, res) => {
   }
 });
 
+app.get('/pullToLocal', async (req, res) => {
+  try {
+    const location = req.query.path;
+    console.log(location);
+
+  } catch (err) {
+    console.log("pullToLocal route encountered an error\n", err)
+    res.status(400).end("Something went wrong")
+    return
+  }
+})
 // ------------ HELPER FUNCTIONS ------------------
 async function isValidUrl(urlString) {
   try {
@@ -146,10 +125,10 @@ function checkAvailability(filePath) {
     return new Promise((resolve, reject) => {
       fs.access(filePath, fs.constants.F_OK, (err) => {
         if (err) {
-          console.error('File does not exist.\n___________________________________');
+          // console.error('File does not exist.\n___________________________________');
           resolve(false);
         } else {
-          console.log('File exists.\n___________________________________');
+          // console.log('File exists.\n___________________________________');
           resolve(true);
         }
       });

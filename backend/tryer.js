@@ -1,25 +1,14 @@
 #!/usr/bin/env node
 // This is where I test new functionalities before adding them to the main program
 
-const a = 10
-
-function calc() {
-  const b = 7
-  function add() {
-    console.log(a + b)
+function getDomain(link) {
+  try {
+    const parsedURL = new URL(link)
+    return (parsedURL.hostname).replace('www.', '');
+  } catch (err) {
+    return null
+    console.log("error getting domain");
   }
-  function sub() {
-    console.log(a - b)
-  }
-  return { 'add': add, 'sub': sub, 'b': b };
 }
 
-// const useIt = calc()
-// // useIt.add()
-// // useIt.sub()
-// const addIt = useIt.add
-// const subIt = useIt.sub
-// // console.log(useIt.b);
-// addIt()
-
-calc().sub()
+console.log(getDomain('https://www.youtube.com/'));
