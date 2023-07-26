@@ -47,8 +47,6 @@ const reopen_player = document.querySelector('#reopen_player');
 
 let songList = []
 
-// console.log(songList[0].track_author);
-
 let musicPlayerActive = false;
 let trackIndex = 0;
 let isPlaying = false;

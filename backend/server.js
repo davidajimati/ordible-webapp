@@ -59,7 +59,6 @@ app.get('/download', async (req, res) => {
           }
         });
         // console.log("file has been downloaded");
-        // console.log(pathJS.join(__dirname, `../public/${path}`))
         return
       }
     }
