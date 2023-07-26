@@ -1,10 +1,10 @@
 # ORDIBLE
 ![Ordible Logo](public/images/clear-redNblack.png)
 
-Ordible helps users to stream video contents in audio format from over 700 social media domains<br>
+Ordible helps users to stream video content in audio format from over 700 social media domains<br>
 
 for a live view, visit: https://ordible.matis.tech
-for a static view of the project, visit the github page via: https://davidajimati.github.io/ordible-webapp/index.html
+for a static view of the project, visit the GitHub page via: https://davidajimati.github.io/ordible-webapp/index.html
 ## LIVE PROJECT IMAGES:
 - <p>Home Page</p> <img style="height: auto; width: 500px"  src="public/images/live-images/home-page.png"><br><br>
 - <p>Search Page</p> <img style="height: auto; width: 500px"  src="public/images/live-images/search-page.png"><br><br>
@@ -20,23 +20,23 @@ for a static view of the project, visit the github page via: https://davidajimat
 - Github
 - Youtube API
 - youtube-dl-exec
-- googleapis
+- google APIS
 - cors
 - ffmpeg ( but reserved for later releases)
 
-## CHALLENGE
+## USE CASES
 Ordible will help users:
 - listen to video content in audio format across social networks with less data.
 - convert video and provide download options
-- play the audio files without saving it locally
-- search for video contents from YouTube
+- play the audio files without saving them locally
+- Search for video content from YouTube
 
 ## ATTRIBUTES
 - consumes API effectively to give users a seamless experience.
 - fully mobile responsive
 - web music player streams directly from the server
-- the server converts the videos only once, then serves it multiple time to the clients
-- the server clears the downloaded audios after 60 minutes to maximize memory.
+- the server converts the videos only once, then serves them multiple times to the clients
+- the server clears the downloaded audio after 60 minutes to maximize memory.
 - conversion time may vary, depending on the
 ## ARCHITECTURE
 ![Web Architecture Diagram](architecture/web-architecture.png)
