@@ -402,12 +402,10 @@ function extractID(url) {
 
 function getDomain(link) {
   try {
-    const parsedURL = new URL(url)
-    return parsedURL.hostname
+    const parsedURL = new URL(link)
+    return (parsedURL.hostname).replace('www.', '');
   } catch (err) {
-    return null
     console.log("error getting domain");
+    return null
   }
 }
-
-modules.export = ordiofy;

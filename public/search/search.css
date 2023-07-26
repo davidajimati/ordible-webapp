@@ -47,13 +47,13 @@
     flex-direction: column;
 }
 
-.thumbnail>img {
+.searchThumbnail>img {
     width: 200px;
     height: auto;
     border-radius: 5px;
 }
 
-.thumbnail {
+.searchThumbnail {
     position: relative;
     display: inline-block;
 }
